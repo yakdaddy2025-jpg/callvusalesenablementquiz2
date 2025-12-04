@@ -1,0 +1,61 @@
+═══════════════════════════════════════════════════════════
+  SIMPLE INSTRUCTIONS - Just Follow These Steps!
+═══════════════════════════════════════════════════════════
+
+OPTION 1: EASIEST WAY (Double-Click)
+─────────────────────────────────────
+1. Find the file called "RUN_ME.bat" in this folder
+2. Double-click it
+3. Follow what it says on screen
+4. Done!
+
+
+OPTION 2: Manual Way (If Option 1 doesn't work)
+───────────────────────────────────────────────
+1. Press Windows Key + R
+2. Type: powershell
+3. Press Enter
+4. Copy and paste this line, then press Enter:
+   
+   cd C:\Users\mikes\partnerships-careers
+
+5. Copy and paste this line, then press Enter:
+   
+   .\auto-deploy.ps1
+
+6. Read what it says and follow the instructions
+
+
+WHAT THE SCRIPT WILL DO:
+─────────────────────────
+✓ Check if everything is ready
+✓ Try to push to GitHub
+✓ Tell you if the GitHub repo needs to be created
+✓ Give you exact steps if something is needed
+
+
+IF IT SAYS "Repository Not Found":
+───────────────────────────────────
+1. Go to: https://github.com/new
+2. Repository name: callvusalesenablementquiz2
+3. Choose Public or Private (your choice)
+4. DO NOT check "Add a README file"
+5. Click "Create repository"
+6. Run the script again (.\auto-deploy.ps1)
+
+
+IF IT ASKS FOR PASSWORD:
+───────────────────────
+- Enter your GitHub username
+- Enter your GitHub password (or Personal Access Token)
+- If you don't have a token, the script will tell you how to get one
+
+
+NEED HELP?
+──────────
+- Read: STEP_BY_STEP_GUIDE.md (detailed instructions)
+- Read: QUICK_START.md (quick reference)
+- The script will tell you exactly what to do!
+
+═══════════════════════════════════════════════════════════
+
