@@ -1,0 +1,344 @@
+<!--
+Inline Voice Recorder - Embed this directly in CallVu paragraph fields
+No Vercel needed! Uses browser's built-in Web Speech API
+-->
+
+<div id="voice-recorder-container" style="margin: 20px 0; padding: 20px; border: 2px solid #e5e7eb; border-radius: 8px; background: #f9fafb;">
+  <div style="margin-bottom: 15px;">
+    <h3 style="margin: 0 0 10px 0; color: #1f2937; font-size: 18px;">🎤 Voice Response Recorder</h3>
+    <p style="margin: 0; color: #6b7280; font-size: 14px;">Click record and speak your answer. Voice input only - typing is disabled.</p>
+  </div>
+  
+  <!-- Status Display -->
+  <div id="status-display" style="margin-bottom: 15px; padding: 10px; background: white; border-radius: 6px; min-height: 40px; display: flex; align-items: center; justify-content: center;">
+    <span id="status-text" style="color: #6b7280;">Ready to record</span>
+  </div>
+  
+  <!-- Timer -->
+  <div style="text-align: center; margin-bottom: 15px;">
+    <div id="timer" style="font-size: 32px; font-weight: bold; color: #6b7280; font-family: monospace;">0:00</div>
+  </div>
+  
+  <!-- Record Button -->
+  <div style="text-align: center; margin-bottom: 15px;">
+    <button id="record-btn" onclick="toggleRecording()" style="width: 80px; height: 80px; border-radius: 50%; border: none; background: #3b82f6; color: white; font-size: 24px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: all 0.3s;">
+      ⏺
+    </button>
+    <p id="record-hint" style="margin-top: 10px; color: #6b7280; font-size: 14px;">Click to start recording</p>
+  </div>
+  
+  <!-- Transcript Display -->
+  <div style="margin-bottom: 15px;">
+    <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #374151;">Your Response (Read-Only):</label>
+    <textarea id="transcript-display" readonly style="width: 100%; min-height: 120px; padding: 12px; border: 1px solid #d1d5db; border-radius: 6px; background: white; font-size: 14px; line-height: 1.5; resize: vertical; pointer-events: none;" placeholder="Your transcription will appear here as you speak..."></textarea>
+    <p id="word-count" style="margin-top: 5px; font-size: 12px; color: #9ca3af; text-align: right;">0 words</p>
+  </div>
+  
+  <!-- Action Buttons -->
+  <div id="action-buttons" style="display: none; gap: 10px; margin-top: 15px;">
+    <button onclick="keepResponse()" style="flex: 1; padding: 12px; background: #10b981; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 14px;">✓ Keep Response</button>
+    <button onclick="deleteResponse()" style="flex: 1; padding: 12px; background: #ef4444; color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 14px;">✗ Delete & Try Again</button>
+  </div>
+  
+  <!-- Success Message -->
+  <div id="success-message" style="display: none; margin-top: 15px; padding: 12px; background: #d1fae5; border: 1px solid #10b981; border-radius: 6px; color: #065f46;">
+    ✓ Response saved! You can proceed to the next question.
+  </div>
+  
+  <!-- Error Message -->
+  <div id="error-message" style="display: none; margin-top: 15px; padding: 12px; background: #fee2e2; border: 1px solid #ef4444; border-radius: 6px; color: #991b1b;"></div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+  
+  // Configuration - UPDATE THIS WITH YOUR GOOGLE APPS SCRIPT URL
+  const SHEET_WEBHOOK_URL = 'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE';
+  const QUESTION_ID = 'QUESTION_ID_PLACEHOLDER'; // Will be replaced by CallVu
+  const QUESTION_TITLE = 'QUESTION_TITLE_PLACEHOLDER'; // Will be replaced by CallVu
+  const ANSWER_FIELD_ID = 'ANSWER_FIELD_ID_PLACEHOLDER'; // Will be replaced by CallVu
+  
+  // State
+  let recognition = null;
+  let isRecording = false;
+  let transcript = '';
+  let startTime = 0;
+  let timerInterval = null;
+  let repName = '';
+  let repEmail = '';
+  
+  // Initialize
+  function init() {
+    // Check browser support
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      showError('Speech recognition not supported. Please use Chrome, Edge, or Safari.');
+      document.getElementById('record-btn').disabled = true;
+      return;
+    }
+    
+    // Initialize speech recognition
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+    
+    recognition.onresult = function(event) {
+      let interim = '';
+      let final = '';
+      
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const result = event.results[i];
+        if (result.isFinal) {
+          final += result[0].transcript + ' ';
+        } else {
+          interim += result[0].transcript;
+        }
+      }
+      
+      if (final) {
+        transcript += final;
+        updateTranscript();
+      }
+      
+      if (interim) {
+        updateTranscript(interim);
+      }
+    };
+    
+    recognition.onerror = function(event) {
+      if (event.error === 'not-allowed') {
+        showError('Microphone access denied. Please enable microphone permissions.');
+      } else if (event.error !== 'no-speech') {
+        showError('Recognition error: ' + event.error);
+      }
+    };
+    
+    recognition.onend = function() {
+      if (isRecording) {
+        try {
+          recognition.start();
+        } catch (e) {
+          // Ignore
+        }
+      }
+    };
+    
+    // Get user info from CallVu form
+    setTimeout(getUserInfo, 1000);
+  }
+  
+  function getUserInfo() {
+    // Try to find name and email fields
+    const nameField = document.querySelector('[data-integration-id="RepName"], [name*="RepName"], input[name*="name"]');
+    const emailField = document.querySelector('[data-integration-id="RepEmail"], [name*="RepEmail"], input[type="email"]');
+    
+    if (nameField) repName = nameField.value || '';
+    if (emailField) repEmail = emailField.value || '';
+    
+    // Listen for changes
+    if (nameField) {
+      nameField.addEventListener('input', function() { repName = this.value; });
+    }
+    if (emailField) {
+      emailField.addEventListener('input', function() { repEmail = this.value; });
+    }
+  }
+  
+  function toggleRecording() {
+    if (!isRecording) {
+      startRecording();
+    } else {
+      stopRecording();
+    }
+  }
+  
+  async function startRecording() {
+    try {
+      await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      transcript = '';
+      startTime = Date.now();
+      isRecording = true;
+      
+      recognition.start();
+      
+      document.getElementById('record-btn').style.background = '#ef4444';
+      document.getElementById('record-btn').innerHTML = '⏹';
+      document.getElementById('record-btn').style.animation = 'pulse 1s infinite';
+      document.getElementById('record-hint').textContent = 'Recording... Click to stop';
+      document.getElementById('status-text').textContent = '🔴 Recording...';
+      document.getElementById('status-display').style.background = '#fee2e2';
+      document.getElementById('action-buttons').style.display = 'none';
+      document.getElementById('success-message').style.display = 'none';
+      hideError();
+      
+      startTimer();
+    } catch (err) {
+      showError('Could not access microphone. Please allow microphone permissions.');
+    }
+  }
+  
+  function stopRecording() {
+    isRecording = false;
+    recognition.stop();
+    clearInterval(timerInterval);
+    
+    document.getElementById('record-btn').style.background = '#3b82f6';
+    document.getElementById('record-btn').innerHTML = '⏺';
+    document.getElementById('record-btn').style.animation = 'none';
+    document.getElementById('record-hint').textContent = 'Click to record again';
+    document.getElementById('status-text').textContent = 'Stopped recording';
+    document.getElementById('status-display').style.background = '#fef3c7';
+    
+    if (transcript.trim()) {
+      document.getElementById('action-buttons').style.display = 'flex';
+    }
+  }
+  
+  function startTimer() {
+    timerInterval = setInterval(function() {
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      const mins = Math.floor(elapsed / 60);
+      const secs = elapsed % 60;
+      document.getElementById('timer').textContent = mins + ':' + secs.toString().padStart(2, '0');
+      document.getElementById('timer').style.color = '#ef4444';
+    }, 1000);
+  }
+  
+  function updateTranscript(interim) {
+    const display = document.getElementById('transcript-display');
+    display.value = transcript;
+    if (interim) {
+      display.value += ' ' + interim;
+    }
+    
+    const wordCount = transcript.split(/\s+/).filter(w => w.length > 0).length;
+    document.getElementById('word-count').textContent = wordCount + ' words';
+    
+    // Update CallVu field if it exists
+    updateCallVuField();
+  }
+  
+  function updateCallVuField() {
+    const fieldId = ANSWER_FIELD_ID.replace('PLACEHOLDER', '');
+    if (fieldId && fieldId !== 'ANSWER_FIELD_ID_') {
+      const field = document.querySelector('[data-integration-id="' + fieldId + '"], [name*="' + fieldId + '"]');
+      if (field) {
+        field.value = transcript;
+        field.dispatchEvent(new Event('input', { bubbles: true }));
+        field.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+  }
+  
+  function keepResponse() {
+    if (!transcript.trim()) {
+      showError('No response to keep. Please record your answer first.');
+      return;
+    }
+    
+    updateCallVuField();
+    logToSpreadsheet();
+    enableNextButton();
+    
+    document.getElementById('action-buttons').style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+    document.getElementById('transcript-display').style.background = '#d1fae5';
+  }
+  
+  function deleteResponse() {
+    transcript = '';
+    document.getElementById('transcript-display').value = '';
+    document.getElementById('word-count').textContent = '0 words';
+    document.getElementById('action-buttons').style.display = 'none';
+    document.getElementById('success-message').style.display = 'none';
+    document.getElementById('transcript-display').style.background = 'white';
+    document.getElementById('timer').textContent = '0:00';
+    document.getElementById('timer').style.color = '#6b7280';
+    
+    updateCallVuField();
+    disableNextButton();
+  }
+  
+  function enableNextButton() {
+    const nextButton = document.querySelector('button[type="submit"], .next-button, [data-action="next"]');
+    if (nextButton) {
+      nextButton.disabled = false;
+      nextButton.classList.remove('disabled', 'opacity-50');
+    }
+  }
+  
+  function disableNextButton() {
+    const nextButton = document.querySelector('button[type="submit"], .next-button, [data-action="next"]');
+    if (nextButton) {
+      nextButton.disabled = true;
+      nextButton.classList.add('disabled', 'opacity-50');
+    }
+  }
+  
+  async function logToSpreadsheet() {
+    if (!repName.trim() || !repEmail.trim()) {
+      console.warn('Missing name/email for spreadsheet logging');
+      return;
+    }
+    
+    const duration = Math.floor((Date.now() - startTime) / 1000);
+    const questionId = QUESTION_ID.replace('PLACEHOLDER', '');
+    const questionTitle = QUESTION_TITLE.replace('PLACEHOLDER', '');
+    
+    const payload = {
+      timestamp: new Date().toISOString(),
+      repName: repName.trim(),
+      repEmail: repEmail.trim(),
+      questionId: questionId !== 'QUESTION_ID_' ? questionId : '',
+      questionTitle: questionTitle !== 'QUESTION_TITLE_' ? questionTitle : '',
+      transcript: transcript.trim(),
+      recordingDuration: duration,
+      responseType: 'Voice'
+    };
+    
+    try {
+      if (SHEET_WEBHOOK_URL && SHEET_WEBHOOK_URL !== 'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE') {
+        await fetch(SHEET_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+    } catch (err) {
+      console.log('Webhook error:', err);
+    }
+  }
+  
+  function showError(message) {
+    const errorDiv = document.getElementById('error-message');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+  }
+  
+  function hideError() {
+    document.getElementById('error-message').style.display = 'none';
+  }
+  
+  // Add pulse animation
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // Initialize when page loads
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
