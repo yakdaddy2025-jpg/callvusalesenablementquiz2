@@ -17,7 +17,7 @@
     "calculatedFields": [],
     "direction": "ltr",
     "expirationObj": {},
-    "formCustomStyle": "",
+    "formCustomStyle": "<style>\n/* Base text wrapping for all elements */\np,div,span,h1,h2,h3,h4,h5,h6,li,td,th{\n  word-wrap:break-word;\n  overflow-wrap:break-word;\n  hyphens:auto;\n  max-width:100%;\n  box-sizing:border-box;\n}\n\n/* Mobile-specific styles */\n@media screen and (max-width:768px){\n  /* Force text wrapping on mobile */\n  p,div,span{\n    word-wrap:break-word !important;\n    overflow-wrap:break-word !important;\n    hyphens:auto !important;\n    max-width:100% !important;\n    width:100% !important;\n    box-sizing:border-box !important;\n    font-size:14px !important;\n    line-height:1.6 !important;\n    padding:0 10px !important;\n  }\n  \n  /* Headings on mobile */\n  h1,h2,h3,h4,h5,h6{\n    font-size:18px !important;\n    line-height:1.4 !important;\n    word-wrap:break-word !important;\n    overflow-wrap:break-word !important;\n    max-width:100% !important;\n    padding:0 10px !important;\n  }\n  \n  /* Lists on mobile */\n  ul,ol{\n    padding-left:20px !important;\n    margin:10px 0 !important;\n  }\n  \n  li{\n    word-wrap:break-word !important;\n    overflow-wrap:break-word !important;\n    margin-bottom:8px !important;\n  }\n  \n  /* Paragraph fields - ensure they're editable on mobile */\n  [data-field-type=paragraph]{\n    width:100% !important;\n    max-width:100% !important;\n  }\n  \n  /* Text areas and inputs */\n  textarea,input{\n    width:100% !important;\n    max-width:100% !important;\n    box-sizing:border-box !important;\n  }\n  \n  /* Voice recorder container */\n  #voice-recorder-container{\n    width:100% !important;\n    max-width:100% !important;\n    padding:15px !important;\n    box-sizing:border-box !important;\n  }\n  \n  /* Blocks and rows */\n  [class*=block],[class*=row]{\n    width:100% !important;\n    max-width:100% !important;\n    box-sizing:border-box !important;\n  }\n}\n\n/* Read-only answer fields */\ntextarea[data-integration-id^=Answer_]{\n  pointer-events:none;\n  background-color:#f9fafb;\n  cursor:not-allowed;\n}\n\n/* Disabled buttons */\nbutton.disabled,button[disabled]{\n  opacity:0.5;\n  cursor:not-allowed;\n}\n</style>",
     "formName": "CallVu Sales Enablement Quiz",
     "globalVariables": [],
     "hintMsgProps": {
@@ -102,7 +102,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   },
                   {
@@ -123,7 +123,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Welcome</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Welcome</h1></div>",
                     "localOnly": false
                   },
                   {
@@ -144,7 +144,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n<p style=\"text-align: center; color: #4b5563; font-size: 16px; line-height: 1.6; max-width: 600px; margin: 0 auto;\">\nThis assessment will test your understanding of CallVu's Mode A and Mode B architecture.\n</p>\n<p style=\"margin-top: 24px; color: #6b7280; font-size: 14px;\"><strong>Instructions:</strong></p>\n<ul style=\"color: #4b5563; font-size: 14px; line-height: 1.8;\">\n  <li>Each question requires a voice response</li>\n  <li>Speak clearly and cover all key points</li>\n  <li>Your responses will be recorded and reviewed</li>\n  <li>You can keep or delete your response to try again</li>\n</ul>\n<p style=\"margin-top: 16px; color: #9ca3af; font-size: 13px; font-style: italic;\">Time estimate: 20-30 minutes</p>\n        </div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n<p style=\"text-align: center; color: #4b5563; font-size: 16px; line-height: 1.6; max-width: 600px; margin: 0 auto;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\nThis assessment will test your understanding of CallVu's Mode A and Mode B architecture.\n</p>\n<p style=\"margin-top: 24px; color: #6b7280; font-size: 14px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong>Instructions:</strong></p>\n<ul style=\"color: #4b5563; font-size: 14px; line-height: 1.8;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n  <li>Each question requires a voice response</li>\n  <li>Speak clearly and cover all key points</li>\n  <li>Your responses will be recorded and reviewed</li>\n  <li>You can keep or delete your response to try again</li>\n</ul>\n<p style=\"margin-top: 16px; color: #9ca3af; font-size: 13px; font-style: italic;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Time estimate: 20-30 minutes</p>\n        </div>",
                     "localOnly": false
                   }
                 ]
@@ -210,7 +210,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -235,7 +235,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Your Information</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Your Information</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -349,7 +349,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -374,7 +374,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Roleplay 1</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Roleplay 1</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -399,7 +399,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">A major bank tells you: \"Our card replacement process varies wildly depending on the agent. Some skip identity steps, others forget disclosures. Fraud loves this.\"</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">A major bank tells you: \"Our card replacement process varies wildly depending on the agent. Some skip identity steps, others forget disclosures. Fraud loves this.\"</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -424,7 +424,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;\"><strong style=\"color: #1f2937;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -539,7 +539,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -564,7 +564,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Roleplay 2</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Roleplay 2</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -589,7 +589,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">A claims VP says: \"Our FNOL submissions are full of missing info and call center agents improvise the script.\"</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">A claims VP says: \"Our FNOL submissions are full of missing info and call center agents improvise the script.\"</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -614,7 +614,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;\"><strong style=\"color: #1f2937;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -729,7 +729,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -754,7 +754,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Roleplay 3</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Roleplay 3</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -779,7 +779,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">A telco sees a spike in fraudulent SIM swaps.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">A telco sees a spike in fraudulent SIM swaps.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -804,7 +804,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;\"><strong style=\"color: #1f2937;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -919,7 +919,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -944,7 +944,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Roleplay 4</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Roleplay 4</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -969,7 +969,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">Operations lead complains: \"Service activations are constantly wrong. Wrong dates, missing notices, and billing issues.\"</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Operations lead complains: \"Service activations are constantly wrong. Wrong dates, missing notices, and billing issues.\"</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -994,7 +994,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;\"><strong style=\"color: #1f2937;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1109,7 +1109,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1134,7 +1134,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Roleplay 5</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Roleplay 5</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -1159,7 +1159,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">A servicer says: \"Agents improvise hardship calls. Regulators are hammering us.\"</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">A servicer says: \"Agents improvise hardship calls. Regulators are hammering us.\"</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1184,7 +1184,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;\"><strong style=\"color: #1f2937;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1299,7 +1299,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1324,7 +1324,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Roleplay 6</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Roleplay 6</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -1349,7 +1349,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">A provider says: \"Intake data is wrong half the time. Insurance info missing. Consents aren't properly logged.\"</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">A provider says: \"Intake data is wrong half the time. Insurance info missing. Consents aren't properly logged.\"</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1374,7 +1374,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;\"><strong style=\"color: #1f2937;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1489,7 +1489,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1514,7 +1514,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Roleplay 7</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Roleplay 7</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -1539,7 +1539,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">A CIO says: \"We have bots. Why do we need you?\"</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">A CIO says: \"We have bots. Why do we need you?\"</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1564,7 +1564,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;\"><strong style=\"color: #1f2937;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">YOUR TASK:</strong> Provide your response using the voice recorder below.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1679,7 +1679,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1704,7 +1704,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Drill A</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Drill A</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -1729,7 +1729,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">DRILL:</strong> Explain the CallVu architecture in 30 seconds.</p><p style=\"color: #4b5563; font-size: 15px; margin-top: 12px;\"><strong>You must include:</strong></p><ul style=\"color: #4b5563; font-size: 15px; line-height: 1.8; margin-top: 8px;\"><li>Micro-apps</li><li>Orchestration</li><li>Two modes</li><li>Compliance</li></ul></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">DRILL:</strong> Explain the CallVu architecture in 30 seconds.</p><p style=\"color: #4b5563; font-size: 15px; margin-top: 12px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong>You must include:</strong></p><ul style=\"color: #4b5563; font-size: 15px; line-height: 1.8; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><li>Micro-apps</li><li>Orchestration</li><li>Two modes</li><li>Compliance</li></ul></div>",
                     "localOnly": false
                   }
                 ]
@@ -1844,7 +1844,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -1869,7 +1869,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Drill B</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Drill B</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -1894,7 +1894,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">DRILL:</strong> Explain why EACH of these statements is WRONG:</p><ol style=\"color: #4b5563; font-size: 15px; line-height: 1.8; margin-top: 12px;\"><li>\"CallVu is like a form builder.\"</li><li>\"Mode A is just self-service.\"</li><li>\"Mode B is basically RPA.\"</li><li>\"Bots + CallVu are interchangeable.\"</li></ol></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">DRILL:</strong> Explain why EACH of these statements is WRONG:</p><ol style=\"color: #4b5563; font-size: 15px; line-height: 1.8; margin-top: 12px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><li>\"CallVu is like a form builder.\"</li><li>\"Mode A is just self-service.\"</li><li>\"Mode B is basically RPA.\"</li><li>\"Bots + CallVu are interchangeable.\"</li></ol></div>",
                     "localOnly": false
                   }
                 ]
@@ -2009,7 +2009,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2034,7 +2034,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Drill C</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Drill C</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -2059,7 +2059,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">DRILL:</strong> Select the correct answer.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">DRILL:</strong> Select the correct answer.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2166,7 +2166,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2191,7 +2191,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Exercise Set A</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Exercise Set A</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -2216,7 +2216,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">EXERCISE:</strong> Classify each use case as Mode A only, Mode B only, or Mode A → Mode B hybrid</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">EXERCISE:</strong> Classify each use case as Mode A only, Mode B only, or Mode A → Mode B hybrid</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2471,7 +2471,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2496,7 +2496,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Scenario 1</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Scenario 1</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -2521,7 +2521,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">An agent accidentally skips a required disclosure step during a claims intake. Would this be possible in Mode A or Mode B?</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">An agent accidentally skips a required disclosure step during a claims intake. Would this be possible in Mode A or Mode B?</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2636,7 +2636,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2661,7 +2661,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Scenario 2</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Scenario 2</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -2686,7 +2686,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">An AI agent decides to reorder steps in a workflow based on probability. Would CallVu allow this in Mode B?</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">An AI agent decides to reorder steps in a workflow based on probability. Would CallVu allow this in Mode B?</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2801,7 +2801,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2826,7 +2826,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Scenario 3</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Scenario 3</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -2851,7 +2851,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">A customer submits an incomplete KYC step. What mode handles this? What happens?</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">A customer submits an incomplete KYC step. What mode handles this? What happens?</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2966,7 +2966,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -2991,7 +2991,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Scenario 4</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Scenario 4</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -3016,7 +3016,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">Backend system fails mid-update. What does Mode B do?</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">SCENARIO:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Backend system fails mid-update. What does Mode B do?</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -3131,7 +3131,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -3156,7 +3156,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Quiz 1</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Quiz 1</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -3431,7 +3431,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -3456,7 +3456,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Quiz 2</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Quiz 2</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -3481,7 +3481,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">QUIZ:</strong> Explain CallVu in 20 seconds.</p><p style=\"color: #4b5563; font-size: 15px; margin-top: 12px;\"><strong>Your answer should include:</strong></p><ul style=\"color: #4b5563; font-size: 15px; line-height: 1.8; margin-top: 8px;\"><li>Completion & compliance layer</li><li>Micro-apps</li><li>Mode A + Mode B</li><li>Works across channels</li><li>Not a bot</li></ul></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">QUIZ:</strong> Explain CallVu in 20 seconds.</p><p style=\"color: #4b5563; font-size: 15px; margin-top: 12px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong>Your answer should include:</strong></p><ul style=\"color: #4b5563; font-size: 15px; line-height: 1.8; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><li>Completion & compliance layer</li><li>Micro-apps</li><li>Mode A + Mode B</li><li>Works across channels</li><li>Not a bot</li></ul></div>",
                     "localOnly": false
                   }
                 ]
@@ -3596,7 +3596,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -3621,7 +3621,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Check 1</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Check 1</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -3646,7 +3646,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">CHECK 1:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">Explain Mode A in two sentences.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">CHECK 1:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Explain Mode A in two sentences.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -3761,7 +3761,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -3786,7 +3786,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Check 2</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Check 2</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -3811,7 +3811,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">CHECK 2:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">Explain Mode B in two sentences.</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">CHECK 2:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Explain Mode B in two sentences.</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -3926,7 +3926,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -3951,7 +3951,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Check 3</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Check 3</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -3976,7 +3976,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">CHECK 3:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">Why can't bots replace CallVu?</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">CHECK 3:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Why can't bots replace CallVu?</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -4091,7 +4091,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Sales Enablement Quiz - Mode A and B</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -4116,7 +4116,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Check 4</h1></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Check 4</h1></div>",
                     "localOnly": false
                   }
                 ]
@@ -4141,7 +4141,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;\"><strong style=\"color: #1f2937;\">CHECK 4:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;\">What layer contains the deterministic execution engine?</p></div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"color: #374151; font-size: 15px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\"><strong style=\"color: #1f2937;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">CHECK 4:</strong></p><p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">What layer contains the deterministic execution engine?</p></div>",
                     "localOnly": false
                   }
                 ]
@@ -4256,7 +4256,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n<h2 style=\"text-align: center; color: #1f2937; font-size: 28px; font-weight: 700; margin-bottom: 16px;\">🎉 Quiz Complete!</h2>\n<p style=\"text-align: center; color: #4b5563; font-size: 16px; line-height: 1.6;\">Thank you for completing the CallVu Sales Enablement Quiz.</p>\n<p style=\"text-align: center; color: #6b7280; font-size: 14px; margin-top: 8px;\">Your responses have been recorded and will be reviewed.</p>\n      </div>",
+                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n<h2 style=\"text-align: center; color: #1f2937; font-size: 28px; font-weight: 700; margin-bottom: 16px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">🎉 Quiz Complete!</h2>\n<p style=\"text-align: center; color: #4b5563; font-size: 16px; line-height: 1.6;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Thank you for completing the CallVu Sales Enablement Quiz.</p>\n<p style=\"text-align: center; color: #6b7280; font-size: 14px; margin-top: 8px;;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">Your responses have been recorded and will be reviewed.</p>\n      </div>",
                     "localOnly": false
                   }
                 ]
