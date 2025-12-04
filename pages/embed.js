@@ -195,11 +195,31 @@ export default function EmbeddedVoiceRecorder() {
   const notifyCallVuResponseReady = (finalTranscript) => {
     // Notify CallVu parent that response is ready
     const transcriptToSend = finalTranscript || transcript.trim();
+    
+    // Get answer field ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const answerFieldId = urlParams.get('answerFieldId') || '';
+    
+    // Try to update CallVu field directly (may fail due to cross-origin)
+    if (answerFieldId && typeof window !== 'undefined' && window.parent) {
+      try {
+        const field = window.parent.document.querySelector(`[data-integration-id="${answerFieldId}"], [name*="${answerFieldId}"]`);
+        if (field) {
+          field.value = transcriptToSend;
+          field.dispatchEvent(new Event('input', { bubbles: true }));
+          field.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      } catch (e) {
+        // Cross-origin restrictions - use postMessage instead
+      }
+    }
+    
     window.parent.postMessage({
       type: 'VOICE_RESPONSE_READY',
       transcript: transcriptToSend,
       questionId: questionId,
-      questionTitle: questionTitle
+      questionTitle: questionTitle,
+      answerFieldId: answerFieldId
     }, '*');
   };
   
