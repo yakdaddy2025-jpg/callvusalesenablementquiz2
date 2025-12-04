@@ -182,7 +182,8 @@
             "isHidden": false,
             "text": "Continue"
           },
-          "targetStep": "step_roleplay1"
+          "targetStep": "step_roleplay1",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -305,7 +306,8 @@
         },
         "hideFooter": false,
         "text": "Your Information",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Roleplay 1",
@@ -321,7 +323,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_roleplay2"
+          "targetStep": "step_roleplay2",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -495,7 +498,8 @@
         },
         "hideFooter": false,
         "text": "Roleplay 1",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Roleplay 2",
@@ -511,7 +515,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_roleplay3"
+          "targetStep": "step_roleplay3",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -685,7 +690,8 @@
         },
         "hideFooter": false,
         "text": "Roleplay 2",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Roleplay 3",
@@ -701,7 +707,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_roleplay4"
+          "targetStep": "step_roleplay4",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -875,7 +882,8 @@
         },
         "hideFooter": false,
         "text": "Roleplay 3",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Roleplay 4",
@@ -891,7 +899,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_roleplay5"
+          "targetStep": "step_roleplay5",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -1065,7 +1074,8 @@
         },
         "hideFooter": false,
         "text": "Roleplay 4",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Roleplay 5",
@@ -1081,7 +1091,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_roleplay6"
+          "targetStep": "step_roleplay6",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -1255,7 +1266,8 @@
         },
         "hideFooter": false,
         "text": "Roleplay 5",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Roleplay 6",
@@ -1271,7 +1283,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_roleplay7"
+          "targetStep": "step_roleplay7",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -1445,7 +1458,8 @@
         },
         "hideFooter": false,
         "text": "Roleplay 6",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Roleplay 7",
@@ -1461,7 +1475,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_drill_a"
+          "targetStep": "step_drill_a",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -1635,7 +1650,8 @@
         },
         "hideFooter": false,
         "text": "Roleplay 7",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Drill A",
@@ -1651,7 +1667,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_drill_b"
+          "targetStep": "step_drill_b",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -1800,7 +1817,8 @@
         },
         "hideFooter": false,
         "text": "Drill A",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Drill B",
@@ -1816,7 +1834,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_drill_c"
+          "targetStep": "step_drill_c",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -1965,7 +1984,8 @@
         },
         "hideFooter": false,
         "text": "Drill B",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Drill C",
@@ -1981,7 +2001,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_exercise_a"
+          "targetStep": "step_exercise_a",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -2122,7 +2143,8 @@
         },
         "hideFooter": false,
         "text": "Drill C",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Exercise Set A",
@@ -2138,7 +2160,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_scenario1"
+          "targetStep": "step_scenario1",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -2427,7 +2450,8 @@
         },
         "hideFooter": false,
         "text": "Exercise Set A",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Scenario 1",
@@ -2443,7 +2467,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_scenario2"
+          "targetStep": "step_scenario2",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -2592,7 +2617,8 @@
         },
         "hideFooter": false,
         "text": "Scenario 1",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Scenario 2",
@@ -2608,7 +2634,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_scenario3"
+          "targetStep": "step_scenario3",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -2757,7 +2784,8 @@
         },
         "hideFooter": false,
         "text": "Scenario 2",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Scenario 3",
@@ -2773,7 +2801,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_scenario4"
+          "targetStep": "step_scenario4",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -2922,7 +2951,8 @@
         },
         "hideFooter": false,
         "text": "Scenario 3",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Scenario 4",
@@ -2938,7 +2968,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_quiz1"
+          "targetStep": "step_quiz1",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -3087,7 +3118,8 @@
         },
         "hideFooter": false,
         "text": "Scenario 4",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Quiz 1",
@@ -3103,7 +3135,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_quiz2"
+          "targetStep": "step_quiz2",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -3387,7 +3420,8 @@
         },
         "hideFooter": false,
         "text": "Quiz 1",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Quiz 2",
@@ -3403,7 +3437,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_check1"
+          "targetStep": "step_check1",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -3552,7 +3587,8 @@
         },
         "hideFooter": false,
         "text": "Quiz 2",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Check 1",
@@ -3568,7 +3604,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_check2"
+          "targetStep": "step_check2",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -3717,7 +3754,8 @@
         },
         "hideFooter": false,
         "text": "Check 1",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Check 2",
@@ -3733,7 +3771,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_check3"
+          "targetStep": "step_check3",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -3882,7 +3921,8 @@
         },
         "hideFooter": false,
         "text": "Check 2",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Check 3",
@@ -3898,7 +3938,8 @@
             "isHidden": false,
             "text": "Next"
           },
-          "targetStep": "step_check4"
+          "targetStep": "step_check4",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -4047,7 +4088,8 @@
         },
         "hideFooter": false,
         "text": "Check 3",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Check 4",
@@ -4063,7 +4105,8 @@
             "isHidden": false,
             "text": "Submit Quiz"
           },
-          "targetStep": "step_complete"
+          "targetStep": "step_complete",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -4212,7 +4255,8 @@
         },
         "hideFooter": false,
         "text": "Check 4",
-        "isLastStep": false
+        "isLastStep": false,
+        "isFirstStep": false
       },
       {
         "stepName": "Complete",
@@ -4228,7 +4272,8 @@
             "isHidden": true,
             "text": ""
           },
-          "targetStep": ""
+          "targetStep": "",
+          "isFirstNode": false
         },
         "blocks": [
           {
@@ -4277,7 +4322,8 @@
         },
         "hideFooter": true,
         "text": "Complete",
-        "isLastStep": true
+        "isLastStep": true,
+        "isFirstStep": false
       }
     ],
     "templateType": 3,
