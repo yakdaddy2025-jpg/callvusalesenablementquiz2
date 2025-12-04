@@ -338,6 +338,31 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
+                    "identifier": "ae_must_roleplay_1_1764889736128",
+                    "integrationID": "",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div class=\"mobile-wrap-container\" style=\"word-wrap:break-word!important;overflow-wrap:break-word!important;word-break:break-word!important;hyphens:auto!important;max-width:100%!important;width:100%!important;box-sizing:border-box!important;padding:0 5px!important;\">\n  <div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n    <p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      <strong style=\"color: #1f2937;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">AE MUST:</strong>\n    </p>\n    <p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      [AE must content - to be filled in by user in CallVu designer]\n    </p>\n  </div>\n</div>",
+                    "localOnly": false
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
                     "identifier": "small_heading",
                     "integrationID": "SmallHeading_Roleplay_1",
                     "isHiddenInRuntime": false,
@@ -505,6 +530,31 @@
             "identifier": "block_roleplay2",
             "icon": "",
             "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "ae_must_roleplay_2_1764889736133",
+                    "integrationID": "",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div class=\"mobile-wrap-container\" style=\"word-wrap:break-word!important;overflow-wrap:break-word!important;word-break:break-word!important;hyphens:auto!important;max-width:100%!important;width:100%!important;box-sizing:border-box!important;padding:0 5px!important;\">\n  <div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n    <p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      <strong style=\"color: #1f2937;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">AE MUST:</strong>\n    </p>\n    <p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      [AE must content - to be filled in by user in CallVu designer]\n    </p>\n  </div>\n</div>",
+                    "localOnly": false
+                  }
+                ]
+              },
               {
                 "fields": [
                   {
@@ -684,6 +734,31 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
+                    "identifier": "ae_must_roleplay_3_1764889736133",
+                    "integrationID": "",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div class=\"mobile-wrap-container\" style=\"word-wrap:break-word!important;overflow-wrap:break-word!important;word-break:break-word!important;hyphens:auto!important;max-width:100%!important;width:100%!important;box-sizing:border-box!important;padding:0 5px!important;\">\n  <div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n    <p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      <strong style=\"color: #1f2937;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">AE MUST:</strong>\n    </p>\n    <p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      [AE must content - to be filled in by user in CallVu designer]\n    </p>\n  </div>\n</div>",
+                    "localOnly": false
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
                     "identifier": "small_heading",
                     "integrationID": "SmallHeading_Roleplay_3",
                     "isHiddenInRuntime": false,
@@ -851,6 +926,31 @@
             "identifier": "block_roleplay4",
             "icon": "",
             "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "ae_must_roleplay_4_1764889736133",
+                    "integrationID": "",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div class=\"mobile-wrap-container\" style=\"word-wrap:break-word!important;overflow-wrap:break-word!important;word-break:break-word!important;hyphens:auto!important;max-width:100%!important;width:100%!important;box-sizing:border-box!important;padding:0 5px!important;\">\n  <div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n    <p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      <strong style=\"color: #1f2937;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">AE MUST:</strong>\n    </p>\n    <p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      [AE must content - to be filled in by user in CallVu designer]\n    </p>\n  </div>\n</div>",
+                    "localOnly": false
+                  }
+                ]
+              },
               {
                 "fields": [
                   {
@@ -1030,6 +1130,31 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
+                    "identifier": "ae_must_roleplay_5_1764889736134",
+                    "integrationID": "",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div class=\"mobile-wrap-container\" style=\"word-wrap:break-word!important;overflow-wrap:break-word!important;word-break:break-word!important;hyphens:auto!important;max-width:100%!important;width:100%!important;box-sizing:border-box!important;padding:0 5px!important;\">\n  <div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n    <p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      <strong style=\"color: #1f2937;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">AE MUST:</strong>\n    </p>\n    <p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      [AE must content - to be filled in by user in CallVu designer]\n    </p>\n  </div>\n</div>",
+                    "localOnly": false
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
                     "identifier": "small_heading",
                     "integrationID": "SmallHeading_Roleplay_5",
                     "isHiddenInRuntime": false,
@@ -1203,6 +1328,31 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
+                    "identifier": "ae_must_roleplay_6_1764889736134",
+                    "integrationID": "",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div class=\"mobile-wrap-container\" style=\"word-wrap:break-word!important;overflow-wrap:break-word!important;word-break:break-word!important;hyphens:auto!important;max-width:100%!important;width:100%!important;box-sizing:border-box!important;padding:0 5px!important;\">\n  <div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n    <p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      <strong style=\"color: #1f2937;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">AE MUST:</strong>\n    </p>\n    <p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      [AE must content - to be filled in by user in CallVu designer]\n    </p>\n  </div>\n</div>",
+                    "localOnly": false
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
                     "identifier": "small_heading",
                     "integrationID": "SmallHeading_Roleplay_6",
                     "isHiddenInRuntime": false,
@@ -1370,6 +1520,31 @@
             "identifier": "block_roleplay7",
             "icon": "",
             "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "ae_must_roleplay_7_1764889736134",
+                    "integrationID": "",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div class=\"mobile-wrap-container\" style=\"word-wrap:break-word!important;overflow-wrap:break-word!important;word-break:break-word!important;hyphens:auto!important;max-width:100%!important;width:100%!important;box-sizing:border-box!important;padding:0 5px!important;\">\n  <div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\">\n    <p style=\"color: #374151; font-size: 15px; line-height: 1.6; margin-top: 16px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      <strong style=\"color: #1f2937;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">AE MUST:</strong>\n    </p>\n    <p style=\"color: #4b5563; font-size: 15px; line-height: 1.7; margin-top: 8px;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%;box-sizing:border-box;\">\n      [AE must content - to be filled in by user in CallVu designer]\n    </p>\n  </div>\n</div>",
+                    "localOnly": false
+                  }
+                ]
+              },
               {
                 "fields": [
                   {
