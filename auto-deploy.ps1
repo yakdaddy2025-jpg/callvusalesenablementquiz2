@@ -42,6 +42,21 @@ if ($missingFiles.Count -gt 0) {
 Write-Host "✅ All required files present" -ForegroundColor Green
 Write-Host ""
 
+# Step 1.5: Configure git if needed
+Write-Host "[1.5/5] Configuring git..." -ForegroundColor Yellow
+$gitEmail = git config user.email 2>&1
+$gitName = git config user.name 2>&1
+
+if (-not $gitEmail -or $gitEmail -like "*error*" -or $gitEmail -eq "") {
+    Write-Host "⚠️  Git email not set. Setting default..." -ForegroundColor Yellow
+    git config user.email "callvu-quiz@example.com" 2>&1 | Out-Null
+    git config user.name "CallVu Quiz" 2>&1 | Out-Null
+    Write-Host "✅ Git configured (you can change this later)" -ForegroundColor Green
+} else {
+    Write-Host "✅ Git already configured" -ForegroundColor Green
+}
+Write-Host ""
+
 # Step 2: Check git status
 Write-Host "[2/5] Checking git status..." -ForegroundColor Yellow
 $gitStatus = git status --porcelain 2>&1

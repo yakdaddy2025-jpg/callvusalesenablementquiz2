@@ -1,0 +1,41 @@
+========================================
+  WHAT TO DO NEXT - Simple Steps
+========================================
+
+STEP 1: Create the GitHub Repository
+-------------------------------------
+1. Open your web browser
+2. Go to: https://github.com/new
+3. In "Repository name" type: callvusalesenablementquiz2
+4. Choose "Public" or "Private" (your choice)
+5. IMPORTANT: DO NOT check the box that says "Add a README file"
+6. Click the green "Create repository" button
+
+STEP 2: Push Your Code
+-----------------------
+After creating the repository, come back to this folder and:
+
+Option A (Easiest):
+- Double-click: simple-push.bat
+- Follow what it says on screen
+
+Option B (Manual):
+- Right-click in this folder
+- Click "Open in Terminal" or "Open PowerShell window here"
+- Type: git push -u origin main
+- Press Enter
+- Enter your GitHub username and password when asked
+
+
+STEP 3: Wait for Vercel
+------------------------
+After pushing:
+- Vercel will automatically deploy your app (takes 1-2 minutes)
+- Your app will be live at: https://callvusalesenablementquiz2.vercel.app
+- Check status at: https://vercel.com/mike-callvus-projects/callvusalesenablementquiz2
+
+
+That's it! Once you create the GitHub repo and push, everything else is automatic.
+
+========================================
+

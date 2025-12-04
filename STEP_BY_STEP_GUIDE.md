@@ -6,7 +6,7 @@
 
 **Option A: From File Explorer (Easiest)**
 1. Open File Explorer (the folder icon on your taskbar)
-2. Navigate to: `C:\Users\mikes\partnerships-careers`
+2. Navigate to: `C:\Users\mikes\callvusalesenablementquiz2`
 3. Click in the address bar at the top
 4. Type: `powershell` and press Enter
 5. A black window will open - this is PowerShell!
@@ -22,7 +22,7 @@
 In the PowerShell window that just opened, type this and press Enter:
 
 ```powershell
-cd C:\Users\mikes\partnerships-careers
+cd C:\Users\mikes\callvusalesenablementquiz2
 ```
 
 You should see the path change in PowerShell.

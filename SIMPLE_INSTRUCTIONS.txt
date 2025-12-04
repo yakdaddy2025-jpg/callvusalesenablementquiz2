@@ -17,7 +17,7 @@ OPTION 2: Manual Way (If Option 1 doesn't work)
 3. Press Enter
 4. Copy and paste this line, then press Enter:
    
-   cd C:\Users\mikes\partnerships-careers
+   cd C:\Users\mikes\callvusalesenablementquiz2
 
 5. Copy and paste this line, then press Enter:
    
