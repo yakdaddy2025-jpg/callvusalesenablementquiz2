@@ -1,0 +1,63 @@
+========================================
+  HOW TO PUSH YOUR CODE TO GITHUB
+========================================
+
+Your code is ready! You just need to push it to GitHub.
+
+Since your repository is PRIVATE, you need to authenticate first.
+
+OPTION 1: Use GitHub Desktop (Easiest)
+---------------------------------------
+1. Download GitHub Desktop: https://desktop.github.com/
+2. Install it
+3. Sign in with your GitHub account
+4. File > Add Local Repository
+5. Choose: C:\Users\mikes\callvusalesenablementquiz2
+6. Click "Publish repository"
+7. Done!
+
+
+OPTION 2: Use Command Line with Authentication
+------------------------------------------------
+1. Open PowerShell in this folder:
+   - Right-click in this folder
+   - Click "Open in Terminal" or "Open PowerShell window here"
+
+2. Type this command:
+   git push -u origin main
+
+3. When it asks for username: Enter your GitHub username
+4. When it asks for password: 
+   - DON'T use your regular password
+   - Use a Personal Access Token instead
+   
+   To get a token:
+   a. Go to: https://github.com/settings/tokens
+   b. Click "Generate new token" > "Generate new token (classic)"
+   c. Give it a name like "CallVu Quiz"
+   d. Check the box for "repo" (full control of private repositories)
+   e. Click "Generate token"
+   f. COPY THE TOKEN (you won't see it again!)
+   g. Use this token as your password when pushing
+
+
+OPTION 3: Use the Simple Push Script
+-------------------------------------
+1. Double-click: simple-push.bat
+2. It will try to push
+3. If it asks for credentials, use Option 2 above
+
+
+WHAT FILES WILL BE PUSHED:
+---------------------------
+- pages/ (voice recorder)
+- styles/ (CSS)
+- All config files (next.config.js, package.json, etc.)
+- google-apps-script.js
+- Sales_Enablement_Quiz.cvuf
+- All documentation files
+
+Your manually uploaded files will be replaced/updated with the complete set.
+
+========================================
+
