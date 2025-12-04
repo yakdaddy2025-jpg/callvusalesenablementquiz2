@@ -17,7 +17,7 @@
     "calculatedFields": [],
     "direction": "ltr",
     "expirationObj": {},
-    "formCustomStyle": "<style>\np,div,span,h1,h2,h3,h4,h5,h6{word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;max-width:100%}\n@media (max-width:768px){p,div{font-size:14px;line-height:1.6}}\ntextarea[data-integration-id^=Answer_]{pointer-events:none;background-color:#f9fafb;cursor:not-allowed}\nbutton.disabled,button[disabled]{opacity:0.5;cursor:not-allowed}\n</style>",
+    "formCustomStyle": "",
     "formName": "CallVu Sales Enablement Quiz",
     "globalVariables": [],
     "hintMsgProps": {
