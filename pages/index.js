@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 // Google Apps Script webhook URL - UPDATE THIS AFTER DEPLOYING GOOGLE APPS SCRIPT
 // Get the URL from: https://script.google.com → Deploy → Web app → Copy URL
-const SHEET_WEBHOOK_URL = 'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE';
+const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzGzk7Zcb9invzxdO5mEVtoNX7bgXu-yWXagtjJ6B30mSNtxkwTsM_nB9B3tY2AdwCz/exec';
 
 const questionMeta = {
   Q1_Banking: { 
@@ -260,7 +260,7 @@ export default function VoiceQuizRecorder() {
     
     try {
       // Try to send to Google Sheets (only if webhook URL is set)
-      if (SHEET_WEBHOOK_URL && SHEET_WEBHOOK_URL !== 'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE') {
+      if (SHEET_WEBHOOK_URL && SHEET_WEBHOOK_URL !== '') {
         await fetch(SHEET_WEBHOOK_URL, {
           method: 'POST',
           mode: 'no-cors',

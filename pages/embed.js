@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 
 // Google Apps Script webhook URL - UPDATE THIS AFTER DEPLOYING GOOGLE APPS SCRIPT
-const SHEET_WEBHOOK_URL = 'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE';
+const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzGzk7Zcb9invzxdO5mEVtoNX7bgXu-yWXagtjJ6B30mSNtxkwTsM_nB9B3tY2AdwCz/exec';
 
 export default function EmbeddedVoiceRecorder() {
   const [isRecording, setIsRecording] = useState(false);
@@ -226,7 +226,7 @@ export default function EmbeddedVoiceRecorder() {
     };
     
     try {
-      if (SHEET_WEBHOOK_URL && SHEET_WEBHOOK_URL !== 'PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE') {
+      if (SHEET_WEBHOOK_URL && SHEET_WEBHOOK_URL !== '') {
         await fetch(SHEET_WEBHOOK_URL, {
           method: 'POST',
           mode: 'no-cors',
