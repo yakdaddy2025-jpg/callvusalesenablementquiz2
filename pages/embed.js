@@ -25,8 +25,11 @@ export default function EmbeddedVoiceRecorder() {
     // Get data from URL params or parent window (CallVu)
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
-      const qId = urlParams.get('question') || '';
-      const qTitle = urlParams.get('title') || 'Question';
+      // Support both old and new parameter names
+      const qId = urlParams.get('questionId') || urlParams.get('question') || '';
+      const qTitle = urlParams.get('questionTitle') || urlParams.get('title') || 'Question';
+      const answerFieldId = urlParams.get('answerFieldId') || '';
+      const webhookUrl = urlParams.get('webhookUrl') || '';
       const name = urlParams.get('name') || '';
       const email = urlParams.get('email') || '';
       
