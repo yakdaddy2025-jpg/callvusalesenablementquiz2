@@ -82,6 +82,30 @@
   // Map question IDs to CallVu field integration IDs
   function getFieldIdForQuestion(questionId) {
     const mapping = {
+      // Roleplays
+      'Roleplay1': 'Answer_Roleplay1',
+      'Roleplay2': 'Answer_Roleplay2',
+      'Roleplay3': 'Answer_Roleplay3',
+      'Roleplay4': 'Answer_Roleplay4',
+      'Roleplay5': 'Answer_Roleplay5',
+      'Roleplay6': 'Answer_Roleplay6',
+      'Roleplay7': 'Answer_Roleplay7',
+      // Drills
+      'DrillA': 'Answer_DrillA',
+      'DrillB': 'Answer_DrillB',
+      // Scenarios
+      'Scenario1': 'Answer_Scenario1',
+      'Scenario2': 'Answer_Scenario2',
+      'Scenario3': 'Answer_Scenario3',
+      'Scenario4': 'Answer_Scenario4',
+      // Quiz 2
+      'Quiz2': 'Answer_Quiz2',
+      // Checks
+      'Check1': 'Answer_Check1',
+      'Check2': 'Answer_Check2',
+      'Check3': 'Answer_Check3',
+      'Check4': 'Answer_Check4',
+      // Legacy mappings (for backwards compatibility)
       'Q1_Banking': 'Answer_Q1_Banking',
       'Q2_Insurance': 'Answer_Q2_Insurance',
       'Q3_Telco': 'Answer_Q3_Telco',
