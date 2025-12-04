@@ -1,48 +1,3666 @@
-{"form":{"accessibility":false,"actions":[],"approveData":{"enabled":false,"forceApproveBeforeShowingDownload":false,"toCloseForm":false,"popupObj":{"errorMsg":"","fieldType":"","message":"","title":""},"submitIcon":""},"calculatedFields":[],"direction":"ltr","expirationObj":{},"formCustomStyle":"","formName":"CallVu Sales Enablement Quiz","globalVariables":[],"hintMsgProps":{"text":"","hideOnScroll":false},"isDownloadPDFLink":false,"isFormReadonly":false,"isPdfForm":false,"isSinglePage":false,"last_update":"","logo":"","logoAlignment":"center","logoName":"","logoUrl":"https://callvustudioproduction.s3.us-east-1.amazonaws.com/admin/callvu-icon-black.svg","notResizable":true,"otp":{"buttonText":"","description":"","emptyFieldValidation":"","invalidFieldValidation":"","isActive":false,"label":"","logo":"","logoName":"","resendText":"","serviceUrl":"","title":"","validResponse":false,"validateUrl":false,"redirectAfterSubmit":false,"redirectLink":"","isAuth":false,"optionalFields":[]},"PDF":"","permission":"client","redirectAfterSubmit":false,"redirectLink":"","stepperType":"Progress","steps":[
-{"stepName":"Welcome","identifier":"step_welcome","buttonsConfig":{"back":{"className":"","isHidden":true,"text":""},"next":{"className":"","isHidden":false,"text":"Start Quiz"},"targetStep":"step_rep_info","isFirstNode":true},"blocks":[{"blockName":"","identifier":"block_welcome","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_welcome","integrationID":"para_welcome","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<h2>CallVu Sales Enablement Quiz</h2><p>Welcome to the Mode A / Mode B architecture mastery quiz. This assessment will test your understanding of CallVu's compliance-by-design approach.</p><p><strong>Instructions:</strong></p><ul><li>Each question requires a voice or text response</li><li>Speak clearly and cover all key points</li><li>Your responses will be recorded and graded</li></ul><p><em>Time estimate: 20-30 minutes</em></p>","localOnly":true}]}],"style":{"alignment":"center","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Welcome","isFirstStep":true,"isLastStep":false},
-
-{"stepName":"Rep Info","identifier":"step_rep_info","buttonsConfig":{"back":{"className":"","isHidden":true,"text":""},"next":{"className":"","isHidden":false,"text":"Begin"},"targetStep":"step_q1"},"blocks":[{"blockName":"Your Information","identifier":"block_rep_info","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"rep_name","integrationID":"RepName","isHiddenInRuntime":false,"label":"Your Full Name","maskingViewer":"none","name":"editor.fields.shortText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"shortText","validations":[],"width":"full","columnID":0}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"rep_email","integrationID":"RepEmail","isHiddenInRuntime":false,"label":"Email Address","maskingViewer":"none","name":"editor.fields.emailinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"emailInput","validations":[],"width":"full","columnID":0,"icon":"fa-envelope"}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"rep_team","integrationID":"RepTeam","isHiddenInRuntime":false,"label":"Team / Region","maskingViewer":"none","name":"editor.fields.dropdowninput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"dropdownInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Enterprise - East","value":"Enterprise - East"},{"label":"Enterprise - West","value":"Enterprise - West"},{"label":"Mid-Market","value":"Mid-Market"},{"label":"Strategic Accounts","value":"Strategic Accounts"},{"label":"Partner Sales","value":"Partner Sales"}]}]}],"style":{"alignment":"center","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Rep Info","isLastStep":false},
-
-{"stepName":"Q1: Banking Scenario","identifier":"step_q1","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q2"},"blocks":[{"blockName":"Roleplay 1: Card Replacement Chaos","identifier":"block_q1","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q1_scenario","integrationID":"para_q1_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>A major bank tells you: <em>\"Our card replacement process varies wildly depending on the agent. Some skip identity steps, others forget disclosures. Fraud loves this.\"</em></p><p><strong>YOUR TASK:</strong></p><p>Explain to this prospect:</p><ol><li>What Mode A does here</li><li>Why UI-led compliance eliminates agent deviation</li><li>Where Mode B would finish the backend steps</li></ol>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q1_criteria","integrationID":"para_q1_criteria","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>Success Criteria:</strong> Must mention identity enforcement, disclosures, signatures (Mode A) and backend card reissue (Mode B). Must NOT call it a bot or IVR fix.</p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"Type your response or use the voice recorder link below","identifier":"answer_q1","integrationID":"Answer_Q1_Banking","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":2000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q1_voice","integrationID":"para_q1_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q1_Banking' target='_blank'>Click here to record voice response</a> (opens in new tab)</p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q1: Banking","isLastStep":false},
-
-{"stepName":"Q2: Insurance FNOL","identifier":"step_q2","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q3"},"blocks":[{"blockName":"Roleplay 2: Inaccurate FNOL","identifier":"block_q2","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q2_scenario","integrationID":"para_q2_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>A claims VP says: <em>\"Our FNOL submissions are full of missing info and call center agents improvise the script.\"</em></p><p><strong>YOUR TASK:</strong></p><p>Explain:</p><ol><li>FNOL in Mode A (document capture, mandatory questions)</li><li>Mode B for triggers (policy updates, eligibility checks)</li></ol>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q2_criteria","integrationID":"para_q2_criteria","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>Success Criteria:</strong> Must say \"Mode A eliminates NIGO errors\" and \"Mode B runs deterministic policy updates.\"</p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"Type your response or use the voice recorder link below","identifier":"answer_q2","integrationID":"Answer_Q2_Insurance","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":2000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q2_voice","integrationID":"para_q2_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q2_Insurance' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q2: Insurance","isLastStep":false},
-
-{"stepName":"Q3: Telco SIM Swap","identifier":"step_q3","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q4"},"blocks":[{"blockName":"Roleplay 3: SIM Swap Fraud","identifier":"block_q3","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q3_scenario","integrationID":"para_q3_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>A telco sees a spike in fraudulent SIM swaps.</p><p><strong>YOUR TASK:</strong></p><ol><li>Use Mode A for identity + disclosures</li><li>Use Mode B for backend provisioning</li><li>Hit fraud prevention value</li></ol>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q3_criteria","integrationID":"para_q3_criteria","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>Success Criteria:</strong> Mentions identity + mandatory checks. NO mention of \"fixing IVR\" or \"building a form.\"</p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q3","integrationID":"Answer_Q3_Telco","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":2000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q3_voice","integrationID":"para_q3_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q3_Telco' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q3: Telco","isLastStep":false},
-
-{"stepName":"Q4: Utilities","identifier":"step_q4","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q5"},"blocks":[{"blockName":"Roleplay 4: Move-In/Move-Out Errors","identifier":"block_q4","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q4_scenario","integrationID":"para_q4_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>Operations lead complains: <em>\"Service activations are constantly wrong. Wrong dates, missing notices, and billing issues.\"</em></p><p><strong>YOUR TASK:</strong></p><ol><li>Mode A = enforce questionnaires + regulatory notices</li><li>Mode B = update backend service status and billing</li></ol>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q4_criteria","integrationID":"para_q4_criteria","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>Success Criteria:</strong> Must clearly state: \"Mode A prevents bad inputs; Mode B prevents backend errors.\"</p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q4","integrationID":"Answer_Q4_Utilities","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":2000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q4_voice","integrationID":"para_q4_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q4_Utilities' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q4: Utilities","isLastStep":false},
-
-{"stepName":"Q5: Mortgage Hardship","identifier":"step_q5","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q6"},"blocks":[{"blockName":"Roleplay 5: Hardship Script Compliance","identifier":"block_q5","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q5_scenario","integrationID":"para_q5_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>A servicer says: <em>\"Agents improvise hardship calls. Regulators are hammering us.\"</em></p><p><strong>YOUR TASK:</strong></p><ol><li>Mode A for mandatory questions, disclosures, and evidence</li><li>Mode B for backend servicing actions</li></ol>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q5_criteria","integrationID":"para_q5_criteria","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>Success Criteria:</strong> Must say \"Mode A eliminates agent variability.\" Must mention CFPB or regulatory enforcement.</p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q5","integrationID":"Answer_Q5_Mortgage","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":2000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q5_voice","integrationID":"para_q5_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q5_Mortgage' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q5: Mortgage","isLastStep":false},
-
-{"stepName":"Q6: Healthcare Intake","identifier":"step_q6","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q7"},"blocks":[{"blockName":"Roleplay 6: Intake Inaccuracy","identifier":"block_q6","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q6_scenario","integrationID":"para_q6_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>A provider says: <em>\"Intake data is wrong half the time. Insurance info missing. Consents aren't properly logged.\"</em></p><p><strong>YOUR TASK:</strong></p><ol><li>Mode A for guided intake + insurance upload + consents</li><li>Mode B for eligibility & EMR updates</li></ol>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q6","integrationID":"Answer_Q6_Healthcare","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":2000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q6_voice","integrationID":"para_q6_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q6_Healthcare' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q6: Healthcare","isLastStep":false},
-
-{"stepName":"Q7: Bots Objection","identifier":"step_q7","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q8"},"blocks":[{"blockName":"Roleplay 7: We're Already Using Bots","identifier":"block_q7","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q7_scenario","integrationID":"para_q7_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>A CIO says: <em>\"We have bots. Why do we need you?\"</em></p><p><strong>YOUR TASK:</strong></p><ol><li>Reframe \"bots talk; CallVu completes\"</li><li>Introduce Mode A + Mode B as the missing execution layer</li><li>Reinforce compliance and deterministic steps</li></ol>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q7_criteria","integrationID":"para_q7_criteria","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>Success Criteria:</strong> Never positions CallVu as a bot competitor. Uses \"completion layer\" language.</p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q7","integrationID":"Answer_Q7_Bots","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":2000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q7_voice","integrationID":"para_q7_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q7_Bots' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q7: Bots","isLastStep":false},
-
-{"stepName":"Q8: Architecture 30s","identifier":"step_q8","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q9"},"blocks":[{"blockName":"Architecture Drill: Explain in 30 Seconds","identifier":"block_q8","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q8_scenario","integrationID":"para_q8_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>DRILL:</strong> Explain the CallVu architecture in 30 seconds.</p><p><strong>You must include:</strong></p><ul><li>Micro-apps</li><li>Orchestration</li><li>Two modes</li><li>Compliance</li></ul>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q8","integrationID":"Answer_Q8_Architecture","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":2000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q8_voice","integrationID":"para_q8_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q8_Architecture' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q8: Architecture","isLastStep":false},
-
-{"stepName":"Q9: Wrong Analogies","identifier":"step_q9","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q10"},"blocks":[{"blockName":"Drill: Spot the Wrong Analogy","identifier":"block_q9","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q9_scenario","integrationID":"para_q9_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>DRILL:</strong> Explain why EACH of these statements is WRONG:</p><ol><li>\"CallVu is like a form builder.\"</li><li>\"Mode A is just self-service.\"</li><li>\"Mode B is basically RPA.\"</li><li>\"Bots + CallVu are interchangeable.\"</li></ol>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q9","integrationID":"Answer_Q9_Analogies","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":2000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q9_voice","integrationID":"para_q9_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q9_Analogies' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q9: Analogies","isLastStep":false},
-
-{"stepName":"Q10: Mode Classification","identifier":"step_q10","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q11"},"blocks":[{"blockName":"Mode A vs Mode B Classification","identifier":"block_q10","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q10_scenario","integrationID":"para_q10_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>Classify each use case as: Mode A only, Mode B only, or Mode A → Mode B hybrid</strong></p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"classify_1","integrationID":"Classify_1_Address","isHiddenInRuntime":false,"label":"1. Customer updates their mailing address","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Mode A only","value":"Mode A"},{"label":"Mode B only","value":"Mode B"},{"label":"Mode A → Mode B","value":"Hybrid"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"classify_2","integrationID":"Classify_2_FeeReversal","isHiddenInRuntime":false,"label":"2. AI agent initiates a fee reversal","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Mode A only","value":"Mode A"},{"label":"Mode B only","value":"Mode B"},{"label":"Mode A → Mode B","value":"Hybrid"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"classify_3","integrationID":"Classify_3_Dispute","isHiddenInRuntime":false,"label":"3. Customer disputes a credit card transaction","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Mode A only","value":"Mode A"},{"label":"Mode B only","value":"Mode B"},{"label":"Mode A → Mode B","value":"Hybrid"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"classify_4","integrationID":"Classify_4_Escrow","isHiddenInRuntime":false,"label":"4. Mortgage escrow recalculation","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Mode A only","value":"Mode A"},{"label":"Mode B only","value":"Mode B"},{"label":"Mode A → Mode B","value":"Hybrid"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"classify_5","integrationID":"Classify_5_PatientIntake","isHiddenInRuntime":false,"label":"5. Patient intake form + insurance card upload","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Mode A only","value":"Mode A"},{"label":"Mode B only","value":"Mode B"},{"label":"Mode A → Mode B","value":"Hybrid"}]}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q10: Classify","isLastStep":false},
-
-{"stepName":"Q11: More Classification","identifier":"step_q11","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q12"},"blocks":[{"blockName":"Mode Classification (Continued)","identifier":"block_q11","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"classify_6","integrationID":"Classify_6_SIMSwap","isHiddenInRuntime":false,"label":"6. SIM swap activation","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Mode A only","value":"Mode A"},{"label":"Mode B only","value":"Mode B"},{"label":"Mode A → Mode B","value":"Hybrid"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"classify_7","integrationID":"Classify_7_Eligibility","isHiddenInRuntime":false,"label":"7. Eligibility check for a billing plan","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Mode A only","value":"Mode A"},{"label":"Mode B only","value":"Mode B"},{"label":"Mode A → Mode B","value":"Hybrid"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"classify_8","integrationID":"Classify_8_Hardship","isHiddenInRuntime":false,"label":"8. Agent-led hardship script","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Mode A only","value":"Mode A"},{"label":"Mode B only","value":"Mode B"},{"label":"Mode A → Mode B","value":"Hybrid"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"classify_9","integrationID":"Classify_9_StatusUpdate","isHiddenInRuntime":false,"label":"9. Automated status update to policy core system","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Mode A only","value":"Mode A"},{"label":"Mode B only","value":"Mode B"},{"label":"Mode A → Mode B","value":"Hybrid"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"classify_10","integrationID":"Classify_10_DocUpload","isHiddenInRuntime":false,"label":"10. Document upload for claims","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"Mode A only","value":"Mode A"},{"label":"Mode B only","value":"Mode B"},{"label":"Mode A → Mode B","value":"Hybrid"}]}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q11: Classify 2","isLastStep":false},
-
-{"stepName":"Q12: Compliance Scenario 1","identifier":"step_q12","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q13"},"blocks":[{"blockName":"Compliance Reasoning: Skipped Disclosure","identifier":"block_q12","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q12_scenario","integrationID":"para_q12_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>An agent accidentally skips a required disclosure step during a claims intake.</p><p><strong>QUESTION:</strong> Would this be possible in Mode A or Mode B?</p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q12","integrationID":"Answer_Q12_Compliance1","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":1000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q12_voice","integrationID":"para_q12_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q12_Compliance1' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q12: Compliance 1","isLastStep":false},
-
-{"stepName":"Q13: Compliance Scenario 2","identifier":"step_q13","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q14"},"blocks":[{"blockName":"Compliance Reasoning: AI Reordering Steps","identifier":"block_q13","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q13_scenario","integrationID":"para_q13_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>An AI agent decides to reorder steps in a workflow based on probability.</p><p><strong>QUESTION:</strong> Would CallVu allow this in Mode B?</p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q13","integrationID":"Answer_Q13_Compliance2","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":1000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q13_voice","integrationID":"para_q13_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q13_Compliance2' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q13: Compliance 2","isLastStep":false},
-
-{"stepName":"Q14: Compliance Scenario 3","identifier":"step_q14","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q15"},"blocks":[{"blockName":"Compliance Reasoning: Incomplete KYC","identifier":"block_q14","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q14_scenario","integrationID":"para_q14_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>A customer submits an incomplete KYC step.</p><p><strong>QUESTIONS:</strong></p><ul><li>What mode handles this?</li><li>What happens?</li></ul>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q14","integrationID":"Answer_Q14_Compliance3","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":1000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q14_voice","integrationID":"para_q14_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q14_Compliance3' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q14: Compliance 3","isLastStep":false},
-
-{"stepName":"Q15: Compliance Scenario 4","identifier":"step_q15","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q16"},"blocks":[{"blockName":"Compliance Reasoning: Backend Failure","identifier":"block_q15","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q15_scenario","integrationID":"para_q15_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>SCENARIO:</strong></p><p>Backend system fails mid-update.</p><p><strong>QUESTION:</strong> What does Mode B do?</p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q15","integrationID":"Answer_Q15_Compliance4","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":1000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q15_voice","integrationID":"para_q15_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q15_Compliance4' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q15: Compliance 4","isLastStep":false},
-
-{"stepName":"Q16: Multiple Choice","identifier":"step_q16","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q17"},"blocks":[{"blockName":"Quiz: Multiple Choice","identifier":"block_q16","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"mc_1","integrationID":"MC_1_ModeACompliance","isHiddenInRuntime":false,"label":"1. Mode A enforces compliance through:","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"A. LLM reasoning","value":"A"},{"label":"B. UI interactions and micro-app constraints","value":"B"},{"label":"C. Backend rules","value":"C"},{"label":"D. Agent training","value":"D"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"mc_2","integrationID":"MC_2_ModeBExists","isHiddenInRuntime":false,"label":"2. Mode B exists because:","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"A. Customers prefer automation","value":"A"},{"label":"B. Backend execution must be deterministic and safe","value":"B"},{"label":"C. It reduces UI load","value":"C"},{"label":"D. It replaces CRM","value":"D"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"mc_3","integrationID":"MC_3_MicroApps","isHiddenInRuntime":false,"label":"3. Micro-apps differ from forms because:","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"A. They look nicer","value":"A"},{"label":"B. They enforce logic, compliance, and backend calls","value":"B"},{"label":"C. They store data in PDFs","value":"C"},{"label":"D. They run only in digital channels","value":"D"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"mc_4","integrationID":"MC_4_MCP","isHiddenInRuntime":false,"label":"4. MCP enables:","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"A. AI to rewrite business rules","value":"A"},{"label":"B. AI to safely trigger Mode A or Mode B flows","value":"B"},{"label":"C. Voice recognition","value":"C"},{"label":"D. Payment processing","value":"D"}]}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"mc_5","integrationID":"MC_5_BiggestRisk","isHiddenInRuntime":false,"label":"5. In regulated industries, the biggest risk is:","maskingViewer":"none","name":"editor.fields.radioinput","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"radioInput","validations":[],"width":"full","columnID":0,"items":[{"label":"A. UI design","value":"A"},{"label":"B. Customers forgetting their passwords","value":"B"},{"label":"C. Agents deviating from required steps","value":"C"},{"label":"D. Unpopular branding","value":"D"}]}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q16: MC Quiz","isLastStep":false},
-
-{"stepName":"Q17: Short Answer","identifier":"step_q17","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q18"},"blocks":[{"blockName":"Short Answer Questions","identifier":"block_q17","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q17_1","integrationID":"para_q17_1","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>1. Explain Mode A in two sentences.</strong></p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"sa_1","integrationID":"SA_1_ModeA","isHiddenInRuntime":false,"label":"Your Answer","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":500}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q17_2","integrationID":"para_q17_2","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>2. Explain Mode B in two sentences.</strong></p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"sa_2","integrationID":"SA_2_ModeB","isHiddenInRuntime":false,"label":"Your Answer","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":500}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q17_3","integrationID":"para_q17_3","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>3. Why can't bots replace CallVu?</strong></p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"sa_3","integrationID":"SA_3_Bots","isHiddenInRuntime":false,"label":"Your Answer","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":500}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q17: Short Answer","isLastStep":false},
-
-{"stepName":"Q18: More Short Answer","identifier":"step_q18","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q19"},"blocks":[{"blockName":"Short Answer (Continued)","identifier":"block_q18","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q18_4","integrationID":"para_q18_4","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>4. What layer contains the deterministic execution engine?</strong></p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"sa_4","integrationID":"SA_4_Layer","isHiddenInRuntime":false,"label":"Your Answer","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":500}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q18_5","integrationID":"para_q18_5","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>5. Why is CallVu defensible?</strong></p>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"sa_5","integrationID":"SA_5_Defensible","isHiddenInRuntime":false,"label":"Your Answer","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":500}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q18: Short Answer 2","isLastStep":false},
-
-{"stepName":"Q19: 20-Second Pitch","identifier":"step_q19","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Next"},"targetStep":"step_q20"},"blocks":[{"blockName":"Comprehension Check: Explain CallVu in 20 Seconds","identifier":"block_q19","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q19_scenario","integrationID":"para_q19_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>CHALLENGE:</strong> Explain CallVu in 20 seconds.</p><p><strong>Your answer should include:</strong></p><ul><li>Completion & compliance layer</li><li>Micro-apps</li><li>Mode A + Mode B</li><li>Works across channels</li><li>Not a bot</li></ul>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q19","integrationID":"Answer_Q19_20SecPitch","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":1000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q19_voice","integrationID":"para_q19_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q19_20SecPitch' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q19: 20s Pitch","isLastStep":false},
-
-{"stepName":"Q20: Mode B Safety","identifier":"step_q20","buttonsConfig":{"back":{"className":"","isHidden":false,"text":""},"next":{"className":"","isHidden":false,"text":"Submit Quiz"},"targetStep":"step_complete"},"blocks":[{"blockName":"Final Question: Why is Mode B Safe for AI?","identifier":"block_q20","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q20_scenario","integrationID":"para_q20_scenario","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p><strong>FINAL QUESTION:</strong> Explain why Mode B is safe for AI.</p><p><strong>Your answer should include:</strong></p><ul><li>Deterministic</li><li>Step-ordered</li><li>No hallucination possible</li><li>Full audit trail</li></ul>","localOnly":true}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"answer_q20","integrationID":"Answer_Q20_ModeBSafety","isHiddenInRuntime":false,"label":"Your Response","maskingViewer":"none","name":"editor.fields.longText","permission":"both","readOnly":false,"required":true,"tooltip":"","type":"longText","validations":[],"width":"full","columnID":0,"maxLength":1000}]},{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_q20_voice","integrationID":"para_q20_voice","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<p>🎤 <a href='https://callvusalesenablementquiz2.vercel.app?question=Q20_ModeBSafety' target='_blank'>Click here to record voice response</a></p>","localOnly":true}]}],"style":{"alignment":"","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":false,"text":"Q20: Mode B Safety","isLastStep":false},
-
-{"stepName":"Complete","identifier":"step_complete","buttonsConfig":{"back":{"className":"","isHidden":true,"text":""},"next":{"className":"","isHidden":true,"text":""},"targetStep":""},"blocks":[{"blockName":"","identifier":"block_complete","icon":"","rows":[{"fields":[{"className":"","clearable":false,"hint":"","identifier":"para_complete","integrationID":"para_complete","isHiddenInRuntime":false,"label":"","maskingViewer":"none","name":"editor.fields.paragraph","permission":"both","readOnly":false,"required":false,"tooltip":"","type":"paragraph","validations":[],"width":"full","columnID":0,"editedParagraph":"<h2>🎉 Quiz Complete!</h2><p>Thank you for completing the CallVu Sales Enablement Quiz.</p><p>Your responses have been recorded and will be reviewed by your manager.</p><p><strong>Next Steps:</strong></p><ul><li>Your manager will provide feedback within 48 hours</li><li>Review areas marked for improvement</li><li>Schedule a follow-up roleplay session if needed</li></ul>","localOnly":true}]}],"style":{"alignment":"center","nobackground":false,"noborders":false,"size":"full","background":"#ffffff"},"type":"regular"}],"style":{"alignment":""},"hideFooter":true,"text":"Complete","isLastStep":true}
-
-],"templateType":3,"thankYouPageMarkup":"","theme":{"primary":"hsl(210, 100%, 45%)","title":"#1c1c1c","text":"#3b3b3b","background":"hsl(0, 0%, 100%)","blockBackground":"#ffffff","headerText":"#1c1c1c","font":"Inter-Regular","headerBackground":"#ffffff","secondary":"hsl(210, 80%, 95%)","warning":"hsl(40, 97%, 47%)","altBackground":"hsl(0, 0%, 97%)","danger":"hsl(14, 80%, 50%)","link":"hsl(209, 81%, 52%)","success":"hsl(145, 94%, 32%)","dark":"hsl(0, 0%, 29%)","bright":"hsl(54, 100%, 81%)","neutral":"hsl(124, 37%, 84%)"},"title":"Sales Enablement Quiz","privateMode":false,"otpTemplateID":"","isOTPEnabled":false,"otpVersion":2,"formVersion":"10.4.40","lastModified":"","newRules":[],"Timestamp":"","TimeModified":"","style":"","formCSS":{"ID":"","Name":"","Description":"","CSS":""},"id":null,"backgroundUrl":{"desktop":"","mobile":""}}}
+{
+  "form": {
+    "accessibility": false,
+    "actions": [],
+    "approveData": {
+      "enabled": false,
+      "forceApproveBeforeShowingDownload": false,
+      "toCloseForm": false,
+      "popupObj": {
+        "errorMsg": "",
+        "fieldType": "",
+        "message": "",
+        "title": ""
+      },
+      "submitIcon": ""
+    },
+    "calculatedFields": [],
+    "direction": "ltr",
+    "expirationObj": {},
+    "formCustomStyle": "\n<style>\n  /* Disable typing in voice response fields */\n  textarea[data-integration-id^=\"Answer_\"] {\n    pointer-events: none;\n    background-color: #f9fafb;\n    cursor: not-allowed;\n  }\n  \n  /* Style disabled Next button */\n  button.disabled,\n  button[disabled] {\n    opacity: 0.5;\n    cursor: not-allowed;\n  }\n  \n  /* Voice recorder iframe styling */\n  iframe[id^=\"voice-recorder-\"] {\n    min-height: 500px;\n  }\n</style>\n<script src=\"https://callvusalesenablementquiz2.vercel.app/callvu-integration.js\"></script>\n",
+    "formName": "CallVu Sales Enablement Quiz",
+    "globalVariables": [],
+    "hintMsgProps": {
+      "text": "",
+      "hideOnScroll": false
+    },
+    "isDownloadPDFLink": false,
+    "isFormReadonly": false,
+    "isPdfForm": false,
+    "isSinglePage": false,
+    "last_update": "",
+    "logo": "",
+    "logoAlignment": "center",
+    "logoName": "",
+    "logoUrl": "https://callvustudioproduction.s3.us-east-1.amazonaws.com/admin/callvu-icon-black.svg",
+    "notResizable": true,
+    "otp": {
+      "buttonText": "",
+      "description": "",
+      "emptyFieldValidation": "",
+      "invalidFieldValidation": "",
+      "isActive": false,
+      "label": "",
+      "logo": "",
+      "logoName": "",
+      "resendText": "",
+      "serviceUrl": "",
+      "title": "",
+      "validResponse": false,
+      "validateUrl": false,
+      "redirectAfterSubmit": false,
+      "redirectLink": "",
+      "isAuth": false,
+      "optionalFields": []
+    },
+    "PDF": "",
+    "permission": "client",
+    "redirectAfterSubmit": false,
+    "redirectLink": "",
+    "stepperType": "Progress",
+    "steps": [
+      {
+        "stepName": "Welcome",
+        "identifier": "step_welcome",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": true,
+            "text": ""
+          },
+          "next": {
+            "className": "",
+            "isHidden": false,
+            "text": "Start Quiz"
+          },
+          "targetStep": "step_rep_info",
+          "isFirstNode": true
+        },
+        "blocks": [
+          {
+            "blockName": "",
+            "identifier": "block_welcome",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_welcome",
+                    "integrationID": "para_welcome",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h2>CallVu Sales Enablement Quiz</h2><p>Welcome to the Mode A / Mode B architecture mastery quiz. This assessment will test your understanding of CallVu's compliance-by-design approach.</p><p><strong>Instructions:</strong></p><ul><li>Each question requires a voice or text response</li><li>Speak clearly and cover all key points</li><li>Your responses will be recorded and graded</li></ul><p><em>Time estimate: 20-30 minutes</em></p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "center",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Welcome",
+        "isFirstStep": true,
+        "isLastStep": false
+      },
+      {
+        "stepName": "Rep Info",
+        "identifier": "step_rep_info",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": true,
+            "text": ""
+          },
+          "next": {
+            "className": "",
+            "isHidden": false,
+            "text": "Begin"
+          },
+          "targetStep": "step_q1"
+        },
+        "blocks": [
+          {
+            "blockName": "Your Information",
+            "identifier": "block_rep_info",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "rep_name",
+                    "integrationID": "RepName",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Full Name",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.shortText",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "shortText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "rep_email",
+                    "integrationID": "RepEmail",
+                    "isHiddenInRuntime": false,
+                    "label": "Email Address",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.emailinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "emailInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "icon": "fa-envelope"
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "rep_team",
+                    "integrationID": "RepTeam",
+                    "isHiddenInRuntime": false,
+                    "label": "Team / Region",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.dropdowninput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "dropdownInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Enterprise - East",
+                        "value": "Enterprise - East"
+                      },
+                      {
+                        "label": "Enterprise - West",
+                        "value": "Enterprise - West"
+                      },
+                      {
+                        "label": "Mid-Market",
+                        "value": "Mid-Market"
+                      },
+                      {
+                        "label": "Strategic Accounts",
+                        "value": "Strategic Accounts"
+                      },
+                      {
+                        "label": "Partner Sales",
+                        "value": "Partner Sales"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "center",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Rep Info",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q1: Banking Scenario",
+        "identifier": "step_q1",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q2"
+        },
+        "blocks": [
+          {
+            "blockName": "Roleplay 1: Card Replacement Chaos",
+            "identifier": "block_q1",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q1",
+                    "integrationID": "Heading_step_q1",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q1_scenario",
+                    "integrationID": "para_q1_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>A major bank tells you: <em>\"Our card replacement process varies wildly depending on the agent. Some skip identity steps, others forget disclosures. Fraud loves this.\"</em></p><p><strong>YOUR TASK:</strong></p><p>Explain to this prospect:</p><ol><li>What Mode A does here</li><li>Why UI-led compliance eliminates agent deviation</li><li>Where Mode B would finish the backend steps</li></ol>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q1_criteria",
+                    "integrationID": "para_q1_criteria",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>Success Criteria:</strong> Must mention identity enforcement, disclosures, signatures (Mode A) and backend card reissue (Mode B). Must NOT call it a bot or IVR fix.</p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q1",
+                    "integrationID": "Answer_Q1_Banking",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 2000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q1_voice",
+                    "integrationID": "para_q1_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q1_Banking&title=Banking%3A%20Card%20Replacement%20Chaos\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q1_Banking\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q1: Banking",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q2: Insurance FNOL",
+        "identifier": "step_q2",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q3"
+        },
+        "blocks": [
+          {
+            "blockName": "Roleplay 2: Inaccurate FNOL",
+            "identifier": "block_q2",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q2",
+                    "integrationID": "Heading_step_q2",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q2_scenario",
+                    "integrationID": "para_q2_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>A claims VP says: <em>\"Our FNOL submissions are full of missing info and call center agents improvise the script.\"</em></p><p><strong>YOUR TASK:</strong></p><p>Explain:</p><ol><li>FNOL in Mode A (document capture, mandatory questions)</li><li>Mode B for triggers (policy updates, eligibility checks)</li></ol>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q2_criteria",
+                    "integrationID": "para_q2_criteria",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>Success Criteria:</strong> Must say \"Mode A eliminates NIGO errors\" and \"Mode B runs deterministic policy updates.\"</p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q2",
+                    "integrationID": "Answer_Q2_Insurance",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 2000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q2_voice",
+                    "integrationID": "para_q2_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q2_Insurance&title=Insurance%3A%20Inaccurate%20FNOL\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q2_Insurance\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q2: Insurance",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q3: Telco SIM Swap",
+        "identifier": "step_q3",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q4"
+        },
+        "blocks": [
+          {
+            "blockName": "Roleplay 3: SIM Swap Fraud",
+            "identifier": "block_q3",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q3",
+                    "integrationID": "Heading_step_q3",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q3_scenario",
+                    "integrationID": "para_q3_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>A telco sees a spike in fraudulent SIM swaps.</p><p><strong>YOUR TASK:</strong></p><ol><li>Use Mode A for identity + disclosures</li><li>Use Mode B for backend provisioning</li><li>Hit fraud prevention value</li></ol>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q3_criteria",
+                    "integrationID": "para_q3_criteria",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>Success Criteria:</strong> Mentions identity + mandatory checks. NO mention of \"fixing IVR\" or \"building a form.\"</p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q3",
+                    "integrationID": "Answer_Q3_Telco",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 2000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q3_voice",
+                    "integrationID": "para_q3_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q3_Telco&title=Telco%3A%20SIM%20Swap%20Fraud\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q3_Telco\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q3: Telco",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q4: Utilities",
+        "identifier": "step_q4",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q5"
+        },
+        "blocks": [
+          {
+            "blockName": "Roleplay 4: Move-In/Move-Out Errors",
+            "identifier": "block_q4",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q4",
+                    "integrationID": "Heading_step_q4",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q4_scenario",
+                    "integrationID": "para_q4_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>Operations lead complains: <em>\"Service activations are constantly wrong. Wrong dates, missing notices, and billing issues.\"</em></p><p><strong>YOUR TASK:</strong></p><ol><li>Mode A = enforce questionnaires + regulatory notices</li><li>Mode B = update backend service status and billing</li></ol>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q4_criteria",
+                    "integrationID": "para_q4_criteria",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>Success Criteria:</strong> Must clearly state: \"Mode A prevents bad inputs; Mode B prevents backend errors.\"</p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q4",
+                    "integrationID": "Answer_Q4_Utilities",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 2000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q4_voice",
+                    "integrationID": "para_q4_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q4_Utilities&title=Utilities%3A%20Move-In%2FMove-Out%20Errors\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q4_Utilities\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q4: Utilities",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q5: Mortgage Hardship",
+        "identifier": "step_q5",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q6"
+        },
+        "blocks": [
+          {
+            "blockName": "Roleplay 5: Hardship Script Compliance",
+            "identifier": "block_q5",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q5",
+                    "integrationID": "Heading_step_q5",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q5_scenario",
+                    "integrationID": "para_q5_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>A servicer says: <em>\"Agents improvise hardship calls. Regulators are hammering us.\"</em></p><p><strong>YOUR TASK:</strong></p><ol><li>Mode A for mandatory questions, disclosures, and evidence</li><li>Mode B for backend servicing actions</li></ol>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q5_criteria",
+                    "integrationID": "para_q5_criteria",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>Success Criteria:</strong> Must say \"Mode A eliminates agent variability.\" Must mention CFPB or regulatory enforcement.</p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q5",
+                    "integrationID": "Answer_Q5_Mortgage",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 2000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q5_voice",
+                    "integrationID": "para_q5_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q5_Mortgage&title=Mortgage%3A%20Hardship%20Script%20Compliance\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q5_Mortgage\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q5: Mortgage",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q6: Healthcare Intake",
+        "identifier": "step_q6",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q7"
+        },
+        "blocks": [
+          {
+            "blockName": "Roleplay 6: Intake Inaccuracy",
+            "identifier": "block_q6",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q6",
+                    "integrationID": "Heading_step_q6",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q6_scenario",
+                    "integrationID": "para_q6_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>A provider says: <em>\"Intake data is wrong half the time. Insurance info missing. Consents aren't properly logged.\"</em></p><p><strong>YOUR TASK:</strong></p><ol><li>Mode A for guided intake + insurance upload + consents</li><li>Mode B for eligibility & EMR updates</li></ol>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q6",
+                    "integrationID": "Answer_Q6_Healthcare",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 2000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q6_voice",
+                    "integrationID": "para_q6_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q6_Healthcare&title=Healthcare%3A%20Intake%20Inaccuracy\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q6_Healthcare\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q6: Healthcare",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q7: Bots Objection",
+        "identifier": "step_q7",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q8"
+        },
+        "blocks": [
+          {
+            "blockName": "Roleplay 7: We're Already Using Bots",
+            "identifier": "block_q7",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q7",
+                    "integrationID": "Heading_step_q7",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q7_scenario",
+                    "integrationID": "para_q7_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>A CIO says: <em>\"We have bots. Why do we need you?\"</em></p><p><strong>YOUR TASK:</strong></p><ol><li>Reframe \"bots talk; CallVu completes\"</li><li>Introduce Mode A + Mode B as the missing execution layer</li><li>Reinforce compliance and deterministic steps</li></ol>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q7_criteria",
+                    "integrationID": "para_q7_criteria",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>Success Criteria:</strong> Never positions CallVu as a bot competitor. Uses \"completion layer\" language.</p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q7",
+                    "integrationID": "Answer_Q7_Bots",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 2000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q7_voice",
+                    "integrationID": "para_q7_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q7_Bots&title=Objection%3A%20We%20Already%20Have%20Bots\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q7_Bots\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q7: Bots",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q8: Architecture 30s",
+        "identifier": "step_q8",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q9"
+        },
+        "blocks": [
+          {
+            "blockName": "Architecture Drill: Explain in 30 Seconds",
+            "identifier": "block_q8",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q8",
+                    "integrationID": "Heading_step_q8",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q8_scenario",
+                    "integrationID": "para_q8_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>DRILL:</strong> Explain the CallVu architecture in 30 seconds.</p><p><strong>You must include:</strong></p><ul><li>Micro-apps</li><li>Orchestration</li><li>Two modes</li><li>Compliance</li></ul>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q8",
+                    "integrationID": "Answer_Q8_Architecture",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 2000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q8_voice",
+                    "integrationID": "para_q8_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q8_Architecture&title=Architecture%20Drill%3A%2030-Second%20Explanation\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q8_Architecture\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q8: Architecture",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q9: Wrong Analogies",
+        "identifier": "step_q9",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q10"
+        },
+        "blocks": [
+          {
+            "blockName": "Drill: Spot the Wrong Analogy",
+            "identifier": "block_q9",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q9",
+                    "integrationID": "Heading_step_q9",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q9_scenario",
+                    "integrationID": "para_q9_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>DRILL:</strong> Explain why EACH of these statements is WRONG:</p><ol><li>\"CallVu is like a form builder.\"</li><li>\"Mode A is just self-service.\"</li><li>\"Mode B is basically RPA.\"</li><li>\"Bots + CallVu are interchangeable.\"</li></ol>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q9",
+                    "integrationID": "Answer_Q9_Analogies",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 2000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q9_voice",
+                    "integrationID": "para_q9_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q9_Analogies&title=Drill%3A%20Spot%20Wrong%20Analogies\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q9_Analogies\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q9: Analogies",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q10: Mode Classification",
+        "identifier": "step_q10",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": "",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q11"
+        },
+        "blocks": [
+          {
+            "blockName": "Mode A vs Mode B Classification",
+            "identifier": "block_q10",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q10_scenario",
+                    "integrationID": "para_q10_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>Classify each use case as: Mode A only, Mode B only, or Mode A → Mode B hybrid</strong></p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "classify_1",
+                    "integrationID": "Classify_1_Address",
+                    "isHiddenInRuntime": false,
+                    "label": "1. Customer updates their mailing address",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Mode A only",
+                        "value": "Mode A"
+                      },
+                      {
+                        "label": "Mode B only",
+                        "value": "Mode B"
+                      },
+                      {
+                        "label": "Mode A → Mode B",
+                        "value": "Hybrid"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "classify_2",
+                    "integrationID": "Classify_2_FeeReversal",
+                    "isHiddenInRuntime": false,
+                    "label": "2. AI agent initiates a fee reversal",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Mode A only",
+                        "value": "Mode A"
+                      },
+                      {
+                        "label": "Mode B only",
+                        "value": "Mode B"
+                      },
+                      {
+                        "label": "Mode A → Mode B",
+                        "value": "Hybrid"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "classify_3",
+                    "integrationID": "Classify_3_Dispute",
+                    "isHiddenInRuntime": false,
+                    "label": "3. Customer disputes a credit card transaction",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Mode A only",
+                        "value": "Mode A"
+                      },
+                      {
+                        "label": "Mode B only",
+                        "value": "Mode B"
+                      },
+                      {
+                        "label": "Mode A → Mode B",
+                        "value": "Hybrid"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "classify_4",
+                    "integrationID": "Classify_4_Escrow",
+                    "isHiddenInRuntime": false,
+                    "label": "4. Mortgage escrow recalculation",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Mode A only",
+                        "value": "Mode A"
+                      },
+                      {
+                        "label": "Mode B only",
+                        "value": "Mode B"
+                      },
+                      {
+                        "label": "Mode A → Mode B",
+                        "value": "Hybrid"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "classify_5",
+                    "integrationID": "Classify_5_PatientIntake",
+                    "isHiddenInRuntime": false,
+                    "label": "5. Patient intake form + insurance card upload",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Mode A only",
+                        "value": "Mode A"
+                      },
+                      {
+                        "label": "Mode B only",
+                        "value": "Mode B"
+                      },
+                      {
+                        "label": "Mode A → Mode B",
+                        "value": "Hybrid"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q10: Classify",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q11: More Classification",
+        "identifier": "step_q11",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": "",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q12"
+        },
+        "blocks": [
+          {
+            "blockName": "Mode Classification (Continued)",
+            "identifier": "block_q11",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "classify_6",
+                    "integrationID": "Classify_6_SIMSwap",
+                    "isHiddenInRuntime": false,
+                    "label": "6. SIM swap activation",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Mode A only",
+                        "value": "Mode A"
+                      },
+                      {
+                        "label": "Mode B only",
+                        "value": "Mode B"
+                      },
+                      {
+                        "label": "Mode A → Mode B",
+                        "value": "Hybrid"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "classify_7",
+                    "integrationID": "Classify_7_Eligibility",
+                    "isHiddenInRuntime": false,
+                    "label": "7. Eligibility check for a billing plan",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Mode A only",
+                        "value": "Mode A"
+                      },
+                      {
+                        "label": "Mode B only",
+                        "value": "Mode B"
+                      },
+                      {
+                        "label": "Mode A → Mode B",
+                        "value": "Hybrid"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "classify_8",
+                    "integrationID": "Classify_8_Hardship",
+                    "isHiddenInRuntime": false,
+                    "label": "8. Agent-led hardship script",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Mode A only",
+                        "value": "Mode A"
+                      },
+                      {
+                        "label": "Mode B only",
+                        "value": "Mode B"
+                      },
+                      {
+                        "label": "Mode A → Mode B",
+                        "value": "Hybrid"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "classify_9",
+                    "integrationID": "Classify_9_StatusUpdate",
+                    "isHiddenInRuntime": false,
+                    "label": "9. Automated status update to policy core system",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Mode A only",
+                        "value": "Mode A"
+                      },
+                      {
+                        "label": "Mode B only",
+                        "value": "Mode B"
+                      },
+                      {
+                        "label": "Mode A → Mode B",
+                        "value": "Hybrid"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "classify_10",
+                    "integrationID": "Classify_10_DocUpload",
+                    "isHiddenInRuntime": false,
+                    "label": "10. Document upload for claims",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "Mode A only",
+                        "value": "Mode A"
+                      },
+                      {
+                        "label": "Mode B only",
+                        "value": "Mode B"
+                      },
+                      {
+                        "label": "Mode A → Mode B",
+                        "value": "Hybrid"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q11: Classify 2",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q12: Compliance Scenario 1",
+        "identifier": "step_q12",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q13"
+        },
+        "blocks": [
+          {
+            "blockName": "Compliance Reasoning: Skipped Disclosure",
+            "identifier": "block_q12",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q12",
+                    "integrationID": "Heading_step_q12",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q12_scenario",
+                    "integrationID": "para_q12_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>An agent accidentally skips a required disclosure step during a claims intake.</p><p><strong>QUESTION:</strong> Would this be possible in Mode A or Mode B?</p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q12",
+                    "integrationID": "Answer_Q12_Compliance1",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 1000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q12_voice",
+                    "integrationID": "para_q12_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q12_Compliance1&title=Compliance%3A%20Skipped%20Disclosure\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q12_Compliance1\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q12: Compliance 1",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q13: Compliance Scenario 2",
+        "identifier": "step_q13",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q14"
+        },
+        "blocks": [
+          {
+            "blockName": "Compliance Reasoning: AI Reordering Steps",
+            "identifier": "block_q13",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q13",
+                    "integrationID": "Heading_step_q13",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q13_scenario",
+                    "integrationID": "para_q13_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>An AI agent decides to reorder steps in a workflow based on probability.</p><p><strong>QUESTION:</strong> Would CallVu allow this in Mode B?</p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q13",
+                    "integrationID": "Answer_Q13_Compliance2",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 1000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q13_voice",
+                    "integrationID": "para_q13_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q13_Compliance2&title=Compliance%3A%20AI%20Reordering%20Steps\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q13_Compliance2\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q13: Compliance 2",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q14: Compliance Scenario 3",
+        "identifier": "step_q14",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q15"
+        },
+        "blocks": [
+          {
+            "blockName": "Compliance Reasoning: Incomplete KYC",
+            "identifier": "block_q14",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q14",
+                    "integrationID": "Heading_step_q14",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q14_scenario",
+                    "integrationID": "para_q14_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>A customer submits an incomplete KYC step.</p><p><strong>QUESTIONS:</strong></p><ul><li>What mode handles this?</li><li>What happens?</li></ul>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q14",
+                    "integrationID": "Answer_Q14_Compliance3",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 1000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q14_voice",
+                    "integrationID": "para_q14_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q14_Compliance3&title=Compliance%3A%20Incomplete%20KYC\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q14_Compliance3\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q14: Compliance 3",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q15: Compliance Scenario 4",
+        "identifier": "step_q15",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q16"
+        },
+        "blocks": [
+          {
+            "blockName": "Compliance Reasoning: Backend Failure",
+            "identifier": "block_q15",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q15",
+                    "integrationID": "Heading_step_q15",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q15_scenario",
+                    "integrationID": "para_q15_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>SCENARIO:</strong></p><p>Backend system fails mid-update.</p><p><strong>QUESTION:</strong> What does Mode B do?</p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q15",
+                    "integrationID": "Answer_Q15_Compliance4",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 1000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q15_voice",
+                    "integrationID": "para_q15_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q15_Compliance4&title=Compliance%3A%20Backend%20Failure\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q15_Compliance4\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q15: Compliance 4",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q16: Multiple Choice",
+        "identifier": "step_q16",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": "",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q17"
+        },
+        "blocks": [
+          {
+            "blockName": "Quiz: Multiple Choice",
+            "identifier": "block_q16",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "mc_1",
+                    "integrationID": "MC_1_ModeACompliance",
+                    "isHiddenInRuntime": false,
+                    "label": "1. Mode A enforces compliance through:",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "A. LLM reasoning",
+                        "value": "A"
+                      },
+                      {
+                        "label": "B. UI interactions and micro-app constraints",
+                        "value": "B"
+                      },
+                      {
+                        "label": "C. Backend rules",
+                        "value": "C"
+                      },
+                      {
+                        "label": "D. Agent training",
+                        "value": "D"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "mc_2",
+                    "integrationID": "MC_2_ModeBExists",
+                    "isHiddenInRuntime": false,
+                    "label": "2. Mode B exists because:",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "A. Customers prefer automation",
+                        "value": "A"
+                      },
+                      {
+                        "label": "B. Backend execution must be deterministic and safe",
+                        "value": "B"
+                      },
+                      {
+                        "label": "C. It reduces UI load",
+                        "value": "C"
+                      },
+                      {
+                        "label": "D. It replaces CRM",
+                        "value": "D"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "mc_3",
+                    "integrationID": "MC_3_MicroApps",
+                    "isHiddenInRuntime": false,
+                    "label": "3. Micro-apps differ from forms because:",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "A. They look nicer",
+                        "value": "A"
+                      },
+                      {
+                        "label": "B. They enforce logic, compliance, and backend calls",
+                        "value": "B"
+                      },
+                      {
+                        "label": "C. They store data in PDFs",
+                        "value": "C"
+                      },
+                      {
+                        "label": "D. They run only in digital channels",
+                        "value": "D"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "mc_4",
+                    "integrationID": "MC_4_MCP",
+                    "isHiddenInRuntime": false,
+                    "label": "4. MCP enables:",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "A. AI to rewrite business rules",
+                        "value": "A"
+                      },
+                      {
+                        "label": "B. AI to safely trigger Mode A or Mode B flows",
+                        "value": "B"
+                      },
+                      {
+                        "label": "C. Voice recognition",
+                        "value": "C"
+                      },
+                      {
+                        "label": "D. Payment processing",
+                        "value": "D"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "mc_5",
+                    "integrationID": "MC_5_BiggestRisk",
+                    "isHiddenInRuntime": false,
+                    "label": "5. In regulated industries, the biggest risk is:",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.radioinput",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "radioInput",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "items": [
+                      {
+                        "label": "A. UI design",
+                        "value": "A"
+                      },
+                      {
+                        "label": "B. Customers forgetting their passwords",
+                        "value": "B"
+                      },
+                      {
+                        "label": "C. Agents deviating from required steps",
+                        "value": "C"
+                      },
+                      {
+                        "label": "D. Unpopular branding",
+                        "value": "D"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q16: MC Quiz",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q17: Short Answer",
+        "identifier": "step_q17",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": "",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q18"
+        },
+        "blocks": [
+          {
+            "blockName": "Short Answer Questions",
+            "identifier": "block_q17",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q17_1",
+                    "integrationID": "para_q17_1",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>1. Explain Mode A in two sentences.</strong></p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "sa_1",
+                    "integrationID": "SA_1_ModeA",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Answer",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 500
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q17_2",
+                    "integrationID": "para_q17_2",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>2. Explain Mode B in two sentences.</strong></p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "sa_2",
+                    "integrationID": "SA_2_ModeB",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Answer",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 500
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q17_3",
+                    "integrationID": "para_q17_3",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>3. Why can't bots replace CallVu?</strong></p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "sa_3",
+                    "integrationID": "SA_3_Bots",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Answer",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 500
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q17: Short Answer",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q18: More Short Answer",
+        "identifier": "step_q18",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": "",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q19"
+        },
+        "blocks": [
+          {
+            "blockName": "Short Answer (Continued)",
+            "identifier": "block_q18",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q18_4",
+                    "integrationID": "para_q18_4",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>4. What layer contains the deterministic execution engine?</strong></p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "sa_4",
+                    "integrationID": "SA_4_Layer",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Answer",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 500
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q18_5",
+                    "integrationID": "para_q18_5",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>5. Why is CallVu defensible?</strong></p>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "sa_5",
+                    "integrationID": "SA_5_Defensible",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Answer",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 500
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q18: Short Answer 2",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q19: 20-Second Pitch",
+        "identifier": "step_q19",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Next"
+          },
+          "targetStep": "step_q20"
+        },
+        "blocks": [
+          {
+            "blockName": "Comprehension Check: Explain CallVu in 20 Seconds",
+            "identifier": "block_q19",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q19",
+                    "integrationID": "Heading_step_q19",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q19_scenario",
+                    "integrationID": "para_q19_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>CHALLENGE:</strong> Explain CallVu in 20 seconds.</p><p><strong>Your answer should include:</strong></p><ul><li>Completion & compliance layer</li><li>Micro-apps</li><li>Mode A + Mode B</li><li>Works across channels</li><li>Not a bot</li></ul>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q19",
+                    "integrationID": "Answer_Q19_20SecPitch",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 1000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q19_voice",
+                    "integrationID": "para_q19_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q19_20SecPitch&title=20-Second%20Elevator%20Pitch\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q19_20SecPitch\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q19: 20s Pitch",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Q20: Mode B Safety",
+        "identifier": "step_q20",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": false,
+            "text": ""
+          },
+          "next": {
+            "className": " disabled",
+            "isHidden": false,
+            "text": "Submit Quiz"
+          },
+          "targetStep": "step_complete"
+        },
+        "blocks": [
+          {
+            "blockName": "Final Question: Why is Mode B Safe for AI?",
+            "identifier": "block_q20",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "heading_step_q20",
+                    "integrationID": "Heading_step_q20",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h1 style=\"text-align: center; margin-bottom: 20px;\">Sales Enablement Quiz - Mode A and B</h1>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q20_scenario",
+                    "integrationID": "para_q20_scenario",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<p><strong>FINAL QUESTION:</strong> Explain why Mode B is safe for AI.</p><p><strong>Your answer should include:</strong></p><ul><li>Deterministic</li><li>Step-ordered</li><li>No hallucination possible</li><li>Full audit trail</li></ul>",
+                    "localOnly": true
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
+                    "identifier": "answer_q20",
+                    "integrationID": "Answer_Q20_ModeBSafety",
+                    "isHiddenInRuntime": false,
+                    "label": "Your Response",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.longText",
+                    "permission": "both",
+                    "readOnly": true,
+                    "required": true,
+                    "tooltip": "",
+                    "type": "longText",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "maxLength": 1000,
+                    "editedParagraph": ""
+                  }
+                ]
+              },
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_q20_voice",
+                    "integrationID": "para_q20_voice",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<div style=\"margin: 20px 0; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;\">\n  <iframe \n    src=\"https://callvusalesenablementquiz2.vercel.app/embed?question=Q20_ModeBSafety&title=Why%20Mode%20B%20is%20Safe%20for%20AI\" \n    style=\"width: 100%; height: 500px; border: none;\"\n    allow=\"microphone\"\n    sandbox=\"allow-scripts allow-same-origin allow-forms\"\n    id=\"voice-recorder-Q20_ModeBSafety\"\n  ></iframe>\n</div>\n<p style=\"font-size: 12px; color: #6b7280; margin-top: 8px;\">\n  <strong>Note:</strong> Voice input only. Typing is disabled to prevent AI assistance.\n</p>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": false,
+        "text": "Q20: Mode B Safety",
+        "isLastStep": false
+      },
+      {
+        "stepName": "Complete",
+        "identifier": "step_complete",
+        "buttonsConfig": {
+          "back": {
+            "className": "",
+            "isHidden": true,
+            "text": ""
+          },
+          "next": {
+            "className": "",
+            "isHidden": true,
+            "text": ""
+          },
+          "targetStep": ""
+        },
+        "blocks": [
+          {
+            "blockName": "",
+            "identifier": "block_complete",
+            "icon": "",
+            "rows": [
+              {
+                "fields": [
+                  {
+                    "className": "",
+                    "clearable": false,
+                    "hint": "",
+                    "identifier": "para_complete",
+                    "integrationID": "para_complete",
+                    "isHiddenInRuntime": false,
+                    "label": "",
+                    "maskingViewer": "none",
+                    "name": "editor.fields.paragraph",
+                    "permission": "both",
+                    "readOnly": false,
+                    "required": false,
+                    "tooltip": "",
+                    "type": "paragraph",
+                    "validations": [],
+                    "width": "full",
+                    "columnID": 0,
+                    "editedParagraph": "<h2>🎉 Quiz Complete!</h2><p>Thank you for completing the CallVu Sales Enablement Quiz.</p><p>Your responses have been recorded and will be reviewed by your manager.</p><p><strong>Next Steps:</strong></p><ul><li>Your manager will provide feedback within 48 hours</li><li>Review areas marked for improvement</li><li>Schedule a follow-up roleplay session if needed</li></ul>",
+                    "localOnly": true
+                  }
+                ]
+              }
+            ],
+            "style": {
+              "alignment": "center",
+              "nobackground": false,
+              "noborders": false,
+              "size": "full",
+              "background": "#ffffff"
+            },
+            "type": "regular"
+          }
+        ],
+        "style": {
+          "alignment": ""
+        },
+        "hideFooter": true,
+        "text": "Complete",
+        "isLastStep": true
+      }
+    ],
+    "templateType": 3,
+    "thankYouPageMarkup": "",
+    "theme": {
+      "primary": "hsl(210, 100%, 45%)",
+      "title": "#1c1c1c",
+      "text": "#3b3b3b",
+      "background": "hsl(0, 0%, 100%)",
+      "blockBackground": "#ffffff",
+      "headerText": "#1c1c1c",
+      "font": "Inter-Regular",
+      "headerBackground": "#ffffff",
+      "secondary": "hsl(210, 80%, 95%)",
+      "warning": "hsl(40, 97%, 47%)",
+      "altBackground": "hsl(0, 0%, 97%)",
+      "danger": "hsl(14, 80%, 50%)",
+      "link": "hsl(209, 81%, 52%)",
+      "success": "hsl(145, 94%, 32%)",
+      "dark": "hsl(0, 0%, 29%)",
+      "bright": "hsl(54, 100%, 81%)",
+      "neutral": "hsl(124, 37%, 84%)"
+    },
+    "title": "Sales Enablement Quiz",
+    "privateMode": false,
+    "otpTemplateID": "",
+    "isOTPEnabled": false,
+    "otpVersion": 2,
+    "formVersion": "10.4.40",
+    "lastModified": "",
+    "newRules": [],
+    "Timestamp": "",
+    "TimeModified": "",
+    "style": "",
+    "formCSS": {
+      "ID": "",
+      "Name": "",
+      "Description": "",
+      "CSS": ""
+    },
+    "id": null,
+    "backgroundUrl": {
+      "desktop": "",
+      "mobile": ""
+    }
+  }
+}
