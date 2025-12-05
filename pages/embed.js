@@ -463,6 +463,120 @@ export default function EmbeddedVoiceRecorder() {
     notifyCallVuResponseDeleted();
   };
   
+  // NEW: Fetch transcript from database and fill field
+  const fetchTranscriptAndFillField = async (uniqueResponseId, answerFieldId, questionId) => {
+    console.log('🔍🔍🔍 FETCHING TRANSCRIPT FROM DATABASE');
+    console.log('🔍 Unique Response ID:', uniqueResponseId);
+    console.log('🔍 Answer Field ID:', answerFieldId);
+    console.log('🔍 Question ID:', questionId);
+    
+    try {
+      // Fetch from Google Apps Script GET endpoint
+      const fetchUrl = `${SHEET_WEBHOOK_URL}?uniqueResponseId=${encodeURIComponent(uniqueResponseId)}&answerFieldId=${encodeURIComponent(answerFieldId)}&questionId=${encodeURIComponent(questionId)}`;
+      
+      console.log('🔍 Fetching from:', fetchUrl);
+      
+      const response = await fetch(fetchUrl, {
+        method: 'GET',
+        mode: 'cors' // Use CORS for GET requests
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('✅✅✅ FETCHED FROM DATABASE:', data);
+        
+        if (data.success && data.transcript) {
+          // Now fill the field with the transcript from database
+          fillRequiredFieldFromDatabase(data.transcript, answerFieldId);
+        } else {
+          console.error('❌ No transcript in response:', data);
+        }
+      } else {
+        console.error('❌ Fetch failed:', response.status, response.statusText);
+      }
+    } catch (err) {
+      console.error('❌ Error fetching from database:', err);
+    }
+  };
+  
+  // Fill field using transcript from database
+  const fillRequiredFieldFromDatabase = (transcriptFromDb, answerFieldId) => {
+    console.log('🔍🔍🔍 FILLING FIELD FROM DATABASE TRANSCRIPT');
+    console.log('🔍 Transcript:', transcriptFromDb);
+    console.log('🔍 Answer Field ID:', answerFieldId);
+    
+    if (!window.parent || window.parent === window) {
+      console.error('❌ No parent window');
+      return false;
+    }
+    
+    try {
+      const doc = window.parent.document;
+      
+      // Try every possible selector
+      const selectors = [
+        `[data-integration-id="${answerFieldId}"]`,
+        `textarea[data-integration-id="${answerFieldId}"]`,
+        `input[data-integration-id="${answerFieldId}"]`,
+        `#${answerFieldId}`,
+        `[name="${answerFieldId}"]`,
+        `textarea[data-integration-id*="Response_Required"]`,
+        `textarea[required]`
+      ];
+      
+      let foundField = null;
+      for (const selector of selectors) {
+        try {
+          const field = doc.querySelector(selector);
+          if (field && (field.tagName === 'TEXTAREA' || field.tagName === 'INPUT')) {
+            const label = field.parentElement?.textContent || '';
+            if (label.includes('Your Response') || field.hasAttribute('required')) {
+              foundField = field;
+              console.log(`✅✅✅ FOUND FIELD WITH SELECTOR: ${selector}`);
+              break;
+            }
+          }
+        } catch (e) {}
+      }
+      
+      if (foundField) {
+        // Remove readonly/disabled
+        foundField.removeAttribute('readonly');
+        foundField.removeAttribute('disabled');
+        foundField.readOnly = false;
+        foundField.disabled = false;
+        
+        // Set value
+        foundField.value = transcriptFromDb;
+        
+        // Trigger events
+        ['focus', 'input', 'change', 'blur'].forEach(type => {
+          foundField.dispatchEvent(new Event(type, { bubbles: true }));
+        });
+        
+        foundField.focus();
+        setTimeout(() => {
+          foundField.blur();
+          foundField.dispatchEvent(new Event('change', { bubbles: true }));
+          
+          if (foundField.value === transcriptFromDb) {
+            console.log('✅✅✅✅✅ FIELD FILLED FROM DATABASE SUCCESSFULLY!');
+          } else {
+            console.error('❌ Field value mismatch');
+          }
+        }, 200);
+        
+        return true;
+      } else {
+        console.error('❌ Could not find field to fill');
+        return false;
+      }
+    } catch (e) {
+      console.error('❌ Error filling field:', e);
+      return false;
+    }
+  };
+  
   const notifyCallVuResponseReady = (finalTranscript) => {
     const transcriptToSend = finalTranscript || transcript.trim();
     
@@ -1051,16 +1165,13 @@ export default function EmbeddedVoiceRecorder() {
       // Note: With no-cors mode, we can't read the response
       // But we can check if the request was sent
       console.log('✅ POST request sent to webhook');
-      console.log('✅ Request completed (check Google Apps Script execution log for details)');
+      console.log('✅ Unique Response ID saved:', uniqueResponseId);
       
-      // Also try with a small delay to ensure it's processed
+      // CRITICAL: After saving, fetch the transcript and fill the field
+      // Use the uniqueResponseId to fetch from database
       setTimeout(() => {
-        console.log('📊 If data is not appearing in spreadsheet:');
-        console.log('   1. Check Google Apps Script execution log');
-        console.log('   2. Verify webhook URL is correct');
-        console.log('   3. Verify spreadsheet name: "Callvu Sales Enablement Quiz - Responses v2"');
-        console.log('   4. Run testSetup() function in Google Apps Script');
-      }, 1000);
+        fetchTranscriptAndFillField(uniqueResponseId, payload.answerFieldId, payload.questionId);
+      }, 500); // Wait 500ms for database to save
       
     } catch (err) {
       console.error('❌ Webhook error:', err);
