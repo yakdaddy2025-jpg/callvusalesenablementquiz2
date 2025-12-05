@@ -346,52 +346,154 @@ export default function EmbeddedVoiceRecorder() {
     const answerFieldId = urlParams.get('answerFieldId') || '';
     
     console.log('🔵 Filling response field:', transcriptToSend);
+    console.log('🔵 Answer Field ID:', answerFieldId);
     
-    // Simple, direct approach - find and fill the field
+    // AGGRESSIVE field finding - try everything
     const fillField = () => {
-      if (!window.parent || window.parent === window) return false;
+      if (!window.parent || window.parent === window) {
+        console.error('❌ No parent window');
+        return false;
+      }
       
       try {
         const doc = window.parent.document;
+        const allTextareas = Array.from(doc.querySelectorAll('textarea'));
+        console.log(`🔍 Found ${allTextareas.length} textareas total`);
+        
+        // Log all textareas for debugging
+        allTextareas.forEach((ta, i) => {
+          const label = ta.previousElementSibling?.textContent || 
+                       ta.parentElement?.querySelector('label')?.textContent || '';
+          console.log(`Textarea ${i}:`, {
+            readOnly: ta.readOnly,
+            disabled: ta.disabled,
+            value: ta.value,
+            label: label,
+            visible: ta.offsetParent !== null,
+            id: ta.id,
+            name: ta.name
+          });
+        });
+        
         let field = null;
         
         // Method 1: Find by answerFieldId
         if (answerFieldId) {
-          field = doc.querySelector(`[data-integration-id="${answerFieldId}"]`) ||
-                  doc.querySelector(`textarea[name*="${answerFieldId}"]`) ||
-                  doc.querySelector(`textarea[id*="${answerFieldId}"]`);
+          const selectors = [
+            `[data-integration-id="${answerFieldId}"]`,
+            `textarea[data-integration-id="${answerFieldId}"]`,
+            `textarea[name*="${answerFieldId}"]`,
+            `textarea[id*="${answerFieldId}"]`,
+            `[name*="${answerFieldId}"]`,
+            `[id*="${answerFieldId}"]`
+          ];
+          
+          for (const selector of selectors) {
+            try {
+              const found = doc.querySelector(selector);
+              if (found) {
+                if (found.tagName === 'TEXTAREA') {
+                  field = found;
+                  console.log('✅ Found by answerFieldId:', selector);
+                  break;
+                } else if (found.querySelector) {
+                  const ta = found.querySelector('textarea');
+                  if (ta) {
+                    field = ta;
+                    console.log('✅ Found textarea inside element:', selector);
+                    break;
+                  }
+                }
+              }
+            } catch (e) {}
+          }
         }
         
-        // Method 2: Find ALL textareas and check for "Your Response" label
+        // Method 2: Find by "*Your Response" label - check ALL textareas
         if (!field) {
-          const allTextareas = Array.from(doc.querySelectorAll('textarea'));
           for (const ta of allTextareas) {
-            // Check if label contains "Your Response"
-            const label = ta.previousElementSibling || 
-                         ta.parentElement?.querySelector('label') ||
-                         ta.closest('label')?.previousElementSibling;
-            const labelText = (label?.textContent || '').toLowerCase();
+            // Check previous sibling
+            const prevSib = ta.previousElementSibling;
+            if (prevSib) {
+              const text = prevSib.textContent?.toLowerCase() || '';
+              if (text.includes('your response') || text.includes('*your response')) {
+                field = ta;
+                console.log('✅ Found by previous sibling label');
+                break;
+              }
+            }
             
-            if (labelText.includes('your response') || labelText.includes('*your response')) {
-              field = ta;
-              break;
+            // Check parent for label
+            const parent = ta.parentElement;
+            if (parent) {
+              const label = parent.querySelector('label');
+              if (label) {
+                const text = label.textContent?.toLowerCase() || '';
+                if (text.includes('your response') || text.includes('*your response')) {
+                  field = ta;
+                  console.log('✅ Found by parent label');
+                  break;
+                }
+              }
+              
+              // Check parent text content
+              const parentText = parent.textContent?.toLowerCase() || '';
+              if (parentText.includes('*your response') && parentText.includes('required')) {
+                field = ta;
+                console.log('✅ Found by parent text with "required"');
+                break;
+              }
+            }
+            
+            // Check grandparent
+            const grandparent = parent?.parentElement;
+            if (grandparent) {
+              const text = grandparent.textContent?.toLowerCase() || '';
+              if (text.includes('*your response')) {
+                field = ta;
+                console.log('✅ Found by grandparent text');
+                break;
+              }
             }
           }
         }
         
-        // Method 3: Find visible textarea (any visible one)
+        // Method 3: Find ANY visible textarea that's empty or readonly (last resort)
         if (!field) {
-          const allTextareas = Array.from(doc.querySelectorAll('textarea'));
+          for (const ta of allTextareas) {
+            if (ta.offsetParent !== null && 
+                ta.style.display !== 'none' && 
+                ta.style.visibility !== 'hidden') {
+              // Prefer empty or readonly fields (those are likely the response field)
+              if (ta.value === '' || ta.readOnly) {
+                field = ta;
+                console.log('✅ Found visible empty/readonly textarea');
+                break;
+              }
+            }
+          }
+        }
+        
+        // Method 4: Just get the first visible textarea
+        if (!field) {
           for (const ta of allTextareas) {
             if (ta.offsetParent !== null) {
               field = ta;
+              console.log('✅ Found first visible textarea (fallback)');
               break;
             }
           }
         }
         
         if (field) {
-          // Remove readonly/disabled
+          console.log('🔧 Updating field:', {
+            readOnly: field.readOnly,
+            disabled: field.disabled,
+            currentValue: field.value,
+            newValue: transcriptToSend
+          });
+          
+          // FORCE remove readonly/disabled
           field.removeAttribute('readonly');
           field.removeAttribute('disabled');
           field.readOnly = false;
@@ -400,39 +502,67 @@ export default function EmbeddedVoiceRecorder() {
           // Set value
           field.value = transcriptToSend;
           
-          // Trigger events
-          ['input', 'change'].forEach(type => {
-            field.dispatchEvent(new Event(type, { bubbles: true }));
+          // Also try setting via native setter
+          try {
+            Object.defineProperty(field, 'value', {
+              value: transcriptToSend,
+              writable: true,
+              configurable: true
+            });
+          } catch (e) {}
+          
+          // Trigger ALL events
+          ['focus', 'input', 'change', 'blur'].forEach(type => {
+            const event = new Event(type, { bubbles: true, cancelable: true });
+            field.dispatchEvent(event);
           });
           
-          // Focus and blur to trigger validation
+          // Focus and blur
           field.focus();
           setTimeout(() => {
             field.blur();
             field.dispatchEvent(new Event('change', { bubbles: true }));
-          }, 100);
+            
+            // Verify
+            if (field.value === transcriptToSend) {
+              console.log('✅✅✅ Field successfully filled!');
+            } else {
+              console.warn('⚠️ Field value mismatch:', field.value, 'vs', transcriptToSend);
+            }
+          }, 150);
           
-          console.log('✅ Field filled:', field.value);
           return true;
+        } else {
+          console.error('❌ No field found!');
+          return false;
         }
       } catch (e) {
-        console.error('Error:', e);
+        console.error('❌ Error:', e);
+        return false;
       }
-      
-      return false;
     };
     
-    // Try immediately, then retry
-    if (!fillField()) {
-      setTimeout(() => fillField(), 200);
-      setTimeout(() => fillField(), 500);
+    // Try multiple times with delays
+    let success = fillField();
+    if (!success) {
+      setTimeout(() => { success = fillField(); }, 200);
+    }
+    if (!success) {
+      setTimeout(() => { success = fillField(); }, 500);
+    }
+    if (!success) {
+      setTimeout(() => { success = fillField(); }, 1000);
     }
     
     // Always log to spreadsheet
     logToSpreadsheet(finalTranscript);
     
-    setError('');
-    setStatus('saved');
+    if (success) {
+      setError('');
+      setStatus('saved');
+    } else {
+      setError('Field not found. Check console for details.');
+    }
   };
   
   const notifyCallVuResponseDeleted = () => {
