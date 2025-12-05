@@ -80,19 +80,29 @@ export default function EmbeddedVoiceRecorder() {
     
     recognitionRef.current.onresult = (event) => {
       let interim = '';
-      let final = '';
+      let newFinal = '';
       
+      // Only process NEW results (from resultIndex onwards)
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const result = event.results[i];
         if (result.isFinal) {
-          final += result[0].transcript + ' ';
+          // Only add if this is a new final result
+          newFinal += result[0].transcript + ' ';
         } else {
           interim += result[0].transcript;
         }
       }
       
-      if (final) {
-        setTranscript(prev => prev + final);
+      // Only update transcript with new final results (prevents duplication)
+      if (newFinal) {
+        setTranscript(prev => {
+          // Avoid adding duplicate text
+          const newText = newFinal.trim();
+          if (prev.includes(newText)) {
+            return prev; // Already have this text
+          }
+          return prev + newFinal;
+        });
       }
       setInterimTranscript(interim);
     };
@@ -247,19 +257,47 @@ export default function EmbeddedVoiceRecorder() {
     // Try multiple methods to update CallVu field
     if (answerFieldId && typeof window !== 'undefined' && window.parent) {
       try {
-        // Method 1: Try direct DOM access (may fail due to cross-origin)
-        const field = window.parent.document.querySelector(
-          `[data-integration-id="${answerFieldId}"], 
-           [name*="${answerFieldId}"], 
-           [id*="${answerFieldId}"],
-           textarea[name*="answer"],
-           textarea[name*="response"]`
-        );
+        // Method 1: Try multiple selectors to find the field
+        const selectors = [
+          `[data-integration-id="${answerFieldId}"]`,
+          `[name*="${answerFieldId}"]`,
+          `[id*="${answerFieldId}"]`,
+          `textarea[data-integration-id*="answer"]`,
+          `textarea[data-integration-id*="response"]`,
+          `textarea[name*="answer"]`,
+          `textarea[name*="response"]`,
+          `textarea[data-integration-id*="Roleplay"]`,
+          `textarea.longtext`,
+          `textarea[readonly]`
+        ];
+        
+        let field = null;
+        for (const selector of selectors) {
+          try {
+            field = window.parent.document.querySelector(selector);
+            if (field && (field.tagName === 'TEXTAREA' || field.tagName === 'INPUT')) {
+              break;
+            }
+          } catch (e) {
+            // Continue to next selector
+          }
+        }
+        
         if (field) {
           field.value = transcriptToSend;
-          field.dispatchEvent(new Event('input', { bubbles: true }));
-          field.dispatchEvent(new Event('change', { bubbles: true }));
-          console.log('Updated CallVu field directly');
+          // Trigger multiple events to ensure CallVu detects the change
+          field.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
+          field.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+          field.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
+          
+          // Also try setting it via setAttribute
+          try {
+            field.setAttribute('value', transcriptToSend);
+          } catch (e) {}
+          
+          console.log('Updated CallVu field directly:', field);
+        } else {
+          console.log('Field not found with selectors');
         }
       } catch (e) {
         console.log('Direct field update failed (cross-origin):', e);
@@ -277,6 +315,26 @@ export default function EmbeddedVoiceRecorder() {
       }, '*');
       console.log('Sent postMessage to CallVu parent');
     }
+    
+    // Method 3: Try to find and update field in current iframe's parent context
+    setTimeout(() => {
+      try {
+        const allTextareas = window.parent.document.querySelectorAll('textarea');
+        allTextareas.forEach(ta => {
+          if (ta.readOnly === false && ta.disabled === false) {
+            const label = ta.closest('label, .field-label, [class*="label"]');
+            if (label && (label.textContent.includes('Response') || label.textContent.includes('Answer'))) {
+              ta.value = transcriptToSend;
+              ta.dispatchEvent(new Event('input', { bubbles: true }));
+              ta.dispatchEvent(new Event('change', { bubbles: true }));
+              console.log('Updated field via label search:', ta);
+            }
+          }
+        });
+      } catch (e) {
+        console.log('Label search failed:', e);
+      }
+    }, 100);
   };
   
   const notifyCallVuResponseDeleted = () => {
