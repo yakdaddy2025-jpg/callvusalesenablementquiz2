@@ -476,73 +476,147 @@ export default function EmbeddedVoiceRecorder() {
         return false;
       }
       
-      // CRITICAL: Fill the HIDDEN field in the same step (no CORS issues)
-      // CallVu conditional logic will copy it to the required field
+      // CRITICAL: Fill the REQUIRED field DIRECTLY
+      // No hidden fields, no conditional logic - just fill it directly
       const urlParams = new URLSearchParams(window.location.search);
       const answerFieldId = urlParams.get('answerFieldId') || '';
       
-      // Extract hidden field ID from answerFieldId
-      // Format: ID_Roleplay_1_Response_Required_... -> ID_Roleplay_1_Hidden_Transcript_...
-      const hiddenFieldId = answerFieldId.replace('_Response_Required_', '_Hidden_Transcript_');
-      
-      console.log('🔍🔍🔍 FILLING HIDDEN FIELD (CallVu will copy to required field)');
-      console.log('🔍 AnswerFieldId:', answerFieldId);
-      console.log('🔍 Hidden Field ID:', hiddenFieldId);
+      console.log('🔍🔍🔍 FILLING REQUIRED FIELD DIRECTLY');
+      console.log('🔍 Required Field ID:', answerFieldId);
       console.log('🔍 Transcript:', transcriptToSend);
       
-      // Try direct DOM access first (hidden field is in same step, should work)
+      // Try EVERY possible way to fill the required field
+      const fillField = (field) => {
+        if (!field) return false;
+        
+        console.log('🔧 Filling field:', {
+          tagName: field.tagName,
+          id: field.id,
+          name: field.name,
+          integrationId: field.getAttribute('data-integration-id'),
+          readOnly: field.readOnly,
+          disabled: field.disabled
+        });
+        
+        // FORCE remove readonly/disabled
+        field.removeAttribute('readonly');
+        field.removeAttribute('disabled');
+        field.readOnly = false;
+        field.disabled = false;
+        
+        // Try to override readonly via property descriptor
+        try {
+          Object.defineProperty(field, 'readOnly', {
+            value: false,
+            writable: true,
+            configurable: true
+          });
+        } catch (e) {}
+        
+        // Set value using EVERY method
+        field.value = transcriptToSend;
+        
+        // Try native setter
+        try {
+          const descriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+          if (descriptor && descriptor.set) {
+            descriptor.set.call(field, transcriptToSend);
+          }
+        } catch (e) {}
+        
+        // Trigger ALL events
+        ['focus', 'input', 'change', 'blur', 'keyup'].forEach(type => {
+          const event = new Event(type, { bubbles: true, cancelable: true });
+          field.dispatchEvent(event);
+        });
+        
+        // Also try InputEvent
+        try {
+          const inputEvent = new InputEvent('input', {
+            bubbles: true,
+            cancelable: true,
+            data: transcriptToSend,
+            inputType: 'insertText'
+          });
+          field.dispatchEvent(inputEvent);
+        } catch (e) {}
+        
+        // Focus and blur
+        field.focus();
+        setTimeout(() => {
+          field.blur();
+          field.dispatchEvent(new Event('change', { bubbles: true }));
+          
+          const actualValue = field.value || '';
+          console.log('🔍 Verification:', {
+            expected: transcriptToSend.substring(0, 50),
+            actual: actualValue.substring(0, 50),
+            match: actualValue === transcriptToSend || actualValue.includes(transcriptToSend.substring(0, 10))
+          });
+          
+          if (actualValue === transcriptToSend || actualValue.includes(transcriptToSend.substring(0, 10))) {
+            console.log('✅✅✅✅✅ FIELD FILLED SUCCESSFULLY!');
+            return true;
+          } else {
+            console.error('❌ Field value mismatch!');
+            return false;
+          }
+        }, 200);
+        
+        return true;
+      };
+      
+      // Try direct DOM access
       try {
         const doc = window.parent.document;
         
-        // Find hidden field by integrationID
-        const hiddenField = doc.querySelector(`[data-integration-id="${hiddenFieldId}"]`) ||
-                           doc.querySelector(`input[data-integration-id*="${hiddenFieldId}"]`) ||
-                           doc.querySelector(`#${hiddenFieldId}`) ||
-                           doc.querySelector(`[name="${hiddenFieldId}"]`);
+        // Try every possible selector
+        const selectors = [
+          `[data-integration-id="${answerFieldId}"]`,
+          `textarea[data-integration-id="${answerFieldId}"]`,
+          `input[data-integration-id="${answerFieldId}"]`,
+          `#${answerFieldId}`,
+          `[name="${answerFieldId}"]`,
+          `[id*="${answerFieldId}"]`,
+          `textarea[data-integration-id*="Response_Required"]`,
+          `textarea[required]`
+        ];
         
-        if (hiddenField && (hiddenField.tagName === 'INPUT' || hiddenField.tagName === 'TEXTAREA')) {
-          console.log('✅✅✅ FOUND HIDDEN FIELD - FILLING IT NOW!');
-          
-          // Remove readonly/disabled
-          hiddenField.removeAttribute('readonly');
-          hiddenField.removeAttribute('disabled');
-          hiddenField.readOnly = false;
-          hiddenField.disabled = false;
-          
-          // Set value
-          hiddenField.value = transcriptToSend;
-          
-          // Trigger events
-          ['input', 'change', 'blur'].forEach(type => {
-            hiddenField.dispatchEvent(new Event(type, { bubbles: true }));
-          });
-          
-          hiddenField.focus();
-          setTimeout(() => {
-            hiddenField.blur();
-            hiddenField.dispatchEvent(new Event('change', { bubbles: true }));
-            
-            console.log('✅✅✅ HIDDEN FIELD FILLED:', hiddenField.value);
-            console.log('✅✅✅ CallVu conditional logic should now copy it to required field!');
-          }, 100);
-          
+        let foundField = null;
+        for (const selector of selectors) {
+          try {
+            const field = doc.querySelector(selector);
+            if (field && (field.tagName === 'TEXTAREA' || field.tagName === 'INPUT')) {
+              // Check if it's the right field
+              const label = field.parentElement?.textContent || '';
+              if (label.includes('Your Response') || field.hasAttribute('required')) {
+                foundField = field;
+                console.log(`✅ Found field with selector: ${selector}`);
+                break;
+              }
+            }
+          } catch (e) {}
+        }
+        
+        if (foundField) {
+          fillField(foundField);
           return true;
         } else {
-          console.error('❌ Could not find hidden field:', hiddenFieldId);
+          console.error('❌ Could not find required field with any selector');
         }
       } catch (e) {
         console.error('❌ Direct DOM access failed (CORS):', e);
       }
       
-      // Fallback: postMessage
+      // Fallback: postMessage to parent
       try {
         window.parent.postMessage({
           type: 'CALLVU_FILL_FIELD',
-          fieldId: hiddenFieldId,
+          fieldId: answerFieldId,
           value: transcriptToSend,
-          integrationId: hiddenFieldId
+          integrationId: answerFieldId
         }, '*');
-        console.log('✅ PostMessage sent for hidden field');
+        console.log('✅ PostMessage sent for required field');
       } catch (e) {
         console.error('❌ PostMessage failed:', e);
       }
