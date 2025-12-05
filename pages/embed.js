@@ -39,8 +39,24 @@ export default function EmbeddedVoiceRecorder() {
       
       setQuestionId(qId);
       setQuestionTitle(qTitle);
-      if (name) setRepName(name);
-      if (email) setRepEmail(email);
+      
+      // CRITICAL: Filter out CallVu template strings ({{fieldId}})
+      // If CallVu doesn't replace them, they come through as literal strings
+      if (name && !name.startsWith('{{') && !name.includes('ID_Rep_Info')) {
+        setRepName(name);
+        console.log('✅✅✅ Got name from URL parameter:', name);
+      } else if (name && name.startsWith('{{')) {
+        console.warn('⚠️ Name is a template string (CallVu didn\'t replace it):', name);
+        // Don't set it - will use placeholder
+      }
+      
+      if (email && !email.startsWith('{{') && !email.includes('ID_Rep_Info')) {
+        setRepEmail(email);
+        console.log('✅✅✅ Got email from URL parameter:', email);
+      } else if (email && email.startsWith('{{')) {
+        console.warn('⚠️ Email is a template string (CallVu didn\'t replace it):', email);
+        // Don't set it - will use placeholder
+      }
       
       // Listen for messages from CallVu parent window
       window.addEventListener('message', handleCallVuMessage);
@@ -1186,6 +1202,17 @@ export default function EmbeddedVoiceRecorder() {
     // Try to get name/email from CallVu form if not set
     let nameToUse = repName.trim();
     let emailToUse = repEmail.trim();
+    
+    // CRITICAL: Filter out CallVu template strings ({{fieldId}})
+    // If they're template strings, treat as missing
+    if (nameToUse && (nameToUse.startsWith('{{') || nameToUse.includes('ID_Rep_Info'))) {
+      console.warn('⚠️ Name is a template string, treating as missing:', nameToUse);
+      nameToUse = '';
+    }
+    if (emailToUse && (emailToUse.startsWith('{{') || emailToUse.includes('ID_Rep_Info'))) {
+      console.warn('⚠️ Email is a template string, treating as missing:', emailToUse);
+      emailToUse = '';
+    }
     
     // If missing, try to get from parent window using multiple strategies
     if (!nameToUse || !emailToUse) {
