@@ -1030,10 +1030,21 @@ export default function EmbeddedVoiceRecorder() {
       }
     };
     
-    tryFill();
+    // CRITICAL: Save to database FIRST with unique ID, then fetch and fill
+    // This is the database-driven approach - avoids all CORS issues
+    const uniqueResponseId = `${questionId || 'unknown'}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+    const answerFieldId = new URLSearchParams(window.location.search).get('answerFieldId') || '';
     
-    // Log to spreadsheet IMMEDIATELY
-    logToSpreadsheet(finalTranscript);
+    console.log('💾💾💾 SAVING TO DATABASE WITH UNIQUE ID:', uniqueResponseId);
+    console.log('💾 After save, will fetch transcript and fill field');
+    
+    // Save to database, then fetch and fill
+    logToSpreadsheet(finalTranscript).then(() => {
+      // After saving, fetch the transcript and fill the field
+      setTimeout(() => {
+        fetchTranscriptAndFillField(uniqueResponseId, answerFieldId, questionId || '');
+      }, 800); // Wait 800ms for database to save
+    });
     
     // Set flag for JavaScript blocker
     if (window.parent && window.parent !== window) {
@@ -1066,7 +1077,15 @@ export default function EmbeddedVoiceRecorder() {
     }, '*');
   };
   
-  const logToSpreadsheet = async (finalTranscript) => {
+  const logToSpreadsheet = async (finalTranscript, uniqueResponseId = null, answerFieldId = null) => {
+    // Generate unique ID if not provided
+    if (!uniqueResponseId) {
+      uniqueResponseId = `${questionId || 'unknown'}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+    }
+    if (!answerFieldId) {
+      answerFieldId = new URLSearchParams(window.location.search).get('answerFieldId') || '';
+    }
+    
     // Try to get name/email from CallVu form if not set
     let nameToUse = repName.trim();
     let emailToUse = repEmail.trim();
