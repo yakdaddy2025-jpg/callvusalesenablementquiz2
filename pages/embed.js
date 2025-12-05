@@ -58,9 +58,49 @@ export default function EmbeddedVoiceRecorder() {
             const script = window.parent.document.createElement('script');
             script.textContent = `
               (function() {
-                // Track if voice response was accepted
+                // Track if voice response was accepted for current step
                 window.voiceResponseAccepted = false;
                 window.voiceResponseTranscript = '';
+                window.currentStepHasRecorder = false;
+                
+                // Reset when step changes (detect URL change or step navigation)
+                var lastUrl = window.location.href;
+                setInterval(function() {
+                  if (window.location.href !== lastUrl) {
+                    lastUrl = window.location.href;
+                    window.voiceResponseAccepted = false;
+                    window.voiceResponseTranscript = '';
+                    console.log('Step changed - resetting voice response flag');
+                  }
+                }, 500);
+                
+                // Check for recorder on page load and periodically
+                function checkForRecorder() {
+                  var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
+                  window.currentStepHasRecorder = !!hasRecorder;
+                  
+                  if (hasRecorder) {
+                    // Disable Next button if recorder present and no response accepted
+                    var allButtons = Array.from(document.querySelectorAll('button'));
+                    for (var i = 0; i < allButtons.length; i++) {
+                      var btn = allButtons[i];
+                      var btnText = (btn.textContent || '').toLowerCase();
+                      if (btnText.includes('next') || btnText.includes('begin quiz')) {
+                        if (!window.voiceResponseAccepted) {
+                          btn.disabled = true;
+                          btn.setAttribute('disabled', 'disabled');
+                          btn.classList.add('disabled');
+                          btn.style.opacity = '0.5';
+                          btn.style.cursor = 'not-allowed';
+                        }
+                      }
+                    }
+                  }
+                }
+                
+                // Check immediately and periodically
+                checkForRecorder();
+                setInterval(checkForRecorder, 1000);
                 
                 // Listen for voice response ready
                 window.addEventListener('message', function(event) {
@@ -69,29 +109,45 @@ export default function EmbeddedVoiceRecorder() {
                     window.voiceResponseTranscript = event.data.transcript || '';
                     
                     // Enable Next button
-                    const allButtons = Array.from(document.querySelectorAll('button'));
-                    for (const btn of allButtons) {
-                      const btnText = btn.textContent?.toLowerCase() || '';
-                      if (btnText.includes('next')) {
+                    var allButtons = Array.from(document.querySelectorAll('button'));
+                    for (var i = 0; i < allButtons.length; i++) {
+                      var btn = allButtons[i];
+                      var btnText = (btn.textContent || '').toLowerCase();
+                      if (btnText.includes('next') || btnText.includes('begin quiz')) {
                         btn.disabled = false;
                         btn.removeAttribute('disabled');
                         btn.classList.remove('disabled');
+                        btn.style.opacity = '1';
+                        btn.style.cursor = 'pointer';
                       }
                     }
                   }
                 });
                 
-                // Intercept Next button clicks - block if no response accepted
+                // AGGRESSIVE: Intercept ALL Next button clicks
                 document.addEventListener('click', function(e) {
-                  const target = e.target;
-                  const isNextButton = target.tagName === 'BUTTON' && 
-                                      (target.textContent?.toLowerCase().includes('next') ||
-                                       target.className?.toLowerCase().includes('next') ||
-                                       target.id?.toLowerCase().includes('next'));
+                  var target = e.target;
+                  var isNextButton = false;
+                  
+                  // Check if clicked element is a button
+                  if (target.tagName === 'BUTTON') {
+                    var btnText = (target.textContent || '').toLowerCase();
+                    isNextButton = btnText.includes('next') || btnText.includes('begin quiz');
+                  }
+                  
+                  // Check if clicked element is inside a button
+                  if (!isNextButton) {
+                    var parent = target.closest('button');
+                    if (parent) {
+                      var btnText = (parent.textContent || '').toLowerCase();
+                      isNextButton = btnText.includes('next') || btnText.includes('begin quiz');
+                      if (isNextButton) target = parent;
+                    }
+                  }
                   
                   if (isNextButton) {
                     // Check if there's a voice recorder on this page
-                    const hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
+                    var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
                     if (hasRecorder && !window.voiceResponseAccepted) {
                       e.preventDefault();
                       e.stopPropagation();
@@ -99,6 +155,16 @@ export default function EmbeddedVoiceRecorder() {
                       alert('Please record your response and click "Keep Response" before proceeding.');
                       return false;
                     }
+                  }
+                }, true);
+                
+                // Also intercept form submissions
+                document.addEventListener('submit', function(e) {
+                  var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
+                  if (hasRecorder && !window.voiceResponseAccepted) {
+                    e.preventDefault();
+                    alert('Please record your response and click "Keep Response" before proceeding.');
+                    return false;
                   }
                 }, true);
               })();
