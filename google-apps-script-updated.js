@@ -23,20 +23,32 @@ function getSpreadsheet() {
     // Create sheet if it doesn't exist
     if (!sheet) {
       sheet = ss.insertSheet(SHEET_NAME);
+    }
+    
+    // ALWAYS set up headers (even if sheet exists, ensure headers are correct)
+    const headers = [
+      'Submission Timestamp',
+      'Recording Start Time',
+      'Recording End Time',
+      'Rep Name',
+      'Rep Email',
+      'Question ID',
+      'Question Title',
+      'Response Transcript',
+      'Recording Duration (sec)',
+      'Word Count',
+      'Response Type',
+      'Success Criteria',
+      'Score (1-10)',
+      'Manager Notes'
+    ];
+    
+    // Check if row 1 has headers
+    const existingHeaders = sheet.getRange(1, 1, 1, headers.length).getValues()[0];
+    const hasHeaders = existingHeaders[0] && existingHeaders[0].toString().trim() !== '';
+    
+    if (!hasHeaders) {
       // Set up headers
-      const headers = [
-        'Timestamp',
-        'Rep Name',
-        'Rep Email',
-        'Question ID',
-        'Question Title',
-        'Response Transcript',
-        'Recording Duration (sec)',
-        'Response Type',
-        'Score (1-10)',
-        'Manager Notes'
-      ];
-      
       sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
       sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
       sheet.getRange(1, 1, 1, headers.length).setBackground('#4285f4');
@@ -44,16 +56,20 @@ function getSpreadsheet() {
       sheet.setFrozenRows(1);
       
       // Set column widths
-      sheet.setColumnWidth(1, 150);   // Timestamp
-      sheet.setColumnWidth(2, 150);   // Rep Name
-      sheet.setColumnWidth(3, 200);   // Email
-      sheet.setColumnWidth(4, 130);   // Question ID
-      sheet.setColumnWidth(5, 250);   // Question Title
-      sheet.setColumnWidth(6, 500);   // Transcript
-      sheet.setColumnWidth(7, 80);    // Duration
-      sheet.setColumnWidth(8, 120);   // Response Type
-      sheet.setColumnWidth(9, 80);    // Score
-      sheet.setColumnWidth(10, 300);  // Notes
+      sheet.setColumnWidth(1, 180);   // Submission Timestamp
+      sheet.setColumnWidth(2, 180);   // Recording Start Time
+      sheet.setColumnWidth(3, 180);   // Recording End Time
+      sheet.setColumnWidth(4, 150);   // Rep Name
+      sheet.setColumnWidth(5, 200);   // Email
+      sheet.setColumnWidth(6, 130);   // Question ID
+      sheet.setColumnWidth(7, 250);   // Question Title
+      sheet.setColumnWidth(8, 500);   // Transcript
+      sheet.setColumnWidth(9, 80);    // Duration
+      sheet.setColumnWidth(10, 80);    // Word Count
+      sheet.setColumnWidth(11, 100);  // Response Type
+      sheet.setColumnWidth(12, 350);  // Success Criteria
+      sheet.setColumnWidth(13, 80);   // Score
+      sheet.setColumnWidth(14, 300);  // Notes
       
       // Add data validation for Score column
       const scoreRule = SpreadsheetApp.newDataValidation()
@@ -61,7 +77,9 @@ function getSpreadsheet() {
         .setAllowInvalid(false)
         .setHelpText('Enter a score from 1-10')
         .build();
-      sheet.getRange('I2:I10000').setDataValidation(scoreRule);
+      sheet.getRange('M2:M10000').setDataValidation(scoreRule);
+      
+      Logger.log('✅ Headers created/updated');
     }
     
     return ss;
@@ -71,20 +89,33 @@ function getSpreadsheet() {
   }
 }
 
+function formatTimestamp(timestampStr) {
+  if (!timestampStr) return '';
+  try {
+    const date = new Date(timestampStr);
+    return Utilities.formatDate(
+      date, 
+      Session.getScriptTimeZone(), 
+      'yyyy-MM-dd HH:mm:ss'
+    );
+  } catch (e) {
+    return timestampStr; // Return as-is if parsing fails
+  }
+}
+
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
     
+    Logger.log('Received data: ' + JSON.stringify(data));
+    
     const ss = getSpreadsheet();
     const sheet = ss.getSheetByName(SHEET_NAME);
     
-    // Format timestamp
-    const timestamp = new Date(data.timestamp || new Date());
-    const formattedTime = Utilities.formatDate(
-      timestamp, 
-      Session.getScriptTimeZone(), 
-      'yyyy-MM-dd HH:mm:ss'
-    );
+    // Format timestamps
+    const submissionTime = formatTimestamp(data.submissionTimestamp || data.timestamp);
+    const recordingStartTime = formatTimestamp(data.recordingStartTime || '');
+    const recordingEndTime = formatTimestamp(data.recordingEndTime || '');
     
     // Determine response type
     let responseType = 'Voice';
@@ -96,32 +127,43 @@ function doPost(e) {
       responseType = 'Mode Selection';
     }
     
-    // Append row
+    // Get transcript (could be from voice, multiple choice, or mode selection)
+    const transcript = data.transcript || data.selectedAnswer || data.selectedMode || '';
+    
+    // Append row with all fields
     const row = [
-      formattedTime,
+      submissionTime,
+      recordingStartTime,
+      recordingEndTime,
       data.repName || '',
       data.repEmail || '',
       data.questionId || '',
       data.questionTitle || '',
-      data.transcript || data.selectedAnswer || data.selectedMode || '',
+      transcript,
       data.recordingDuration || 0,
+      data.wordCount || 0,
       responseType,
+      data.successCriteria || '',
       '',  // Score - manager fills in
       ''   // Notes - manager fills in
     ];
     
     sheet.appendRow(row);
     
+    Logger.log('Successfully logged response to row: ' + sheet.getLastRow());
+    
     return ContentService
       .createTextOutput(JSON.stringify({ 
         success: true, 
         message: 'Response logged successfully',
-        spreadsheet: ss.getUrl()
+        spreadsheet: ss.getUrl(),
+        row: sheet.getLastRow()
       }))
       .setMimeType(ContentService.MimeType.JSON);
       
   } catch (error) {
     Logger.log('Error: ' + error.toString());
+    Logger.log('Error stack: ' + error.stack);
     return ContentService
       .createTextOutput(JSON.stringify({ 
         success: false, 
@@ -132,20 +174,57 @@ function doPost(e) {
 }
 
 function doGet(e) {
-  const ss = getSpreadsheet();
-  return ContentService
-    .createTextOutput(JSON.stringify({ 
-      status: 'ok', 
-      message: 'CallVu Quiz Logger is running',
-      spreadsheet: ss.getUrl()
-    }))
-    .setMimeType(ContentService.MimeType.JSON);
+  try {
+    const ss = getSpreadsheet();
+    return ContentService
+      .createTextOutput(JSON.stringify({ 
+        status: 'ok', 
+        message: 'CallVu Quiz Logger is running',
+        spreadsheet: ss.getUrl()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ 
+        status: 'error', 
+        error: error.toString() 
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
 }
 
 // Test function - run this to verify setup
 function testSetup() {
   const ss = getSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_NAME);
   Logger.log('Spreadsheet URL: ' + ss.getUrl());
+  Logger.log('Sheet name: ' + SHEET_NAME);
+  Logger.log('Current rows: ' + sheet.getLastRow());
   Logger.log('Setup complete!');
 }
 
+// Test function to simulate a POST request
+function testPost() {
+  const testData = {
+    submissionTimestamp: new Date().toISOString(),
+    recordingStartTime: new Date(Date.now() - 30000).toISOString(),
+    recordingEndTime: new Date(Date.now() - 5000).toISOString(),
+    repName: 'Test User',
+    repEmail: 'test@callvu.com',
+    questionId: 'Roleplay_1',
+    questionTitle: 'Roleplay 1',
+    transcript: 'This is a test response',
+    recordingDuration: 25,
+    wordCount: 5,
+    responseType: 'Voice'
+  };
+  
+  const mockEvent = {
+    postData: {
+      contents: JSON.stringify(testData)
+    }
+  };
+  
+  const result = doPost(mockEvent);
+  Logger.log('Test result: ' + result.getContent());
+}
