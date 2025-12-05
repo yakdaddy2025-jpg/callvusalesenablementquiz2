@@ -527,6 +527,18 @@ export default function EmbeddedVoiceRecorder() {
     const transcriptToLog = finalTranscript || transcript.trim();
     const submissionTimestamp = new Date().toISOString();
     
+    // CRITICAL: Ensure questionId and questionTitle are always included
+    const finalQuestionId = questionId || 'UNKNOWN_QUESTION';
+    const finalQuestionTitle = questionTitle || 'Unknown Question';
+    
+    // Log warning if question info is missing
+    if (!questionId || !questionTitle) {
+      console.warn('⚠️ WARNING: Question ID or Title missing!');
+      console.warn('   Question ID:', questionId);
+      console.warn('   Question Title:', questionTitle);
+      console.warn('   URL params:', window.location.search);
+    }
+    
     const payload = {
       // Submission timestamp (when "Keep Response" was clicked)
       submissionTimestamp: submissionTimestamp,
@@ -538,9 +550,9 @@ export default function EmbeddedVoiceRecorder() {
       // User info
       repName: nameToUse,
       repEmail: emailToUse,
-      // Question info
-      questionId: questionId || 'Unknown',
-      questionTitle: questionTitle || 'Unknown Question',
+      // Question info - CRITICAL: These identify which question this response is for
+      questionId: finalQuestionId,
+      questionTitle: finalQuestionTitle,
       // Response info
       transcript: transcriptToLog,
       recordingDuration: recordingTime, // Duration in seconds

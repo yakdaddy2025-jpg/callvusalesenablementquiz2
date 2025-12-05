@@ -129,7 +129,13 @@ function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
     
-    Logger.log('Received data: ' + JSON.stringify(data));
+    Logger.log('=== RECEIVED RESPONSE ===');
+    Logger.log('Question ID: ' + (data.questionId || 'MISSING'));
+    Logger.log('Question Title: ' + (data.questionTitle || 'MISSING'));
+    Logger.log('Rep Name: ' + (data.repName || 'MISSING'));
+    Logger.log('Rep Email: ' + (data.repEmail || 'MISSING'));
+    Logger.log('Transcript: ' + (data.transcript ? data.transcript.substring(0, 50) + '...' : 'EMPTY'));
+    Logger.log('Full data: ' + JSON.stringify(data));
     
     var ss = getSpreadsheet();
     var sheet = ss.getSheetByName(SHEET_NAME);
@@ -152,27 +158,41 @@ function doPost(e) {
     // Get transcript
     var transcript = data.transcript || data.selectedAnswer || data.selectedMode || '';
     
-    // Append row with all fields
+    // CRITICAL: Ensure questionId and questionTitle are captured
+    var questionId = data.questionId || 'UNKNOWN_QUESTION';
+    var questionTitle = data.questionTitle || 'Unknown Question';
+    
+    // Log warning if question info is missing
+    if (!data.questionId || !data.questionTitle) {
+      Logger.log('⚠️ WARNING: Question ID or Title missing!');
+      Logger.log('   Question ID provided: ' + (data.questionId ? 'YES' : 'NO'));
+      Logger.log('   Question Title provided: ' + (data.questionTitle ? 'YES' : 'NO'));
+    }
+    
+    // Append row with all fields - QUESTION ID AND TITLE ARE CRITICAL
     var row = [
       submissionTime,
       recordingStartTime,
       recordingEndTime,
-      data.repName || '',
-      data.repEmail || '',
-      data.questionId || '',
-      data.questionTitle || '',
+      data.repName || 'Unknown User',
+      data.repEmail || 'unknown@callvu.com',
+      questionId,  // Column 6: Question ID
+      questionTitle,  // Column 7: Question Title
       transcript,
       data.recordingDuration || 0,
       data.wordCount || 0,
       responseType,
       data.successCriteria || '',
-      '',
-      ''
+      '',  // Score - manager fills in
+      ''   // Notes - manager fills in
     ];
     
     sheet.appendRow(row);
     
-    Logger.log('Successfully logged response to row: ' + sheet.getLastRow());
+    var rowNumber = sheet.getLastRow();
+    Logger.log('✅ Successfully logged response to row: ' + rowNumber);
+    Logger.log('   Question: ' + questionTitle + ' (' + questionId + ')');
+    Logger.log('   Response length: ' + transcript.length + ' characters');
     
     return ContentService
       .createTextOutput(JSON.stringify({ 
