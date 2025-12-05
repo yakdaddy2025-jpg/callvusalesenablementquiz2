@@ -114,29 +114,62 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
     
-    // Check if headers exist, create if not
-    if (sheet.getLastRow() === 0) {
-      Logger.log('Creating headers...');
-      var headers = [
-        'Unique Response ID',
-        'Answer Field ID',
-        'Submission Timestamp',
-        'Recording Start Time',
-        'Recording End Time',
-        'Rep Name',
-        'Rep Email',
-        'Question ID',
-        'Question Title',
-        'Response Transcript',
-        'Recording Duration (sec)',
-        'Word Count',
-        'Response Type'
-      ];
-      sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
-      sheet.getRange(1, 1, 1, headers.length).setFontWeight('bold');
-      sheet.getRange(1, 1, 1, headers.length).setBackground('#4285f4');
-      sheet.getRange(1, 1, 1, headers.length).setFontColor('#ffffff');
+    // CRITICAL: Check if headers exist and match expected format
+    // If headers don't match, recreate them
+    var currentHeaders = [];
+    if (sheet.getLastRow() > 0) {
+      try {
+        currentHeaders = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+      } catch (e) {
+        Logger.log('Error reading headers: ' + e.toString());
+      }
+    }
+    
+    var expectedHeaders = [
+      'Unique Response ID',
+      'Answer Field ID',
+      'Submission Timestamp',
+      'Recording Start Time',
+      'Recording End Time',
+      'Rep Name',
+      'Rep Email',
+      'Question ID',
+      'Question Title',
+      'Response Transcript',
+      'Recording Duration (sec)',
+      'Word Count',
+      'Response Type'
+    ];
+    
+    // Check if headers need to be created or updated
+    var headersMatch = currentHeaders.length === expectedHeaders.length;
+    if (headersMatch) {
+      for (var i = 0; i < expectedHeaders.length; i++) {
+        if (currentHeaders[i] !== expectedHeaders[i]) {
+          headersMatch = false;
+          break;
+        }
+      }
+    }
+    
+    if (sheet.getLastRow() === 0 || !headersMatch) {
+      Logger.log('Creating/updating headers...');
+      Logger.log('Current headers: ' + JSON.stringify(currentHeaders));
+      Logger.log('Expected headers: ' + JSON.stringify(expectedHeaders));
+      
+      // Clear existing headers if they don't match
+      if (sheet.getLastRow() > 0 && !headersMatch) {
+        Logger.log('Headers don\'t match - clearing row 1 and recreating...');
+        sheet.deleteRow(1);
+      }
+      
+      // Create new headers
+      sheet.getRange(1, 1, 1, expectedHeaders.length).setValues([expectedHeaders]);
+      sheet.getRange(1, 1, 1, expectedHeaders.length).setFontWeight('bold');
+      sheet.getRange(1, 1, 1, expectedHeaders.length).setBackground('#4285f4');
+      sheet.getRange(1, 1, 1, expectedHeaders.length).setFontColor('#ffffff');
       sheet.setFrozenRows(1);
+      Logger.log('Headers created/updated successfully');
     }
     
     // Format timestamps
