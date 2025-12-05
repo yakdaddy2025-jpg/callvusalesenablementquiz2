@@ -28,7 +28,7 @@
     "isFormReadonly": false,
     "isPdfForm": false,
     "isSinglePage": false,
-    "last_update": "",
+    "last_update": "2025-12-05T06:31:28.902Z",
     "logo": "",
     "logoAlignment": "center",
     "logoName": "",
@@ -61,7 +61,7 @@
     "steps": [
       {
         "stepName": "Intro",
-        "identifier": "step_intro_isolated_1764911323021",
+        "identifier": "step_intro_1764916288898",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -79,7 +79,7 @@
         "blocks": [
           {
             "blockName": "",
-            "identifier": "block_intro_isolated_1764911323021",
+            "identifier": "block_intro_0_1764916288898",
             "icon": "",
             "rows": [
               {
@@ -170,7 +170,7 @@
       },
       {
         "stepName": "Rep Info",
-        "identifier": "step_rep_info",
+        "identifier": "step_rep_info_1764916288899",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -187,7 +187,7 @@
         "blocks": [
           {
             "blockName": "Your Information",
-            "identifier": "block_rep_info",
+            "identifier": "block_rep_info_0_1764916288899",
             "icon": "",
             "rows": [
               {
@@ -196,8 +196,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "Rep_Info_SmallHeading",
+                    "identifier": "rep_info_your_information_1764916253806",
+                    "integrationID": "Rep_Info_YourInformation_1764916253806",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -210,7 +210,7 @@
                     "validations": [],
                     "width": "full",
                     "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><p style=\"text-align: center; color: #6b7280; font-size: 14px; font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;\">Sales Enablement Quiz - Mode A and B</p></div>",
+                    "editedParagraph": "<h4><strong>Your Information</strong></h4>",
                     "localOnly": false
                   }
                 ]
@@ -221,33 +221,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "Rep_Info_LargeHeading",
-                    "isHiddenInRuntime": false,
-                    "label": "",
-                    "maskingViewer": "none",
-                    "name": "editor.fields.paragraph",
-                    "permission": "both",
-                    "readOnly": false,
-                    "required": false,
-                    "tooltip": "",
-                    "type": "paragraph",
-                    "validations": [],
-                    "width": "full",
-                    "columnID": 0,
-                    "editedParagraph": "<div style=\"word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; max-width: 100%;\"><h1 style=\"text-align: center; color: #1f2937; font-size: 32px; font-weight: 700; margin: 0 0 24px 0; line-height: 1.2;\">Your Information</h1></div>",
-                    "localOnly": false
-                  }
-                ]
-              },
-              {
-                "fields": [
-                  {
-                    "className": "",
-                    "clearable": false,
-                    "hint": "",
-                    "identifier": "rep_name",
-                    "integrationID": "RepName",
+                    "identifier": "rep_info_shortText_your_full_name_1764916288900",
+                    "integrationID": "Rep_Info_Your_Full_Name_1764916288900",
                     "isHiddenInRuntime": false,
                     "label": "Your Full Name",
                     "maskingViewer": "none",
@@ -270,8 +245,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "rep_email",
-                    "integrationID": "RepEmail",
+                    "identifier": "rep_info_email_email_address_1764916288901",
+                    "integrationID": "Rep_Info_Email_Address_1764916288901",
                     "isHiddenInRuntime": false,
                     "label": "Email Address",
                     "maskingViewer": "none",
@@ -309,7 +284,7 @@
       },
       {
         "stepName": "Roleplay 1",
-        "identifier": "step_roleplay1",
+        "identifier": "step_roleplay_1_1764916288901",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -326,7 +301,7 @@
         "blocks": [
           {
             "blockName": "Roleplay 1",
-            "identifier": "block_roleplay1",
+            "identifier": "block_roleplay_1_0_1764916288901",
             "icon": "",
             "rows": [
               {
@@ -335,8 +310,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "roleplay_1_paragraph_smallheading_1764916288901",
+                    "integrationID": "Roleplay_1_paragraph_field_2_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -360,8 +335,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "roleplay_1_paragraph_largeheading_1764916288902",
+                    "integrationID": "Roleplay_1_paragraph_field_2_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -385,8 +360,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129194",
-                    "integrationID": "",
+                    "identifier": "roleplay_1_paragraph_field_1764916288903",
+                    "integrationID": "Roleplay_1_field_1764916288903",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -410,8 +385,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129194",
-                    "integrationID": "",
+                    "identifier": "roleplay_1_paragraph_field_1764916288904",
+                    "integrationID": "Roleplay_1_field_1764916288904",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -435,8 +410,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129194",
-                    "integrationID": "",
+                    "identifier": "roleplay_1_paragraph_field_1764916288905",
+                    "integrationID": "Roleplay_1_field_1764916288905",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -499,7 +474,7 @@
       },
       {
         "stepName": "Roleplay 2",
-        "identifier": "step_roleplay2",
+        "identifier": "step_roleplay_2_1764916288902",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -516,7 +491,7 @@
         "blocks": [
           {
             "blockName": "Roleplay 2",
-            "identifier": "block_roleplay2",
+            "identifier": "block_roleplay_2_0_1764916288902",
             "icon": "",
             "rows": [
               {
@@ -525,8 +500,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "roleplay_2_paragraph_smallheading_1764916288902",
+                    "integrationID": "Roleplay_2_paragraph_field_3_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -550,8 +525,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "roleplay_2_paragraph_largeheading_1764916288903",
+                    "integrationID": "Roleplay_2_paragraph_field_3_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -575,8 +550,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129194",
-                    "integrationID": "",
+                    "identifier": "roleplay_2_paragraph_field_1764916288904",
+                    "integrationID": "Roleplay_2_field_1764916288904",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -600,8 +575,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129194",
-                    "integrationID": "",
+                    "identifier": "roleplay_2_paragraph_field_1764916288905",
+                    "integrationID": "Roleplay_2_field_1764916288905",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -625,8 +600,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_2_paragraph_field_1764916288906",
+                    "integrationID": "Roleplay_2_field_1764916288906",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -689,7 +664,7 @@
       },
       {
         "stepName": "Roleplay 3",
-        "identifier": "step_roleplay3",
+        "identifier": "step_roleplay_3_1764916288903",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -706,7 +681,7 @@
         "blocks": [
           {
             "blockName": "Roleplay 3",
-            "identifier": "block_roleplay3",
+            "identifier": "block_roleplay_3_0_1764916288903",
             "icon": "",
             "rows": [
               {
@@ -715,8 +690,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "roleplay_3_paragraph_smallheading_1764916288903",
+                    "integrationID": "Roleplay_3_paragraph_field_4_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -740,8 +715,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "roleplay_3_paragraph_largeheading_1764916288904",
+                    "integrationID": "Roleplay_3_paragraph_field_4_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -765,8 +740,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_3_paragraph_field_1764916288905",
+                    "integrationID": "Roleplay_3_field_1764916288905",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -790,8 +765,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_3_paragraph_field_1764916288906",
+                    "integrationID": "Roleplay_3_field_1764916288906",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -815,8 +790,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_3_paragraph_field_1764916288907",
+                    "integrationID": "Roleplay_3_field_1764916288907",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -879,7 +854,7 @@
       },
       {
         "stepName": "Roleplay 4",
-        "identifier": "step_roleplay4",
+        "identifier": "step_roleplay_4_1764916288904",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -896,7 +871,7 @@
         "blocks": [
           {
             "blockName": "Roleplay 4",
-            "identifier": "block_roleplay4",
+            "identifier": "block_roleplay_4_0_1764916288904",
             "icon": "",
             "rows": [
               {
@@ -905,8 +880,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "roleplay_4_paragraph_smallheading_1764916288904",
+                    "integrationID": "Roleplay_4_paragraph_field_5_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -930,8 +905,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "roleplay_4_paragraph_largeheading_1764916288905",
+                    "integrationID": "Roleplay_4_paragraph_field_5_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -955,8 +930,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_4_paragraph_field_1764916288906",
+                    "integrationID": "Roleplay_4_field_1764916288906",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -980,8 +955,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_4_paragraph_field_1764916288907",
+                    "integrationID": "Roleplay_4_field_1764916288907",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1005,8 +980,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_4_paragraph_field_1764916288908",
+                    "integrationID": "Roleplay_4_field_1764916288908",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1069,7 +1044,7 @@
       },
       {
         "stepName": "Roleplay 5",
-        "identifier": "step_roleplay5",
+        "identifier": "step_roleplay_5_1764916288905",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -1086,7 +1061,7 @@
         "blocks": [
           {
             "blockName": "Roleplay 5",
-            "identifier": "block_roleplay5",
+            "identifier": "block_roleplay_5_0_1764916288905",
             "icon": "",
             "rows": [
               {
@@ -1095,8 +1070,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "roleplay_5_paragraph_smallheading_1764916288905",
+                    "integrationID": "Roleplay_5_paragraph_field_6_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1120,8 +1095,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "roleplay_5_paragraph_largeheading_1764916288906",
+                    "integrationID": "Roleplay_5_paragraph_field_6_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1145,8 +1120,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_5_paragraph_field_1764916288907",
+                    "integrationID": "Roleplay_5_field_1764916288907",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1170,8 +1145,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_5_paragraph_field_1764916288908",
+                    "integrationID": "Roleplay_5_field_1764916288908",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1195,8 +1170,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_5_paragraph_field_1764916288909",
+                    "integrationID": "Roleplay_5_field_1764916288909",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1259,7 +1234,7 @@
       },
       {
         "stepName": "Roleplay 6",
-        "identifier": "step_roleplay6",
+        "identifier": "step_roleplay_6_1764916288906",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -1276,7 +1251,7 @@
         "blocks": [
           {
             "blockName": "Roleplay 6",
-            "identifier": "block_roleplay6",
+            "identifier": "block_roleplay_6_0_1764916288906",
             "icon": "",
             "rows": [
               {
@@ -1285,8 +1260,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "roleplay_6_paragraph_smallheading_1764916288906",
+                    "integrationID": "Roleplay_6_paragraph_field_7_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1310,8 +1285,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "roleplay_6_paragraph_largeheading_1764916288907",
+                    "integrationID": "Roleplay_6_paragraph_field_7_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1335,8 +1310,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_6_paragraph_field_1764916288908",
+                    "integrationID": "Roleplay_6_field_1764916288908",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1360,8 +1335,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_6_paragraph_field_1764916288909",
+                    "integrationID": "Roleplay_6_field_1764916288909",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1385,8 +1360,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_6_paragraph_field_1764916288910",
+                    "integrationID": "Roleplay_6_field_1764916288910",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1449,7 +1424,7 @@
       },
       {
         "stepName": "Roleplay 7",
-        "identifier": "step_roleplay7",
+        "identifier": "step_roleplay_7_1764916288908",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -1466,7 +1441,7 @@
         "blocks": [
           {
             "blockName": "Roleplay 7",
-            "identifier": "block_roleplay7",
+            "identifier": "block_roleplay_7_0_1764916288908",
             "icon": "",
             "rows": [
               {
@@ -1475,8 +1450,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "roleplay_7_paragraph_smallheading_1764916288908",
+                    "integrationID": "Roleplay_7_paragraph_field_8_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1500,8 +1475,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "roleplay_7_paragraph_largeheading_1764916288909",
+                    "integrationID": "Roleplay_7_paragraph_field_8_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1525,8 +1500,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_7_paragraph_field_1764916288910",
+                    "integrationID": "Roleplay_7_field_1764916288910",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1550,8 +1525,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129195",
-                    "integrationID": "",
+                    "identifier": "roleplay_7_paragraph_field_1764916288911",
+                    "integrationID": "Roleplay_7_field_1764916288911",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1575,8 +1550,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "roleplay_7_paragraph_field_1764916288912",
+                    "integrationID": "Roleplay_7_field_1764916288912",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1639,7 +1614,7 @@
       },
       {
         "stepName": "Drill A",
-        "identifier": "step_drill_a",
+        "identifier": "step_drill_a_1764916288909",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -1656,7 +1631,7 @@
         "blocks": [
           {
             "blockName": "Drill A",
-            "identifier": "block_drill_a",
+            "identifier": "block_drill_a_0_1764916288909",
             "icon": "",
             "rows": [
               {
@@ -1665,8 +1640,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "drill_a_paragraph_smallheading_1764916288909",
+                    "integrationID": "Drill_A_paragraph_field_9_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1690,8 +1665,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "drill_a_paragraph_largeheading_1764916288910",
+                    "integrationID": "Drill_A_paragraph_field_9_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1715,8 +1690,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "drill_a_paragraph_field_1764916288911",
+                    "integrationID": "Drill_A_field_1764916288911",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1740,8 +1715,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "drill_a_paragraph_field_1764916288912",
+                    "integrationID": "Drill_A_field_1764916288912",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1804,7 +1779,7 @@
       },
       {
         "stepName": "Drill B",
-        "identifier": "step_drill_b",
+        "identifier": "step_drill_b_1764916288910",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -1821,7 +1796,7 @@
         "blocks": [
           {
             "blockName": "Drill B",
-            "identifier": "block_drill_b",
+            "identifier": "block_drill_b_0_1764916288910",
             "icon": "",
             "rows": [
               {
@@ -1830,8 +1805,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "drill_b_paragraph_smallheading_1764916288910",
+                    "integrationID": "Drill_B_paragraph_field_10_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1855,8 +1830,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "drill_b_paragraph_largeheading_1764916288911",
+                    "integrationID": "Drill_B_paragraph_field_10_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1880,8 +1855,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "drill_b_paragraph_field_1764916288912",
+                    "integrationID": "Drill_B_field_1764916288912",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1905,8 +1880,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "drill_b_paragraph_field_1764916288913",
+                    "integrationID": "Drill_B_field_1764916288913",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -1969,7 +1944,7 @@
       },
       {
         "stepName": "Drill C",
-        "identifier": "step_drill_c",
+        "identifier": "step_drill_c_1764916288911",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -1986,7 +1961,7 @@
         "blocks": [
           {
             "blockName": "Drill C",
-            "identifier": "block_drill_c",
+            "identifier": "block_drill_c_0_1764916288911",
             "icon": "",
             "rows": [
               {
@@ -1995,8 +1970,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "drill_c_paragraph_smallheading_1764916288911",
+                    "integrationID": "Drill_C_paragraph_field_11_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2020,8 +1995,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "drill_c_paragraph_largeheading_1764916288912",
+                    "integrationID": "Drill_C_paragraph_field_11_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2045,8 +2020,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "drill_c_paragraph_field_1764916288913",
+                    "integrationID": "Drill_C_field_1764916288913",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2070,8 +2045,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_MC_DrillC",
-                    "integrationID": "MC_DrillC",
+                    "identifier": "drill_c_radioInput_what_is_the_primary_purpose_of_mode_a?_1764916288914",
+                    "integrationID": "Drill_C_What_is_the_primary_purpose_of_Mode_A?_1764916288914",
                     "isHiddenInRuntime": false,
                     "label": "What is the primary purpose of Mode A?",
                     "maskingViewer": "none",
@@ -2126,7 +2101,7 @@
       },
       {
         "stepName": "Exercise Set A",
-        "identifier": "step_exercise_a",
+        "identifier": "step_exercise_set_a_1764916288912",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -2143,7 +2118,7 @@
         "blocks": [
           {
             "blockName": "Exercise Set A: Mode Classification",
-            "identifier": "block_exercise_a",
+            "identifier": "block_exercise_set_a_0_1764916288912",
             "icon": "",
             "rows": [
               {
@@ -2152,8 +2127,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "exercise_set_a_paragraph_smallheading_1764916288912",
+                    "integrationID": "Exercise_Set_A_paragraph_field_12_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2177,8 +2152,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "exercise_set_a_paragraph_largeheading_1764916288913",
+                    "integrationID": "Exercise_Set_A_paragraph_field_12_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2202,8 +2177,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "exercise_set_a_paragraph_field_1764916288914",
+                    "integrationID": "Exercise_Set_A_field_1764916288914",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2227,7 +2202,7 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_Exercise_1",
+                    "identifier": "exercise_set_a_radioInput_1._customer_updates_their_mailing_address_1764916288915",
                     "integrationID": "Exercise_1",
                     "isHiddenInRuntime": false,
                     "label": "1. Customer updates their mailing address",
@@ -2265,7 +2240,7 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_Exercise_2",
+                    "identifier": "exercise_set_a_radioInput_2._ai_agent_initiates_a_fee_reversal_1764916288916",
                     "integrationID": "Exercise_2",
                     "isHiddenInRuntime": false,
                     "label": "2. AI agent initiates a fee reversal",
@@ -2303,7 +2278,7 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_Exercise_3",
+                    "identifier": "exercise_set_a_radioInput_3._customer_disputes_a_credit_card_transaction_1764916288917",
                     "integrationID": "Exercise_3",
                     "isHiddenInRuntime": false,
                     "label": "3. Customer disputes a credit card transaction",
@@ -2341,7 +2316,7 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_Exercise_4",
+                    "identifier": "exercise_set_a_radioInput_4._mortgage_escrow_recalculation_1764916288918",
                     "integrationID": "Exercise_4",
                     "isHiddenInRuntime": false,
                     "label": "4. Mortgage escrow recalculation",
@@ -2379,7 +2354,7 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_Exercise_5",
+                    "identifier": "exercise_set_a_radioInput_5._patient_intake_form_+_insurance_card_upload_1764916288919",
                     "integrationID": "Exercise_5",
                     "isHiddenInRuntime": false,
                     "label": "5. Patient intake form + insurance card upload",
@@ -2431,7 +2406,7 @@
       },
       {
         "stepName": "Scenario 1",
-        "identifier": "step_scenario1",
+        "identifier": "step_scenario_1_1764916288913",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -2448,7 +2423,7 @@
         "blocks": [
           {
             "blockName": "Scenario 1",
-            "identifier": "block_scenario1",
+            "identifier": "block_scenario_1_0_1764916288913",
             "icon": "",
             "rows": [
               {
@@ -2457,8 +2432,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "scenario_1_paragraph_smallheading_1764916288913",
+                    "integrationID": "Scenario_1_paragraph_field_13_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2482,8 +2457,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "scenario_1_paragraph_largeheading_1764916288914",
+                    "integrationID": "Scenario_1_paragraph_field_13_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2507,8 +2482,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "scenario_1_paragraph_field_1764916288915",
+                    "integrationID": "Scenario_1_field_1764916288915",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2532,8 +2507,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "scenario_1_paragraph_field_1764916288916",
+                    "integrationID": "Scenario_1_field_1764916288916",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2596,7 +2571,7 @@
       },
       {
         "stepName": "Scenario 2",
-        "identifier": "step_scenario2",
+        "identifier": "step_scenario_2_1764916288914",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -2613,7 +2588,7 @@
         "blocks": [
           {
             "blockName": "Scenario 2",
-            "identifier": "block_scenario2",
+            "identifier": "block_scenario_2_0_1764916288914",
             "icon": "",
             "rows": [
               {
@@ -2622,8 +2597,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "scenario_2_paragraph_smallheading_1764916288914",
+                    "integrationID": "Scenario_2_paragraph_field_14_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2647,8 +2622,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "scenario_2_paragraph_largeheading_1764916288915",
+                    "integrationID": "Scenario_2_paragraph_field_14_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2672,8 +2647,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "scenario_2_paragraph_field_1764916288916",
+                    "integrationID": "Scenario_2_field_1764916288916",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2697,8 +2672,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "scenario_2_paragraph_field_1764916288917",
+                    "integrationID": "Scenario_2_field_1764916288917",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2761,7 +2736,7 @@
       },
       {
         "stepName": "Scenario 3",
-        "identifier": "step_scenario3",
+        "identifier": "step_scenario_3_1764916288915",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -2778,7 +2753,7 @@
         "blocks": [
           {
             "blockName": "Scenario 3",
-            "identifier": "block_scenario3",
+            "identifier": "block_scenario_3_0_1764916288915",
             "icon": "",
             "rows": [
               {
@@ -2787,8 +2762,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "scenario_3_paragraph_smallheading_1764916288915",
+                    "integrationID": "Scenario_3_paragraph_field_15_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2812,8 +2787,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "scenario_3_paragraph_largeheading_1764916288916",
+                    "integrationID": "Scenario_3_paragraph_field_15_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2837,8 +2812,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "scenario_3_paragraph_field_1764916288917",
+                    "integrationID": "Scenario_3_field_1764916288917",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2862,8 +2837,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "scenario_3_paragraph_field_1764916288918",
+                    "integrationID": "Scenario_3_field_1764916288918",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2926,7 +2901,7 @@
       },
       {
         "stepName": "Scenario 4",
-        "identifier": "step_scenario4",
+        "identifier": "step_scenario_4_1764916288916",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -2943,7 +2918,7 @@
         "blocks": [
           {
             "blockName": "Scenario 4",
-            "identifier": "block_scenario4",
+            "identifier": "block_scenario_4_0_1764916288916",
             "icon": "",
             "rows": [
               {
@@ -2952,8 +2927,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "scenario_4_paragraph_smallheading_1764916288916",
+                    "integrationID": "Scenario_4_paragraph_field_16_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -2977,8 +2952,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "scenario_4_paragraph_largeheading_1764916288917",
+                    "integrationID": "Scenario_4_paragraph_field_16_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3002,8 +2977,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129196",
-                    "integrationID": "",
+                    "identifier": "scenario_4_paragraph_field_1764916288918",
+                    "integrationID": "Scenario_4_field_1764916288918",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3027,8 +3002,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "scenario_4_paragraph_field_1764916288919",
+                    "integrationID": "Scenario_4_field_1764916288919",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3091,7 +3066,7 @@
       },
       {
         "stepName": "Quiz 1",
-        "identifier": "step_quiz1",
+        "identifier": "step_quiz_1_1764916288917",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -3108,7 +3083,7 @@
         "blocks": [
           {
             "blockName": "Quiz 1: Multiple Choice",
-            "identifier": "block_quiz1",
+            "identifier": "block_quiz_1_0_1764916288917",
             "icon": "",
             "rows": [
               {
@@ -3117,8 +3092,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "quiz_1_paragraph_smallheading_1764916288917",
+                    "integrationID": "Quiz_1_paragraph_field_17_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3142,8 +3117,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "quiz_1_paragraph_largeheading_1764916288918",
+                    "integrationID": "Quiz_1_paragraph_field_17_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3167,8 +3142,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_Quiz1_Q1",
-                    "integrationID": "Quiz1_Q1",
+                    "identifier": "quiz_1_radioInput_1._mode_a_enforces_compliance_through:_1764916288919",
+                    "integrationID": "Quiz_1_1._Mode_A_enforces_compliance_through:_1764916288919",
                     "isHiddenInRuntime": false,
                     "label": "1. Mode A enforces compliance through:",
                     "maskingViewer": "none",
@@ -3209,8 +3184,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_Quiz1_Q2",
-                    "integrationID": "Quiz1_Q2",
+                    "identifier": "quiz_1_radioInput_2._mode_b_exists_because:_1764916288920",
+                    "integrationID": "Quiz_1_2._Mode_B_exists_because:_1764916288920",
                     "isHiddenInRuntime": false,
                     "label": "2. Mode B exists because:",
                     "maskingViewer": "none",
@@ -3251,8 +3226,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_Quiz1_Q3",
-                    "integrationID": "Quiz1_Q3",
+                    "identifier": "quiz_1_radioInput_3._micro-apps_differ_from_forms_because:_1764916288921",
+                    "integrationID": "Quiz_1_3._Micro-apps_differ_from_forms_because:_1764916288921",
                     "isHiddenInRuntime": false,
                     "label": "3. Micro-apps differ from forms because:",
                     "maskingViewer": "none",
@@ -3293,8 +3268,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_Quiz1_Q4",
-                    "integrationID": "Quiz1_Q4",
+                    "identifier": "quiz_1_radioInput_4._mcp_enables:_1764916288922",
+                    "integrationID": "Quiz_1_4._MCP_enables:_1764916288922",
                     "isHiddenInRuntime": false,
                     "label": "4. MCP enables:",
                     "maskingViewer": "none",
@@ -3335,8 +3310,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "mc_Quiz1_Q5",
-                    "integrationID": "Quiz1_Q5",
+                    "identifier": "quiz_1_radioInput_5._in_regulated_industries,_the_biggest_risk_is:_1764916288923",
+                    "integrationID": "Quiz_1_5._In_regulated_industries,_the_biggest_risk_is:_1764916288923",
                     "isHiddenInRuntime": false,
                     "label": "5. In regulated industries, the biggest risk is:",
                     "maskingViewer": "none",
@@ -3391,7 +3366,7 @@
       },
       {
         "stepName": "Quiz 2",
-        "identifier": "step_quiz2",
+        "identifier": "step_quiz_2_1764916288919",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -3408,7 +3383,7 @@
         "blocks": [
           {
             "blockName": "Quiz 2",
-            "identifier": "block_quiz2",
+            "identifier": "block_quiz_2_0_1764916288919",
             "icon": "",
             "rows": [
               {
@@ -3417,8 +3392,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "quiz_2_paragraph_smallheading_1764916288919",
+                    "integrationID": "Quiz_2_paragraph_field_18_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3442,8 +3417,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "quiz_2_paragraph_largeheading_1764916288920",
+                    "integrationID": "Quiz_2_paragraph_field_18_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3467,8 +3442,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "quiz_2_paragraph_field_1764916288921",
+                    "integrationID": "Quiz_2_field_1764916288921",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3492,8 +3467,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "quiz_2_paragraph_field_1764916288922",
+                    "integrationID": "Quiz_2_field_1764916288922",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3517,7 +3492,7 @@
                     "className": "",
                     "clearable": false,
                     "hint": "Voice transcription will appear here. This field is read-only - voice input only.",
-                    "identifier": "answer_Answer_Quiz2",
+                    "identifier": "quiz_2_longText_your_response_1764916288923",
                     "integrationID": "Answer_Quiz2",
                     "isHiddenInRuntime": false,
                     "label": "Your Response",
@@ -3556,7 +3531,7 @@
       },
       {
         "stepName": "Check 1",
-        "identifier": "step_check1",
+        "identifier": "step_check_1_1764916288920",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -3573,7 +3548,7 @@
         "blocks": [
           {
             "blockName": "Check 1",
-            "identifier": "block_check1",
+            "identifier": "block_check_1_0_1764916288920",
             "icon": "",
             "rows": [
               {
@@ -3582,8 +3557,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "check_1_paragraph_smallheading_1764916288920",
+                    "integrationID": "Check_1_paragraph_field_19_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3607,8 +3582,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "check_1_paragraph_largeheading_1764916288921",
+                    "integrationID": "Check_1_paragraph_field_19_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3632,8 +3607,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "check_1_paragraph_field_1764916288922",
+                    "integrationID": "Check_1_field_1764916288922",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3657,8 +3632,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "check_1_paragraph_field_1764916288923",
+                    "integrationID": "Check_1_field_1764916288923",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3721,7 +3696,7 @@
       },
       {
         "stepName": "Check 2",
-        "identifier": "step_check2",
+        "identifier": "step_check_2_1764916288921",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -3738,7 +3713,7 @@
         "blocks": [
           {
             "blockName": "Check 2",
-            "identifier": "block_check2",
+            "identifier": "block_check_2_0_1764916288921",
             "icon": "",
             "rows": [
               {
@@ -3747,8 +3722,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "check_2_paragraph_smallheading_1764916288921",
+                    "integrationID": "Check_2_paragraph_field_20_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3772,8 +3747,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "check_2_paragraph_largeheading_1764916288922",
+                    "integrationID": "Check_2_paragraph_field_20_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3797,8 +3772,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "check_2_paragraph_field_1764916288923",
+                    "integrationID": "Check_2_field_1764916288923",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3822,8 +3797,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "check_2_paragraph_field_1764916288924",
+                    "integrationID": "Check_2_field_1764916288924",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3886,7 +3861,7 @@
       },
       {
         "stepName": "Check 3",
-        "identifier": "step_check3",
+        "identifier": "step_check_3_1764916288922",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -3903,7 +3878,7 @@
         "blocks": [
           {
             "blockName": "Check 3",
-            "identifier": "block_check3",
+            "identifier": "block_check_3_0_1764916288922",
             "icon": "",
             "rows": [
               {
@@ -3912,8 +3887,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "check_3_paragraph_smallheading_1764916288922",
+                    "integrationID": "Check_3_paragraph_field_21_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3937,8 +3912,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "check_3_paragraph_largeheading_1764916288923",
+                    "integrationID": "Check_3_paragraph_field_21_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3962,8 +3937,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "check_3_paragraph_field_1764916288924",
+                    "integrationID": "Check_3_field_1764916288924",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -3987,8 +3962,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "check_3_paragraph_field_1764916288925",
+                    "integrationID": "Check_3_field_1764916288925",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -4051,7 +4026,7 @@
       },
       {
         "stepName": "Check 4",
-        "identifier": "step_check4",
+        "identifier": "step_check_4_1764916288924",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -4068,7 +4043,7 @@
         "blocks": [
           {
             "blockName": "Check 4",
-            "identifier": "block_check4",
+            "identifier": "block_check_4_0_1764916288924",
             "icon": "",
             "rows": [
               {
@@ -4077,8 +4052,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "SmallHeading",
+                    "identifier": "check_4_paragraph_smallheading_1764916288924",
+                    "integrationID": "Check_4_paragraph_field_22_0_0_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -4102,8 +4077,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "LargeHeading",
+                    "identifier": "check_4_paragraph_largeheading_1764916288925",
+                    "integrationID": "Check_4_paragraph_field_22_0_1_0_1764916326553",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -4127,8 +4102,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "check_4_paragraph_field_1764916288926",
+                    "integrationID": "Check_4_field_1764916288926",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -4152,8 +4127,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "check_4_paragraph_field_1764916288927",
+                    "integrationID": "Check_4_field_1764916288927",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -4216,7 +4191,7 @@
       },
       {
         "stepName": "Complete",
-        "identifier": "step_complete",
+        "identifier": "step_complete_1764916288925",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -4233,7 +4208,7 @@
         "blocks": [
           {
             "blockName": "",
-            "identifier": "block_complete",
+            "identifier": "block_complete_0_1764916288925",
             "icon": "",
             "rows": [
               {
@@ -4242,8 +4217,8 @@
                     "className": "",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129197",
-                    "integrationID": "",
+                    "identifier": "complete_paragraph_field_1764916288925",
+                    "integrationID": "Complete_field_1764916288925",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
