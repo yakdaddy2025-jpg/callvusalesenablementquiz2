@@ -466,7 +466,7 @@ export default function EmbeddedVoiceRecorder() {
   const notifyCallVuResponseReady = (finalTranscript) => {
     const transcriptToSend = finalTranscript || transcript.trim();
     
-    console.log('✅ Response saved - filling required field and logging to spreadsheet');
+    console.log('✅✅✅ KEEP RESPONSE CLICKED - FILLING FIELD');
     console.log('📝 Transcript to fill:', transcriptToSend);
     
     // CRITICAL: Fill the required response field so CallVu validation passes
@@ -483,58 +483,86 @@ export default function EmbeddedVoiceRecorder() {
         
         console.log('🔍 AnswerFieldId from URL:', answerFieldId);
         
-        // Get ALL textareas and inputs
+        // Get ALL possible form elements
         const allTextareas = Array.from(doc.querySelectorAll('textarea'));
-        const allInputs = Array.from(doc.querySelectorAll('input[type="text"]'));
-        const allFields = [...allTextareas, ...allInputs];
+        const allInputs = Array.from(doc.querySelectorAll('input'));
+        const allContentEditable = Array.from(doc.querySelectorAll('[contenteditable="true"]'));
+        const allFields = [...allTextareas, ...allInputs, ...allContentEditable];
         
-        console.log(`🔍 Found ${allTextareas.length} textareas, ${allInputs.length} text inputs`);
+        console.log(`🔍 Found ${allTextareas.length} textareas, ${allInputs.length} inputs, ${allContentEditable.length} contentEditable`);
+        
+        // Log ALL textareas for debugging
+        console.log('📋 All textareas found:');
+        allTextareas.forEach((ta, idx) => {
+          console.log(`   ${idx + 1}. id="${ta.id}", name="${ta.name}", value="${ta.value}", readonly=${ta.readOnly}, required=${ta.hasAttribute('required')}`);
+          console.log(`      data-integration-id="${ta.getAttribute('data-integration-id')}"`);
+          console.log(`      parent text: "${(ta.parentElement?.textContent || '').substring(0, 100)}"`);
+        });
         
         let requiredField = null;
         let foundBy = '';
         
-        // Strategy 1: Find by integrationID (most reliable)
+        // Strategy 1: Find by exact integrationID from URL
         if (answerFieldId) {
-          // Try various selectors with the answerFieldId
-          const selectors = [
-            `[data-integration-id="${answerFieldId}"]`,
-            `[data-integration-id*="${answerFieldId}"]`,
-            `[id*="${answerFieldId}"]`,
-            `[name*="${answerFieldId}"]`,
-            `textarea[data-integration-id*="Response"]`,
-            `textarea[data-integration-id*="response"]`
-          ];
+          console.log(`🔍 Strategy 1: Searching for integrationID="${answerFieldId}"`);
           
-          for (const selector of selectors) {
-            try {
-              const field = doc.querySelector(selector);
-              if (field && (field.tagName === 'TEXTAREA' || field.tagName === 'INPUT')) {
-                requiredField = field;
-                foundBy = `integrationID selector: ${selector}`;
-                console.log('✅ Found by', foundBy);
-                break;
-              }
-            } catch (e) {
-              console.log('Selector failed:', selector, e);
+          // Try exact match first
+          const exactMatch = doc.querySelector(`[data-integration-id="${answerFieldId}"]`);
+          if (exactMatch && (exactMatch.tagName === 'TEXTAREA' || exactMatch.tagName === 'INPUT')) {
+            requiredField = exactMatch;
+            foundBy = `exact integrationID: ${answerFieldId}`;
+            console.log('✅✅✅ FOUND BY EXACT MATCH!', foundBy);
+          }
+          
+          // Try partial match
+          if (!requiredField) {
+            const partialMatch = doc.querySelector(`[data-integration-id*="${answerFieldId}"]`);
+            if (partialMatch && (partialMatch.tagName === 'TEXTAREA' || partialMatch.tagName === 'INPUT')) {
+              requiredField = partialMatch;
+              foundBy = `partial integrationID: ${answerFieldId}`;
+              console.log('✅✅✅ FOUND BY PARTIAL MATCH!', foundBy);
+            }
+          }
+          
+          // Try by ID attribute
+          if (!requiredField) {
+            const idMatch = doc.querySelector(`#${answerFieldId}`);
+            if (idMatch && (idMatch.tagName === 'TEXTAREA' || idMatch.tagName === 'INPUT')) {
+              requiredField = idMatch;
+              foundBy = `ID attribute: ${answerFieldId}`;
+              console.log('✅✅✅ FOUND BY ID!', foundBy);
+            }
+          }
+          
+          // Try by name attribute
+          if (!requiredField) {
+            const nameMatch = doc.querySelector(`[name="${answerFieldId}"]`);
+            if (nameMatch && (nameMatch.tagName === 'TEXTAREA' || nameMatch.tagName === 'INPUT')) {
+              requiredField = nameMatch;
+              foundBy = `name attribute: ${answerFieldId}`;
+              console.log('✅✅✅ FOUND BY NAME!', foundBy);
             }
           }
         }
         
         // Strategy 2: Find by "*Your Response" label text (search more thoroughly)
         if (!requiredField) {
+          console.log('🔍 Strategy 2: Searching by "*Your Response" label');
           for (const field of allFields) {
-            // Search in all parent elements
+            // Search in all parent elements up to 10 levels
             let current = field;
             let searchDepth = 0;
-            while (current && searchDepth < 5) {
+            while (current && searchDepth < 10) {
               const text = (current.textContent || '').toLowerCase();
               const ariaLabel = (current.getAttribute('aria-label') || '').toLowerCase();
               const placeholder = (current.getAttribute('placeholder') || '').toLowerCase();
+              const label = current.querySelector('label')?.textContent?.toLowerCase() || '';
               
               if (text.includes('*your response') || 
                   text.includes('your response') ||
                   ariaLabel.includes('your response') ||
-                  placeholder.includes('your response')) {
+                  placeholder.includes('your response') ||
+                  label.includes('your response')) {
                 // Check if it's required or readonly
                 if (field.hasAttribute('required') || 
                     field.getAttribute('aria-required') === 'true' ||
@@ -542,7 +570,7 @@ export default function EmbeddedVoiceRecorder() {
                     field.value === '') {
                   requiredField = field;
                   foundBy = 'label text "*Your Response"';
-                  console.log('✅ Found by', foundBy);
+                  console.log('✅✅✅ FOUND BY LABEL!', foundBy);
                   break;
                 }
               }
@@ -555,12 +583,13 @@ export default function EmbeddedVoiceRecorder() {
         
         // Strategy 3: Find readonly + required textarea
         if (!requiredField) {
+          console.log('🔍 Strategy 3: Searching for readonly + required');
           for (const field of allFields) {
             if (field.readOnly && 
                 (field.hasAttribute('required') || field.getAttribute('aria-required') === 'true')) {
               requiredField = field;
               foundBy = 'readonly + required';
-              console.log('✅ Found by', foundBy);
+              console.log('✅✅✅ FOUND BY READONLY+REQUIRED!', foundBy);
               break;
             }
           }
@@ -568,12 +597,13 @@ export default function EmbeddedVoiceRecorder() {
         
         // Strategy 4: Find any required empty field
         if (!requiredField) {
+          console.log('🔍 Strategy 4: Searching for required + empty');
           for (const field of allFields) {
             if ((field.hasAttribute('required') || field.getAttribute('aria-required') === 'true') &&
-                field.value === '') {
+                (field.value === '' || !field.value)) {
               requiredField = field;
               foundBy = 'required + empty';
-              console.log('✅ Found by', foundBy);
+              console.log('✅✅✅ FOUND BY REQUIRED+EMPTY!', foundBy);
               break;
             }
           }
@@ -581,18 +611,19 @@ export default function EmbeddedVoiceRecorder() {
         
         // Strategy 5: Find first empty textarea (last resort)
         if (!requiredField) {
+          console.log('🔍 Strategy 5: Searching for first empty textarea');
           for (const field of allTextareas) {
-            if (field.value === '' && field.offsetParent !== null) {
+            if ((field.value === '' || !field.value) && field.offsetParent !== null) {
               requiredField = field;
               foundBy = 'first empty textarea';
-              console.log('✅ Found by', foundBy);
+              console.log('✅✅✅ FOUND BY FIRST EMPTY!', foundBy);
               break;
             }
           }
         }
         
         if (requiredField) {
-          console.log('🔧 Filling field found by:', foundBy);
+          console.log('🔧🔧🔧 FILLING FIELD FOUND BY:', foundBy);
           console.log('🔧 Field details:', {
             tagName: requiredField.tagName,
             readOnly: requiredField.readOnly,
@@ -619,12 +650,18 @@ export default function EmbeddedVoiceRecorder() {
               writable: true,
               configurable: true
             });
-          } catch (e) {}
+          } catch (e) {
+            console.log('Property descriptor failed:', e);
+          }
           
           // Set value using EVERY possible method
           requiredField.value = transcriptToSend;
-          requiredField.textContent = transcriptToSend;
-          requiredField.innerText = transcriptToSend;
+          if (requiredField.textContent !== undefined) {
+            requiredField.textContent = transcriptToSend;
+          }
+          if (requiredField.innerText !== undefined) {
+            requiredField.innerText = transcriptToSend;
+          }
           
           // Try native setter
           try {
@@ -670,17 +707,22 @@ export default function EmbeddedVoiceRecorder() {
             requiredField.dispatchEvent(new Event('change', { bubbles: true }));
             
             // Verify value was set
-            const actualValue = requiredField.value || requiredField.textContent || requiredField.innerText;
-            console.log('🔍 Verification:', {
+            const actualValue = requiredField.value || requiredField.textContent || requiredField.innerText || '';
+            console.log('🔍🔍🔍 VERIFICATION:', {
               expected: transcriptToSend,
               actual: actualValue,
               match: actualValue === transcriptToSend || actualValue.includes(transcriptToSend.substring(0, 10))
             });
             
             if (actualValue === transcriptToSend || actualValue.includes(transcriptToSend.substring(0, 10))) {
-              console.log('✅✅✅ REQUIRED FIELD SUCCESSFULLY FILLED!');
+              console.log('✅✅✅✅✅ REQUIRED FIELD SUCCESSFULLY FILLED! ✅✅✅✅✅');
             } else {
               console.error('❌❌❌ FIELD VALUE NOT SET! Expected:', transcriptToSend, 'Got:', actualValue);
+              console.error('   Trying one more time...');
+              // One more aggressive attempt
+              requiredField.value = transcriptToSend;
+              requiredField.dispatchEvent(new Event('input', { bubbles: true }));
+              requiredField.dispatchEvent(new Event('change', { bubbles: true }));
             }
           }, 300);
           
@@ -689,6 +731,7 @@ export default function EmbeddedVoiceRecorder() {
           console.error('❌❌❌ COULD NOT FIND REQUIRED RESPONSE FIELD!');
           console.error('   Searched', allFields.length, 'fields');
           console.error('   AnswerFieldId:', answerFieldId);
+          console.error('   All textareas logged above - check console');
           return false;
         }
       } catch (e) {
@@ -699,7 +742,7 @@ export default function EmbeddedVoiceRecorder() {
     };
     
     // Fill immediately and retry aggressively
-    console.log('🚀 Starting field fill attempts...');
+    console.log('🚀🚀🚀 STARTING FIELD FILL ATTEMPTS...');
     let filled = fillRequiredField();
     if (!filled) {
       setTimeout(() => { 
@@ -730,6 +773,12 @@ export default function EmbeddedVoiceRecorder() {
         console.log('🔄 Retry 5 (3000ms)');
         filled = fillRequiredField(); 
       }, 3000);
+    }
+    if (!filled) {
+      setTimeout(() => { 
+        console.log('🔄 Retry 6 (5000ms) - FINAL ATTEMPT');
+        filled = fillRequiredField(); 
+      }, 5000);
     }
     
     // Log to spreadsheet IMMEDIATELY
