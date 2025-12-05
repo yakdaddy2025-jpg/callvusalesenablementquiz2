@@ -13,9 +13,11 @@
  */
 
 // NEW SPREADSHEET: https://docs.google.com/spreadsheets/d/e/2PACX-1vQQLzNTy5P-Fx--S6PBBKT_nx2IeZEpDyUK7AQcpCnLpoLsEGuWbxGAEHkcT_mnus3bgOG_OE2ksk6h/pubhtml
-// Extract the actual spreadsheet ID from the edit URL (user needs to provide edit URL or ID)
-// For now, using the published URL ID - user should replace with actual spreadsheet ID
-const SPREADSHEET_ID = '2PACX-1vQQLzNTy5P-Fx--S6PBBKT_nx2IeZEpDyUK7AQcpCnLpoLsEGuWbxGAEHkcT_mnus3bgOG_OE2ksk6h';
+// Spreadsheet Name: "Callvu Sales Enablement Quiz - Responses v2"
+// NOTE: The script will find the spreadsheet by name if ID doesn't work
+// To get the actual ID: Open spreadsheet in edit mode, copy ID from URL between /d/ and /edit
+const SPREADSHEET_NAME = 'Callvu Sales Enablement Quiz - Responses v2';
+const SPREADSHEET_ID = ''; // Leave empty to use name lookup
 const SHEET_NAME = 'Responses';
 
 function getSpreadsheet() {
