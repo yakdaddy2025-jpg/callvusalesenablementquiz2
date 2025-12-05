@@ -22,7 +22,30 @@ const SHEET_NAME = 'Responses';
 
 function getSpreadsheet() {
   try {
-    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    let ss;
+    
+    // Try to open by ID first (if provided)
+    if (SPREADSHEET_ID && SPREADSHEET_ID.trim() !== '') {
+      try {
+        ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+        Logger.log('Opened spreadsheet by ID');
+      } catch (e) {
+        Logger.log('Could not open by ID, trying by name...');
+        // Fall through to name lookup
+      }
+    }
+    
+    // If ID didn't work or wasn't provided, find by name
+    if (!ss) {
+      const files = DriveApp.getFilesByName(SPREADSHEET_NAME);
+      if (files.hasNext()) {
+        ss = SpreadsheetApp.open(files.next());
+        Logger.log('Opened spreadsheet by name: ' + SPREADSHEET_NAME);
+      } else {
+        throw new Error('Spreadsheet not found: ' + SPREADSHEET_NAME + '. Please check the name.');
+      }
+    }
+    
     let sheet = ss.getSheetByName(SHEET_NAME);
     
     // Create sheet if it doesn't exist
