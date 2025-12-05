@@ -20,6 +20,7 @@ export default function EmbeddedVoiceRecorder() {
   
   const recognitionRef = useRef(null);
   const timerRef = useRef(null);
+  const isRecordingRef = useRef(false);
   
   useEffect(() => {
     // Get data from URL params or parent window (CallVu)
@@ -70,6 +71,7 @@ export default function EmbeddedVoiceRecorder() {
       return;
     }
     
+    // Initialize speech recognition ONCE on mount
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     recognitionRef.current = new SpeechRecognition();
     recognitionRef.current.continuous = true;
@@ -99,19 +101,22 @@ export default function EmbeddedVoiceRecorder() {
       console.error('Speech recognition error:', event.error);
       if (event.error === 'not-allowed') {
         setError('Microphone access denied. Please enable microphone permissions.');
+        setIsRecording(false);
       } else if (event.error === 'no-speech') {
         // Ignore no-speech errors
       } else {
         setError(`Recognition error: ${event.error}`);
+        setIsRecording(false);
       }
     };
     
     recognitionRef.current.onend = () => {
-      if (isRecording && recognitionRef.current) {
+      // Only restart if we're still recording (use ref to avoid stale closure)
+      if (isRecordingRef.current && recognitionRef.current) {
         try {
           recognitionRef.current.start();
         } catch (e) {
-          // Ignore if already started
+          console.log('Recognition restart error:', e);
         }
       }
     };
@@ -126,7 +131,7 @@ export default function EmbeddedVoiceRecorder() {
         clearInterval(timerRef.current);
       }
     };
-  }, [isRecording]);
+  }, []); // Initialize once on mount, not when isRecording changes
   
   const startRecording = async () => {
     setError('');
@@ -136,29 +141,66 @@ export default function EmbeddedVoiceRecorder() {
     setHasResponse(false);
     
     try {
-      await navigator.mediaDevices.getUserMedia({ audio: true });
+      // Request microphone permission first
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      // Stop the stream immediately (we just needed permission)
+      stream.getTracks().forEach(track => track.stop());
+      
+      // Start recording state
+      isRecordingRef.current = true;
       setIsRecording(true);
       setStatus('recording');
-      recognitionRef.current?.start();
       
+      // Start timer immediately
       timerRef.current = setInterval(() => {
         setRecordingTime(prev => prev + 1);
       }, 1000);
+      
+      // Start speech recognition
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.start();
+          console.log('Speech recognition started');
+        } catch (e) {
+          console.error('Failed to start recognition:', e);
+          setError('Failed to start speech recognition. Please try again.');
+          isRecordingRef.current = false;
+          setIsRecording(false);
+          if (timerRef.current) {
+            clearInterval(timerRef.current);
+            timerRef.current = null;
+          }
+        }
+      } else {
+        setError('Speech recognition not initialized. Please refresh the page.');
+        setIsRecording(false);
+        if (timerRef.current) {
+          clearInterval(timerRef.current);
+        }
+      }
     } catch (err) {
-      setError('Could not access microphone. Please allow microphone permissions.');
+      console.error('Microphone error:', err);
+      setError('Could not access microphone. Please allow microphone permissions and try again.');
+      isRecordingRef.current = false;
+      setIsRecording(false);
     }
   };
   
   const stopRecording = () => {
+    isRecordingRef.current = false;
     setIsRecording(false);
     setStatus('stopped');
     
     try {
       recognitionRef.current?.stop();
-    } catch (e) {}
+    } catch (e) {
+      console.log('Stop recognition error:', e);
+    }
     
     if (timerRef.current) {
       clearInterval(timerRef.current);
+      timerRef.current = null;
     }
     
     // Note: We don't auto-enable Next button here - user must click "Keep Response"
@@ -200,27 +242,41 @@ export default function EmbeddedVoiceRecorder() {
     const urlParams = new URLSearchParams(window.location.search);
     const answerFieldId = urlParams.get('answerFieldId') || '';
     
-    // Try to update CallVu field directly (may fail due to cross-origin)
+    console.log('Notifying CallVu:', { transcriptToSend, answerFieldId, questionId, questionTitle });
+    
+    // Try multiple methods to update CallVu field
     if (answerFieldId && typeof window !== 'undefined' && window.parent) {
       try {
-        const field = window.parent.document.querySelector(`[data-integration-id="${answerFieldId}"], [name*="${answerFieldId}"]`);
+        // Method 1: Try direct DOM access (may fail due to cross-origin)
+        const field = window.parent.document.querySelector(
+          `[data-integration-id="${answerFieldId}"], 
+           [name*="${answerFieldId}"], 
+           [id*="${answerFieldId}"],
+           textarea[name*="answer"],
+           textarea[name*="response"]`
+        );
         if (field) {
           field.value = transcriptToSend;
           field.dispatchEvent(new Event('input', { bubbles: true }));
           field.dispatchEvent(new Event('change', { bubbles: true }));
+          console.log('Updated CallVu field directly');
         }
       } catch (e) {
-        // Cross-origin restrictions - use postMessage instead
+        console.log('Direct field update failed (cross-origin):', e);
       }
     }
     
-    window.parent.postMessage({
-      type: 'VOICE_RESPONSE_READY',
-      transcript: transcriptToSend,
-      questionId: questionId,
-      questionTitle: questionTitle,
-      answerFieldId: answerFieldId
-    }, '*');
+    // Method 2: Use postMessage (works across origins)
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'VOICE_RESPONSE_READY',
+        transcript: transcriptToSend,
+        questionId: questionId,
+        questionTitle: questionTitle,
+        answerFieldId: answerFieldId
+      }, '*');
+      console.log('Sent postMessage to CallVu parent');
+    }
   };
   
   const notifyCallVuResponseDeleted = () => {
