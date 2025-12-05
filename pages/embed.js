@@ -289,9 +289,29 @@ export default function EmbeddedVoiceRecorder() {
   
   const handleCallVuMessage = (event) => {
     // Accept messages from any origin (CallVu domain)
+    console.log('📨 Received message from CallVu:', event.data);
+    
     if (event.data && event.data.type === 'USER_INFO') {
-      if (event.data.name) setRepName(event.data.name);
-      if (event.data.email) setRepEmail(event.data.email);
+      if (event.data.name) {
+        setRepName(event.data.name);
+        console.log('✅✅✅ Received name from CallVu:', event.data.name);
+      }
+      if (event.data.email) {
+        setRepEmail(event.data.email);
+        console.log('✅✅✅ Received email from CallVu:', event.data.email);
+      }
+    }
+    
+    // Also listen for field values if CallVu sends them
+    if (event.data && event.data.type === 'FIELD_VALUE') {
+      if (event.data.fieldId && event.data.fieldId.includes('Name') && event.data.value) {
+        setRepName(event.data.value);
+        console.log('✅✅✅ Received name from field value:', event.data.value);
+      }
+      if (event.data.fieldId && event.data.fieldId.includes('Email') && event.data.value) {
+        setRepEmail(event.data.value);
+        console.log('✅✅✅ Received email from field value:', event.data.value);
+      }
     }
   };
   
@@ -509,32 +529,56 @@ export default function EmbeddedVoiceRecorder() {
     console.log('🔍 Answer Field ID:', answerFieldId);
     console.log('🔍 Question ID:', questionId);
     
+    if (!uniqueResponseId || !answerFieldId) {
+      console.error('❌❌❌ Cannot fetch - missing uniqueResponseId or answerFieldId!');
+      console.error('   uniqueResponseId:', uniqueResponseId);
+      console.error('   answerFieldId:', answerFieldId);
+      return;
+    }
+    
     try {
       // Fetch from Google Apps Script GET endpoint
       const fetchUrl = `${SHEET_WEBHOOK_URL}?uniqueResponseId=${encodeURIComponent(uniqueResponseId)}&answerFieldId=${encodeURIComponent(answerFieldId)}&questionId=${encodeURIComponent(questionId)}`;
       
       console.log('🔍 Fetching from:', fetchUrl);
       
-      const response = await fetch(fetchUrl, {
-        method: 'GET',
-        mode: 'cors' // Use CORS for GET requests
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        console.log('✅✅✅ FETCHED FROM DATABASE:', data);
+      // Try CORS first, fallback to no-cors
+      let response;
+      try {
+        response = await fetch(fetchUrl, {
+          method: 'GET',
+          mode: 'cors'
+        });
         
-        if (data.success && data.transcript) {
-          // Now fill the field with the transcript from database
-          fillRequiredFieldFromDatabase(data.transcript, answerFieldId);
+        if (response.ok) {
+          const data = await response.json();
+          console.log('✅✅✅ FETCHED FROM DATABASE:', data);
+          
+          if (data.success && data.transcript) {
+            // Now fill the field with the transcript from database
+            fillRequiredFieldFromDatabase(data.transcript, answerFieldId);
+          } else {
+            console.error('❌ No transcript in response:', data);
+            // Fallback: Try to fill directly with the transcript we just saved
+            console.log('⚠️ Trying direct fill as fallback...');
+            fillRequiredFieldFromDatabase(transcript.trim(), answerFieldId);
+          }
         } else {
-          console.error('❌ No transcript in response:', data);
+          console.error('❌ Fetch failed:', response.status, response.statusText);
+          // Fallback: Try to fill directly
+          console.log('⚠️ Trying direct fill as fallback...');
+          fillRequiredFieldFromDatabase(transcript.trim(), answerFieldId);
         }
-      } else {
-        console.error('❌ Fetch failed:', response.status, response.statusText);
+      } catch (corsError) {
+        console.warn('⚠️ CORS fetch failed, trying direct fill:', corsError.message);
+        // Fallback: Try to fill directly
+        fillRequiredFieldFromDatabase(transcript.trim(), answerFieldId);
       }
     } catch (err) {
       console.error('❌ Error fetching from database:', err);
+      // Last resort: Try to fill directly
+      console.log('⚠️ Trying direct fill as last resort...');
+      fillRequiredFieldFromDatabase(transcript.trim(), answerFieldId);
     }
   };
   
@@ -1272,7 +1316,17 @@ export default function EmbeddedVoiceRecorder() {
     
     console.log('📊 ===== LOGGING TO SPREADSHEET =====');
     console.log('📊 Webhook URL:', SHEET_WEBHOOK_URL);
+    console.log('📊 Unique Response ID:', uniqueResponseId);
+    console.log('📊 Answer Field ID:', answerFieldId);
     console.log('📊 Payload:', JSON.stringify(payload, null, 2));
+    
+    // CRITICAL: Verify unique IDs are in payload
+    if (!payload.uniqueResponseId || !payload.answerFieldId) {
+      console.error('❌❌❌ CRITICAL ERROR: uniqueResponseId or answerFieldId missing from payload!');
+      console.error('   uniqueResponseId:', payload.uniqueResponseId);
+      console.error('   answerFieldId:', payload.answerFieldId);
+      console.error('   This will cause database lookup to fail!');
+    }
     
     if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL === '') {
       console.error('❌ ERROR: No webhook URL configured!');
