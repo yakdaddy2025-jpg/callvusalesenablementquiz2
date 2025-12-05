@@ -1174,30 +1174,61 @@ export default function EmbeddedVoiceRecorder() {
     }
     
     try {
-      // Use fetch with error handling
+      // CRITICAL: Use 'cors' mode so we can see the response and errors
+      // This helps debug why data isn't being written
+      console.log('📤 Sending POST request to:', SHEET_WEBHOOK_URL);
+      console.log('📤 Payload size:', JSON.stringify(payload).length, 'bytes');
+      
       const response = await fetch(SHEET_WEBHOOK_URL, {
         method: 'POST',
-        mode: 'no-cors', // Required for Google Apps Script
+        mode: 'cors', // Changed from 'no-cors' to see response
         headers: { 
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
       });
       
-      // Note: With no-cors mode, we can't read the response
-      // But we can check if the request was sent
-      console.log('✅ POST request sent to webhook');
-      console.log('✅ Unique Response ID saved:', uniqueResponseId);
-      console.log('✅ Answer Field ID:', answerFieldId);
+      // Try to read response (may fail due to CORS, but worth trying)
+      try {
+        const responseText = await response.text();
+        console.log('✅ Response status:', response.status);
+        console.log('✅ Response text:', responseText);
+        
+        if (response.ok) {
+          try {
+            const responseData = JSON.parse(responseText);
+            console.log('✅ Response data:', responseData);
+            if (responseData.success) {
+              console.log('✅✅✅ SUCCESSFULLY LOGGED TO SPREADSHEET!');
+              console.log('✅ Row number:', responseData.rowNumber);
+            } else {
+              console.error('❌ Server returned success=false:', responseData.error);
+            }
+          } catch (e) {
+            console.log('Response is not JSON, but status is OK');
+          }
+        } else {
+          console.error('❌ HTTP Error:', response.status, response.statusText);
+        }
+      } catch (readError) {
+        console.log('⚠️ Could not read response (CORS), but request was sent');
+        console.log('⚠️ Check Google Apps Script execution log to verify data was received');
+      }
       
       // Return the unique IDs so caller can fetch and fill
       return { uniqueResponseId, answerFieldId };
       
     } catch (err) {
-      console.error('❌ Webhook error:', err);
+      console.error('❌❌❌ FETCH ERROR - Request failed completely!');
+      console.error('❌ Error:', err);
       console.error('❌ Error message:', err.message);
       console.error('❌ Error stack:', err.stack);
-      console.error('❌ Full error:', JSON.stringify(err, null, 2));
+      console.error('❌ This means the request never reached the server!');
+      console.error('❌ Check:');
+      console.error('   1. Is SHEET_WEBHOOK_URL correct?');
+      console.error('   2. Is the Google Apps Script deployed?');
+      console.error('   3. Is "Who has access" set to "Anyone"?');
+      throw err; // Re-throw so caller knows it failed
     }
   };
   
