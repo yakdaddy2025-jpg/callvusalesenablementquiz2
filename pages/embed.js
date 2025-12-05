@@ -450,8 +450,8 @@ export default function EmbeddedVoiceRecorder() {
     
     setHasResponse(true);
     setStatus('saved');
+    // notifyCallVuResponseReady handles logging internally - don't call logToSpreadsheet separately
     notifyCallVuResponseReady(finalTranscript);
-    logToSpreadsheet(finalTranscript);
   };
   
   const deleteResponse = () => {
