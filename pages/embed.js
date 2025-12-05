@@ -1407,15 +1407,30 @@ export default function EmbeddedVoiceRecorder() {
     }
     
     try {
+      // CRITICAL: FINAL SAFETY CHECK - Force IDs into payload right before sending
+      if (!payload.uniqueResponseId || !payload.answerFieldId) {
+        console.error('❌❌❌ CRITICAL: Payload missing IDs right before fetch! Forcing...');
+        payload.uniqueResponseId = uniqueResponseId || `${questionId || 'unknown'}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+        payload.answerFieldId = answerFieldId || new URLSearchParams(window.location.search).get('answerFieldId') || '';
+        console.log('✅✅✅ FORCED IDs into payload:', {
+          uniqueResponseId: payload.uniqueResponseId,
+          answerFieldId: payload.answerFieldId
+        });
+      }
+      
       // CRITICAL: Try CORS first to see response, fallback to no-cors if it fails
       console.log('📤 Sending POST request to:', SHEET_WEBHOOK_URL);
       console.log('📤 Payload size:', JSON.stringify(payload).length, 'bytes');
       console.log('📤 Payload preview:', {
         uniqueResponseId: payload.uniqueResponseId,
+        answerFieldId: payload.answerFieldId,
         repName: payload.repName,
         questionId: payload.questionId,
         transcriptLength: payload.transcript?.length || 0
       });
+      
+      // CRITICAL: Log the actual payload being sent
+      console.log('📤📤📤 ACTUAL PAYLOAD BEING SENT:', JSON.stringify(payload, null, 2));
       
       let response;
       let responseData = null;
