@@ -1299,8 +1299,18 @@ export default function EmbeddedVoiceRecorder() {
       console.warn('   URL params:', window.location.search);
     }
     
+    // CRITICAL: Ensure unique IDs are set before creating payload
+    if (!uniqueResponseId) {
+      uniqueResponseId = `${questionId || 'unknown'}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+      console.warn('⚠️ uniqueResponseId was missing, generated:', uniqueResponseId);
+    }
+    if (!answerFieldId) {
+      answerFieldId = new URLSearchParams(window.location.search).get('answerFieldId') || '';
+      console.warn('⚠️ answerFieldId was missing, got from URL:', answerFieldId);
+    }
+    
     const payload = {
-      // CRITICAL: Unique identifier for database lookup and field filling
+      // CRITICAL: Unique identifier for database lookup and field filling - MUST BE FIRST
       uniqueResponseId: uniqueResponseId,
       answerFieldId: answerFieldId,
       // Submission timestamp (when "Keep Response" was clicked)
@@ -1323,6 +1333,14 @@ export default function EmbeddedVoiceRecorder() {
       // Response type
       responseType: 'Voice'
     };
+    
+    // CRITICAL: Double-check payload has IDs (safety check)
+    if (!payload.uniqueResponseId || !payload.answerFieldId) {
+      console.error('❌❌❌ FATAL: Payload missing IDs after creation!');
+      console.error('   This should never happen - forcing values...');
+      payload.uniqueResponseId = uniqueResponseId || 'ERROR_MISSING_ID';
+      payload.answerFieldId = answerFieldId || 'ERROR_MISSING_ID';
+    }
     
     console.log('📊 ===== LOGGING TO SPREADSHEET =====');
     console.log('📊 Webhook URL:', SHEET_WEBHOOK_URL);
