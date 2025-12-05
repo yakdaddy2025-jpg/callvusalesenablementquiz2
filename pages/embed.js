@@ -1191,12 +1191,36 @@ export default function EmbeddedVoiceRecorder() {
   };
   
   const logToSpreadsheet = async (finalTranscript, uniqueResponseId = null, answerFieldId = null) => {
+    // VERSION MARKER: This is the NEW version with uniqueResponseId/answerFieldId support
+    console.log('🔷🔷🔷 NEW VERSION OF logToSpreadsheet - v2.0 with unique IDs 🔷🔷🔷');
+    
     // Generate unique ID if not provided
     if (!uniqueResponseId) {
       uniqueResponseId = `${questionId || 'unknown'}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+      console.log('🔷 Generated uniqueResponseId:', uniqueResponseId);
+    } else {
+      console.log('🔷 Using provided uniqueResponseId:', uniqueResponseId);
     }
     if (!answerFieldId) {
       answerFieldId = new URLSearchParams(window.location.search).get('answerFieldId') || '';
+      console.log('🔷 Got answerFieldId from URL:', answerFieldId);
+    } else {
+      console.log('🔷 Using provided answerFieldId:', answerFieldId);
+    }
+    
+    // CRITICAL: Verify we have both IDs
+    if (!uniqueResponseId || !answerFieldId) {
+      console.error('❌❌❌ CRITICAL: Missing IDs in logToSpreadsheet!');
+      console.error('   uniqueResponseId:', uniqueResponseId);
+      console.error('   answerFieldId:', answerFieldId);
+      // Generate them if missing
+      if (!uniqueResponseId) {
+        uniqueResponseId = `${questionId || 'unknown'}_${Date.now()}_${Math.random().toString(36).substring(7)}`;
+      }
+      if (!answerFieldId) {
+        answerFieldId = new URLSearchParams(window.location.search).get('answerFieldId') || 'ERROR_MISSING_FIELD_ID';
+      }
+      console.log('🔷🔷🔷 FORCED IDs:', { uniqueResponseId, answerFieldId });
     }
     
     // Try to get name/email from CallVu form if not set
