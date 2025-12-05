@@ -50,70 +50,63 @@ export default function EmbeddedVoiceRecorder() {
         window.parent.postMessage({ type: 'REQUEST_USER_INFO' }, '*');
       }
       
-      // Inject script into parent to help with field updates (if same origin)
+      // Inject script into parent to BLOCK Next button until response is accepted
       if (window.parent && window.parent !== window) {
         try {
-          const script = window.parent.document.createElement('script');
-          script.textContent = `
-            (function() {
-              window.addEventListener('message', function(event) {
-                if (event.data && event.data.type === 'VOICE_RESPONSE_READY') {
-                  const transcript = event.data.transcript;
-                  const answerFieldId = event.data.answerFieldId;
-                  
-                  // Try to find and update the field
-                  let field = null;
-                  
-                  // Try by ID first
-                  if (answerFieldId) {
-                    field = document.querySelector('[data-integration-id="' + answerFieldId + '"]') ||
-                            document.querySelector('[name*="' + answerFieldId + '"]');
-                  }
-                  
-                  // Try by label text
-                  if (!field) {
-                    const labels = document.querySelectorAll('label');
-                    for (const label of labels) {
-                      if (label.textContent.includes('Your Response') || label.textContent.includes('Response')) {
-                        const forAttr = label.getAttribute('for');
-                        if (forAttr) {
-                          field = document.getElementById(forAttr);
-                        } else {
-                          field = label.nextElementSibling;
-                        }
-                        if (field && field.tagName === 'TEXTAREA' && !field.readOnly) break;
+          // Check if script already exists
+          if (!window.parent.voiceResponseBlockerInjected) {
+            const script = window.parent.document.createElement('script');
+            script.textContent = `
+              (function() {
+                // Track if voice response was accepted
+                window.voiceResponseAccepted = false;
+                window.voiceResponseTranscript = '';
+                
+                // Listen for voice response ready
+                window.addEventListener('message', function(event) {
+                  if (event.data && event.data.type === 'VOICE_RESPONSE_READY') {
+                    window.voiceResponseAccepted = true;
+                    window.voiceResponseTranscript = event.data.transcript || '';
+                    
+                    // Enable Next button
+                    const allButtons = Array.from(document.querySelectorAll('button'));
+                    for (const btn of allButtons) {
+                      const btnText = btn.textContent?.toLowerCase() || '';
+                      if (btnText.includes('next')) {
+                        btn.disabled = false;
+                        btn.removeAttribute('disabled');
+                        btn.classList.remove('disabled');
                       }
                     }
                   }
+                });
+                
+                // Intercept Next button clicks - block if no response accepted
+                document.addEventListener('click', function(e) {
+                  const target = e.target;
+                  const isNextButton = target.tagName === 'BUTTON' && 
+                                      (target.textContent?.toLowerCase().includes('next') ||
+                                       target.className?.toLowerCase().includes('next') ||
+                                       target.id?.toLowerCase().includes('next'));
                   
-                  // Try all textareas
-                  if (!field) {
-                    const textareas = document.querySelectorAll('textarea');
-                    for (const ta of textareas) {
-                      if (!ta.readOnly && !ta.disabled && ta.offsetParent !== null) {
-                        const nearbyText = (ta.previousElementSibling?.textContent || ta.parentElement?.textContent || '').toLowerCase();
-                        if (nearbyText.includes('response') || nearbyText.includes('answer')) {
-                          field = ta;
-                          break;
-                        }
-                      }
+                  if (isNextButton) {
+                    // Check if there's a voice recorder on this page
+                    const hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
+                    if (hasRecorder && !window.voiceResponseAccepted) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      e.stopImmediatePropagation();
+                      alert('Please record your response and click "Keep Response" before proceeding.');
+                      return false;
                     }
                   }
-                  
-                  if (field && field.tagName === 'TEXTAREA') {
-                    field.value = transcript;
-                    field.dispatchEvent(new Event('input', { bubbles: true }));
-                    field.dispatchEvent(new Event('change', { bubbles: true }));
-                    field.focus();
-                    setTimeout(() => field.blur(), 100);
-                    console.log('✅ CallVu field updated via injected script');
-                  }
-                }
-              });
-            })();
-          `;
-          window.parent.document.head.appendChild(script);
-          console.log('✅ Injected helper script into parent');
+                }, true);
+              })();
+            `;
+            window.parent.document.head.appendChild(script);
+            window.parent.voiceResponseBlockerInjected = true;
+            console.log('✅ Injected Next button blocker script');
+          }
         } catch (e) {
           console.log('Could not inject script (cross-origin):', e);
         }
