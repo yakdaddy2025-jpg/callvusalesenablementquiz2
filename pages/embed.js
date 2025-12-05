@@ -1120,17 +1120,27 @@ export default function EmbeddedVoiceRecorder() {
     
     console.log('💾💾💾 SAVING TO DATABASE WITH UNIQUE ID:', uniqueResponseId);
     console.log('💾 Answer Field ID:', answerFieldId);
+    console.log('💾 Transcript to save:', transcriptToSend);
     console.log('💾 After save, will fetch transcript and fill field');
+    
+    // CRITICAL: Also try to fill field directly FIRST (before database save)
+    // This is a fallback in case database fetch fails due to CORS
+    console.log('🔧🔧🔧 ATTEMPTING DIRECT FIELD FILL FIRST (fallback)...');
+    fillRequiredFieldFromDatabase(transcriptToSend, answerFieldId);
     
     // CRITICAL: Pass uniqueResponseId and answerFieldId to logToSpreadsheet
     // Save to database, then fetch and fill
     logToSpreadsheet(finalTranscript, uniqueResponseId, answerFieldId).then(() => {
       // After saving, fetch the transcript and fill the field
       setTimeout(() => {
+        console.log('🔍🔍🔍 FETCHING FROM DATABASE AFTER SAVE...');
         fetchTranscriptAndFillField(uniqueResponseId, answerFieldId, questionId || '');
-      }, 800); // Wait 800ms for database to save
+      }, 1000); // Wait 1 second for database to save
     }).catch(err => {
       console.error('❌ Error saving to spreadsheet:', err);
+      // Even if save fails, try to fill the field directly
+      console.log('⚠️ Save failed, but trying direct fill anyway...');
+      fillRequiredFieldFromDatabase(transcriptToSend, answerFieldId);
     });
     
     // Set flag for JavaScript blocker
