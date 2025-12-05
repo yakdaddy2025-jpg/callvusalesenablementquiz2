@@ -1318,7 +1318,24 @@ export default function EmbeddedVoiceRecorder() {
     console.log('📊 Webhook URL:', SHEET_WEBHOOK_URL);
     console.log('📊 Unique Response ID:', uniqueResponseId);
     console.log('📊 Answer Field ID:', answerFieldId);
-    console.log('📊 Payload:', JSON.stringify(payload, null, 2));
+    console.log('📊 Rep Name:', nameToUse);
+    console.log('📊 Rep Email:', emailToUse);
+    console.log('📊 Transcript length:', transcriptToLog.length);
+    
+    // CRITICAL: Verify unique IDs are in payload BEFORE logging
+    if (!payload.uniqueResponseId || !payload.answerFieldId) {
+      console.error('❌❌❌ CRITICAL ERROR: uniqueResponseId or answerFieldId missing from payload!');
+      console.error('   uniqueResponseId in payload:', payload.uniqueResponseId);
+      console.error('   answerFieldId in payload:', payload.answerFieldId);
+      console.error('   Expected uniqueResponseId:', uniqueResponseId);
+      console.error('   Expected answerFieldId:', answerFieldId);
+      // Force add them if missing
+      payload.uniqueResponseId = uniqueResponseId;
+      payload.answerFieldId = answerFieldId;
+      console.log('✅✅✅ Fixed payload - added missing IDs');
+    }
+    
+    console.log('📊 Full Payload:', JSON.stringify(payload, null, 2));
     
     // CRITICAL: Verify unique IDs are in payload
     if (!payload.uniqueResponseId || !payload.answerFieldId) {
