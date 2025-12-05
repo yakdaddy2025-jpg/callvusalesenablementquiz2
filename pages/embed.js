@@ -58,148 +58,179 @@ export default function EmbeddedVoiceRecorder() {
             const script = window.parent.document.createElement('script');
             script.textContent = `
               (function() {
-                // Track if voice response was accepted for current step
+                // CRITICAL: Track if voice response was accepted for current step
                 window.voiceResponseAccepted = false;
                 window.voiceResponseTranscript = '';
                 window.currentStepHasRecorder = false;
+                window.blockerActive = true;
                 
-                // Reset when step changes (detect URL change or step navigation)
+                // Reset when step changes
                 var lastUrl = window.location.href;
-                setInterval(function() {
+                var resetInterval = setInterval(function() {
                   if (window.location.href !== lastUrl) {
                     lastUrl = window.location.href;
                     window.voiceResponseAccepted = false;
                     window.voiceResponseTranscript = '';
-                    console.log('Step changed - resetting voice response flag');
+                    console.log('🔄 Step changed - resetting voice response flag');
                   }
-                }, 500);
+                }, 200);
                 
-                // Check for recorder on page load and periodically
-                function checkForRecorder() {
+                // AGGRESSIVE: Continuously disable Next button if recorder present
+                function forceDisableNextButton() {
                   var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
                   window.currentStepHasRecorder = !!hasRecorder;
                   
-                  if (hasRecorder) {
-                    // Disable Next button if recorder present and no response accepted
+                  if (hasRecorder && !window.voiceResponseAccepted) {
+                    // Find ALL possible Next buttons
                     var allButtons = Array.from(document.querySelectorAll('button'));
-                    for (var i = 0; i < allButtons.length; i++) {
-                      var btn = allButtons[i];
-                      var btnText = (btn.textContent || '').toLowerCase();
-                      if (btnText.includes('next') || btnText.includes('begin quiz')) {
-                        if (!window.voiceResponseAccepted) {
-                          btn.disabled = true;
-                          btn.setAttribute('disabled', 'disabled');
-                          btn.classList.add('disabled');
-                          btn.style.opacity = '0.5';
-                          btn.style.cursor = 'not-allowed';
-                        }
+                    var allClickables = Array.from(document.querySelectorAll('[onclick], [class*="next"], [id*="next"], [role="button"]'));
+                    var allElements = allButtons.concat(allClickables);
+                    
+                    for (var i = 0; i < allElements.length; i++) {
+                      var el = allElements[i];
+                      var text = (el.textContent || el.innerText || el.value || '').toLowerCase();
+                      var className = (el.className || '').toLowerCase();
+                      var id = (el.id || '').toLowerCase();
+                      
+                      if (text.includes('next') || text.includes('continue') || className.includes('next') || id.includes('next')) {
+                        // FORCE disable
+                        el.disabled = true;
+                        el.setAttribute('disabled', 'disabled');
+                        el.setAttribute('aria-disabled', 'true');
+                        el.classList.add('disabled');
+                        el.style.opacity = '0.5';
+                        el.style.cursor = 'not-allowed';
+                        el.style.pointerEvents = 'none';
+                        
+                        // Remove onclick handlers
+                        el.onclick = function() {
+                          alert('CRITICAL: You must record your response and click "Keep Response" before proceeding.');
+                          return false;
+                        };
+                        
+                        // Block all events
+                        el.addEventListener('click', function(e) {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          e.stopImmediatePropagation();
+                          alert('CRITICAL: You must record your response and click "Keep Response" before proceeding.');
+                          return false;
+                        }, true);
                       }
                     }
                   }
                 }
                 
-                // Check immediately and periodically
-                checkForRecorder();
-                setInterval(checkForRecorder, 1000);
+                // Run immediately and continuously
+                forceDisableNextButton();
+                setInterval(forceDisableNextButton, 100);
                 
                 // Listen for voice response ready
                 window.addEventListener('message', function(event) {
                   if (event.data && event.data.type === 'VOICE_RESPONSE_READY') {
                     window.voiceResponseAccepted = true;
                     window.voiceResponseTranscript = event.data.transcript || '';
+                    console.log('✅ Voice response accepted - enabling Next button');
                     
                     // Enable Next button
                     var allButtons = Array.from(document.querySelectorAll('button'));
                     for (var i = 0; i < allButtons.length; i++) {
                       var btn = allButtons[i];
                       var btnText = (btn.textContent || '').toLowerCase();
-                      if (btnText.includes('next') || btnText.includes('begin quiz')) {
+                      if (btnText.includes('next') || btnText.includes('begin quiz') || btnText.includes('continue')) {
                         btn.disabled = false;
                         btn.removeAttribute('disabled');
+                        btn.removeAttribute('aria-disabled');
                         btn.classList.remove('disabled');
                         btn.style.opacity = '1';
                         btn.style.cursor = 'pointer';
+                        btn.style.pointerEvents = 'auto';
                       }
                     }
                   }
                 });
                 
-                // CRITICAL: Intercept ALL Next button clicks - ABSOLUTE BLOCKER
-                document.addEventListener('click', function(e) {
-                  var target = e.target;
-                  var isNextButton = false;
-                  
-                  // Check if clicked element is a button
-                  if (target.tagName === 'BUTTON') {
-                    var btnText = (target.textContent || '').toLowerCase();
-                    isNextButton = btnText.includes('next') || btnText.includes('begin quiz') || btnText.includes('continue');
-                  }
-                  
-                  // Check if clicked element is inside a button
-                  if (!isNextButton) {
-                    var parent = target.closest('button');
-                    if (parent) {
-                      var btnText = (parent.textContent || '').toLowerCase();
-                      isNextButton = btnText.includes('next') || btnText.includes('begin quiz') || btnText.includes('continue');
-                      if (isNextButton) target = parent;
-                    }
-                  }
-                  
-                  // Also check by class/id
-                  if (!isNextButton) {
-                    var className = (target.className || '').toLowerCase();
-                    var id = (target.id || '').toLowerCase();
-                    if (className.includes('next') || id.includes('next')) {
-                      isNextButton = true;
-                    }
-                  }
-                  
-                  if (isNextButton) {
-                    // Check if there's a voice recorder on this page
-                    var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
-                    if (hasRecorder && !window.voiceResponseAccepted) {
-                      // ABSOLUTE BLOCK - prevent everything
-                      e.preventDefault();
-                      e.stopPropagation();
-                      e.stopImmediatePropagation();
-                      e.cancelBubble = true;
-                      
-                      // Also try to stop the button action
-                      if (target.click) {
-                        target.onclick = function() { return false; };
-                      }
-                      
-                      alert('CRITICAL: You must record your response and click "Keep Response" before proceeding to the next question.');
-                      return false;
-                    }
-                  }
-                }, true);
+                // MULTIPLE LAYERS OF PROTECTION
                 
-                // Also use capture phase to catch it even earlier
+                // Layer 1: Capture phase - highest priority
                 document.addEventListener('click', function(e) {
                   var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
                   if (hasRecorder && !window.voiceResponseAccepted) {
                     var target = e.target;
-                    var btnText = (target.textContent || target.innerText || '').toLowerCase();
-                    if (btnText.includes('next') || btnText.includes('continue')) {
+                    var text = (target.textContent || target.innerText || '').toLowerCase();
+                    var className = (target.className || '').toLowerCase();
+                    
+                    if (text.includes('next') || text.includes('continue') || className.includes('next')) {
                       e.preventDefault();
                       e.stopPropagation();
                       e.stopImmediatePropagation();
+                      e.cancelBubble = true;
                       alert('CRITICAL: You must record your response and click "Keep Response" before proceeding.');
                       return false;
                     }
                   }
                 }, true);
                 
-                // Also intercept form submissions
+                // Layer 2: Bubble phase
+                document.addEventListener('click', function(e) {
+                  var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
+                  if (hasRecorder && !window.voiceResponseAccepted) {
+                    var target = e.target;
+                    var parent = target.closest('button, [onclick], [class*="next"]');
+                    if (parent) {
+                      var text = (parent.textContent || parent.innerText || '').toLowerCase();
+                      if (text.includes('next') || text.includes('continue')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        e.stopImmediatePropagation();
+                        alert('CRITICAL: You must record your response and click "Keep Response" before proceeding.');
+                        return false;
+                      }
+                    }
+                  }
+                }, false);
+                
+                // Layer 3: Intercept all button clicks
+                document.addEventListener('mousedown', function(e) {
+                  var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
+                  if (hasRecorder && !window.voiceResponseAccepted) {
+                    var target = e.target;
+                    var text = (target.textContent || target.innerText || '').toLowerCase();
+                    if (text.includes('next') || text.includes('continue')) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      alert('CRITICAL: You must record your response and click "Keep Response" before proceeding.');
+                      return false;
+                    }
+                  }
+                }, true);
+                
+                // Layer 4: Intercept form submissions
                 document.addEventListener('submit', function(e) {
                   var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
                   if (hasRecorder && !window.voiceResponseAccepted) {
                     e.preventDefault();
-                    alert('Please record your response and click "Keep Response" before proceeding.');
+                    e.stopPropagation();
+                    alert('CRITICAL: You must record your response and click "Keep Response" before proceeding.');
                     return false;
                   }
                 }, true);
+                
+                // Layer 5: Override button click method
+                var originalClick = HTMLElement.prototype.click;
+                HTMLElement.prototype.click = function() {
+                  var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
+                  if (hasRecorder && !window.voiceResponseAccepted) {
+                    var text = (this.textContent || this.innerText || '').toLowerCase();
+                    if (text.includes('next') || text.includes('continue')) {
+                      alert('CRITICAL: You must record your response and click "Keep Response" before proceeding.');
+                      return false;
+                    }
+                  }
+                  return originalClick.apply(this, arguments);
+                };
+                
+                console.log('🛡️ Next button blocker activated - MULTIPLE LAYERS OF PROTECTION');
               })();
             `;
             window.parent.document.head.appendChild(script);
