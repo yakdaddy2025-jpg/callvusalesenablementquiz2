@@ -467,6 +467,7 @@ export default function EmbeddedVoiceRecorder() {
     const transcriptToSend = finalTranscript || transcript.trim();
     
     console.log('✅ Response saved - filling required field and logging to spreadsheet');
+    console.log('📝 Transcript to fill:', transcriptToSend);
     
     // CRITICAL: Fill the required response field so CallVu validation passes
     const fillRequiredField = () => {
@@ -477,133 +478,178 @@ export default function EmbeddedVoiceRecorder() {
       
       try {
         const doc = window.parent.document;
-        const allTextareas = Array.from(doc.querySelectorAll('textarea'));
+        const urlParams = new URLSearchParams(window.location.search);
+        const answerFieldId = urlParams.get('answerFieldId') || '';
         
-        console.log(`🔍 Searching ${allTextareas.length} textareas for required response field...`);
+        console.log('🔍 AnswerFieldId from URL:', answerFieldId);
+        
+        // Get ALL textareas and inputs
+        const allTextareas = Array.from(doc.querySelectorAll('textarea'));
+        const allInputs = Array.from(doc.querySelectorAll('input[type="text"]'));
+        const allFields = [...allTextareas, ...allInputs];
+        
+        console.log(`🔍 Found ${allTextareas.length} textareas, ${allInputs.length} text inputs`);
         
         let requiredField = null;
+        let foundBy = '';
         
-        // Strategy 1: Find by "*Your Response" label (most specific)
-        for (const ta of allTextareas) {
-          // Check all nearby elements for label
-          const parent = ta.parentElement;
-          const grandparent = parent?.parentElement;
-          const prevSib = ta.previousElementSibling;
-          const nextSib = ta.nextElementSibling;
+        // Strategy 1: Find by integrationID (most reliable)
+        if (answerFieldId) {
+          // Try various selectors with the answerFieldId
+          const selectors = [
+            `[data-integration-id="${answerFieldId}"]`,
+            `[data-integration-id*="${answerFieldId}"]`,
+            `[id*="${answerFieldId}"]`,
+            `[name*="${answerFieldId}"]`,
+            `textarea[data-integration-id*="Response"]`,
+            `textarea[data-integration-id*="response"]`
+          ];
           
-          const searchText = [
-            prevSib?.textContent || '',
-            parent?.textContent || '',
-            grandparent?.textContent || '',
-            nextSib?.textContent || '',
-            ta.getAttribute('placeholder') || '',
-            ta.getAttribute('name') || '',
-            ta.getAttribute('id') || ''
-          ].join(' ').toLowerCase();
-          
-          if (searchText.includes('*your response') || searchText.includes('your response')) {
-            // Check if it's required or empty (likely the one we need)
-            if (ta.hasAttribute('required') || 
-                ta.getAttribute('aria-required') === 'true' ||
-                ta.value === '' || 
-                ta.readOnly) {
-              requiredField = ta;
-              console.log('✅ Found by label text');
-              break;
-            }
-          }
-        }
-        
-        // Strategy 2: Find by integrationID pattern
-        if (!requiredField) {
-          const urlParams = new URLSearchParams(window.location.search);
-          const answerFieldId = urlParams.get('answerFieldId') || '';
-          
-          if (answerFieldId) {
-            const selectors = [
-              `textarea[data-integration-id*="Response"]`,
-              `textarea[data-integration-id*="response"]`,
-              `textarea[name*="response"]`,
-              `textarea[id*="response"]`
-            ];
-            
-            for (const selector of selectors) {
-              try {
-                const field = doc.querySelector(selector);
-                if (field && field.tagName === 'TEXTAREA') {
-                  requiredField = field;
-                  console.log('✅ Found by integrationID pattern:', selector);
-                  break;
-                }
-              } catch (e) {}
-            }
-          }
-        }
-        
-        // Strategy 3: Find any required textarea
-        if (!requiredField) {
-          for (const ta of allTextareas) {
-            if (ta.hasAttribute('required') || ta.getAttribute('aria-required') === 'true') {
-              requiredField = ta;
-              console.log('✅ Found by required attribute');
-              break;
-            }
-          }
-        }
-        
-        // Strategy 4: Find empty readonly textarea near "Required" text
-        if (!requiredField) {
-          for (const ta of allTextareas) {
-            if (ta.readOnly && ta.value === '') {
-              const nearbyText = (ta.parentElement?.textContent || '').toLowerCase();
-              if (nearbyText.includes('required')) {
-                requiredField = ta;
-                console.log('✅ Found by readonly + required text');
+          for (const selector of selectors) {
+            try {
+              const field = doc.querySelector(selector);
+              if (field && (field.tagName === 'TEXTAREA' || field.tagName === 'INPUT')) {
+                requiredField = field;
+                foundBy = `integrationID selector: ${selector}`;
+                console.log('✅ Found by', foundBy);
                 break;
               }
+            } catch (e) {
+              console.log('Selector failed:', selector, e);
+            }
+          }
+        }
+        
+        // Strategy 2: Find by "*Your Response" label text (search more thoroughly)
+        if (!requiredField) {
+          for (const field of allFields) {
+            // Search in all parent elements
+            let current = field;
+            let searchDepth = 0;
+            while (current && searchDepth < 5) {
+              const text = (current.textContent || '').toLowerCase();
+              const ariaLabel = (current.getAttribute('aria-label') || '').toLowerCase();
+              const placeholder = (current.getAttribute('placeholder') || '').toLowerCase();
+              
+              if (text.includes('*your response') || 
+                  text.includes('your response') ||
+                  ariaLabel.includes('your response') ||
+                  placeholder.includes('your response')) {
+                // Check if it's required or readonly
+                if (field.hasAttribute('required') || 
+                    field.getAttribute('aria-required') === 'true' ||
+                    field.readOnly ||
+                    field.value === '') {
+                  requiredField = field;
+                  foundBy = 'label text "*Your Response"';
+                  console.log('✅ Found by', foundBy);
+                  break;
+                }
+              }
+              current = current.parentElement;
+              searchDepth++;
+            }
+            if (requiredField) break;
+          }
+        }
+        
+        // Strategy 3: Find readonly + required textarea
+        if (!requiredField) {
+          for (const field of allFields) {
+            if (field.readOnly && 
+                (field.hasAttribute('required') || field.getAttribute('aria-required') === 'true')) {
+              requiredField = field;
+              foundBy = 'readonly + required';
+              console.log('✅ Found by', foundBy);
+              break;
+            }
+          }
+        }
+        
+        // Strategy 4: Find any required empty field
+        if (!requiredField) {
+          for (const field of allFields) {
+            if ((field.hasAttribute('required') || field.getAttribute('aria-required') === 'true') &&
+                field.value === '') {
+              requiredField = field;
+              foundBy = 'required + empty';
+              console.log('✅ Found by', foundBy);
+              break;
             }
           }
         }
         
         // Strategy 5: Find first empty textarea (last resort)
         if (!requiredField) {
-          for (const ta of allTextareas) {
-            if (ta.value === '' && ta.offsetParent !== null) {
-              requiredField = ta;
-              console.log('✅ Found first empty visible textarea (fallback)');
+          for (const field of allTextareas) {
+            if (field.value === '' && field.offsetParent !== null) {
+              requiredField = field;
+              foundBy = 'first empty textarea';
+              console.log('✅ Found by', foundBy);
               break;
             }
           }
         }
         
         if (requiredField) {
-          console.log('🔧 Filling required field:', {
+          console.log('🔧 Filling field found by:', foundBy);
+          console.log('🔧 Field details:', {
+            tagName: requiredField.tagName,
             readOnly: requiredField.readOnly,
             disabled: requiredField.disabled,
             required: requiredField.hasAttribute('required'),
+            ariaRequired: requiredField.getAttribute('aria-required'),
             currentValue: requiredField.value,
-            newValue: transcriptToSend
+            id: requiredField.id,
+            name: requiredField.name,
+            className: requiredField.className,
+            dataIntegrationId: requiredField.getAttribute('data-integration-id')
           });
           
-          // FORCE remove readonly/disabled
+          // FORCE remove readonly/disabled - use multiple methods
           requiredField.removeAttribute('readonly');
           requiredField.removeAttribute('disabled');
           requiredField.readOnly = false;
           requiredField.disabled = false;
           
-          // Set value using multiple methods
+          // Try to remove readonly via property descriptor
+          try {
+            Object.defineProperty(requiredField, 'readOnly', {
+              value: false,
+              writable: true,
+              configurable: true
+            });
+          } catch (e) {}
+          
+          // Set value using EVERY possible method
           requiredField.value = transcriptToSend;
+          requiredField.textContent = transcriptToSend;
+          requiredField.innerText = transcriptToSend;
           
           // Try native setter
           try {
-            const nativeSetter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
-            nativeSetter.call(requiredField, transcriptToSend);
+            const descriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+            if (descriptor && descriptor.set) {
+              descriptor.set.call(requiredField, transcriptToSend);
+            }
+          } catch (e) {
+            console.log('Native setter failed:', e);
+          }
+          
+          // Also try setAttribute
+          try {
+            requiredField.setAttribute('value', transcriptToSend);
           } catch (e) {}
           
-          // Trigger ALL events
-          ['focus', 'input', 'change', 'blur', 'keyup', 'keydown'].forEach(type => {
-            const event = new Event(type, { bubbles: true, cancelable: true });
-            requiredField.dispatchEvent(event);
+          // Trigger ALL possible events in sequence
+          const events = ['focus', 'input', 'change', 'blur', 'keyup', 'keydown', 'keypress'];
+          events.forEach((type, index) => {
+            setTimeout(() => {
+              try {
+                const event = new Event(type, { bubbles: true, cancelable: true });
+                requiredField.dispatchEvent(event);
+              } catch (e) {}
+            }, index * 10);
           });
           
           // Also try InputEvent
@@ -617,45 +663,73 @@ export default function EmbeddedVoiceRecorder() {
             requiredField.dispatchEvent(inputEvent);
           } catch (e) {}
           
-          // Focus and blur to trigger validation
+          // Focus, wait, blur, verify
           requiredField.focus();
           setTimeout(() => {
             requiredField.blur();
             requiredField.dispatchEvent(new Event('change', { bubbles: true }));
             
-            // Verify
-            if (requiredField.value === transcriptToSend) {
-              console.log('✅✅✅ Required field successfully filled and verified!');
+            // Verify value was set
+            const actualValue = requiredField.value || requiredField.textContent || requiredField.innerText;
+            console.log('🔍 Verification:', {
+              expected: transcriptToSend,
+              actual: actualValue,
+              match: actualValue === transcriptToSend || actualValue.includes(transcriptToSend.substring(0, 10))
+            });
+            
+            if (actualValue === transcriptToSend || actualValue.includes(transcriptToSend.substring(0, 10))) {
+              console.log('✅✅✅ REQUIRED FIELD SUCCESSFULLY FILLED!');
             } else {
-              console.warn('⚠️ Field value mismatch:', requiredField.value, 'vs', transcriptToSend);
+              console.error('❌❌❌ FIELD VALUE NOT SET! Expected:', transcriptToSend, 'Got:', actualValue);
             }
-          }, 200);
+          }, 300);
           
           return true;
         } else {
-          console.error('❌ Could not find required response field!');
-          console.error('   Searched', allTextareas.length, 'textareas');
+          console.error('❌❌❌ COULD NOT FIND REQUIRED RESPONSE FIELD!');
+          console.error('   Searched', allFields.length, 'fields');
+          console.error('   AnswerFieldId:', answerFieldId);
           return false;
         }
       } catch (e) {
         console.error('❌ Error filling required field:', e);
+        console.error('Stack:', e.stack);
         return false;
       }
     };
     
-    // Fill immediately and retry multiple times
+    // Fill immediately and retry aggressively
+    console.log('🚀 Starting field fill attempts...');
     let filled = fillRequiredField();
     if (!filled) {
-      setTimeout(() => { filled = fillRequiredField(); }, 200);
+      setTimeout(() => { 
+        console.log('🔄 Retry 1 (200ms)');
+        filled = fillRequiredField(); 
+      }, 200);
     }
     if (!filled) {
-      setTimeout(() => { filled = fillRequiredField(); }, 500);
+      setTimeout(() => { 
+        console.log('🔄 Retry 2 (500ms)');
+        filled = fillRequiredField(); 
+      }, 500);
     }
     if (!filled) {
-      setTimeout(() => { filled = fillRequiredField(); }, 1000);
+      setTimeout(() => { 
+        console.log('🔄 Retry 3 (1000ms)');
+        filled = fillRequiredField(); 
+      }, 1000);
     }
     if (!filled) {
-      setTimeout(() => { filled = fillRequiredField(); }, 2000);
+      setTimeout(() => { 
+        console.log('🔄 Retry 4 (2000ms)');
+        filled = fillRequiredField(); 
+      }, 2000);
+    }
+    if (!filled) {
+      setTimeout(() => { 
+        console.log('🔄 Retry 5 (3000ms)');
+        filled = fillRequiredField(); 
+      }, 3000);
     }
     
     // Log to spreadsheet IMMEDIATELY
