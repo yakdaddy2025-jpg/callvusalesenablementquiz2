@@ -61,7 +61,7 @@
     "steps": [
       {
         "stepName": "Intro",
-        "identifier": "step_intro",
+        "identifier": "step_intro_unique_1764910493761",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -79,25 +79,25 @@
         "blocks": [
           {
             "blockName": "",
-            "identifier": "block_intro",
+            "identifier": "block_intro_unique_1764910493761",
             "icon": "",
             "rows": [
               {
                 "fields": [
                   {
-                    "className": "",
+                    "className": "intro-field-0-1764910493760",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "intro_small_heading_0_0_0",
-                    "integrationID": "Intro_SmallHeading",
+                    "identifier": "intro_unique_0_1764910493760_a6w5sc",
+                    "integrationID": "Intro_Unique_0_1764910493760_a6w5sc",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
-                    "name": "editor.fields.paragraph",
+                    "name": "editor.fields.paragraph.intro.0",
                     "permission": "both",
                     "readOnly": false,
                     "required": false,
-                    "tooltip": "",
+                    "tooltip": "Intro step field 0 - 1764910493760",
                     "type": "paragraph",
                     "validations": [],
                     "width": "full",
@@ -106,19 +106,19 @@
                     "localOnly": false
                   },
                   {
-                    "className": "",
+                    "className": "intro-field-1-1764910493760",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "intro_large_heading_0_0_1",
-                    "integrationID": "Intro_LargeHeading",
+                    "identifier": "intro_unique_1_1764910493760_yg54a",
+                    "integrationID": "Intro_Unique_1_1764910493760_yg54a",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
-                    "name": "editor.fields.paragraph",
+                    "name": "editor.fields.paragraph.intro.1",
                     "permission": "both",
                     "readOnly": false,
                     "required": false,
-                    "tooltip": "",
+                    "tooltip": "Intro step field 1 - 1764910493760",
                     "type": "paragraph",
                     "validations": [],
                     "width": "full",
@@ -127,19 +127,19 @@
                     "localOnly": false
                   },
                   {
-                    "className": "",
+                    "className": "intro-field-2-1764910493761",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "intro_para_1764884129194_0_0_2",
-                    "integrationID": "Intro_paragraph_0_0_2_1764910372597",
+                    "identifier": "intro_unique_2_1764910493760_8t0xb",
+                    "integrationID": "Intro_Unique_2_1764910493760_8t0xb",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
-                    "name": "editor.fields.paragraph",
+                    "name": "editor.fields.paragraph.intro.2",
                     "permission": "both",
                     "readOnly": false,
                     "required": false,
-                    "tooltip": "",
+                    "tooltip": "Intro step field 2 - 1764910493761",
                     "type": "paragraph",
                     "validations": [],
                     "width": "full",
