@@ -26,13 +26,17 @@ function getOrCreateSpreadsheet() {
   
   // Set up headers
   const headers = [
-    'Timestamp',
+    'Submission Timestamp',
+    'Recording Start Time',
+    'Recording End Time',
     'Rep Name',
     'Rep Email',
     'Question ID',
     'Question Title',
     'Response Transcript',
     'Recording Duration (sec)',
+    'Word Count',
+    'Response Type',
     'Success Criteria',
     'Score (1-10)',
     'Manager Notes'
@@ -45,16 +49,20 @@ function getOrCreateSpreadsheet() {
   sheet.setFrozenRows(1);
   
   // Set column widths
-  sheet.setColumnWidth(1, 150);   // Timestamp
-  sheet.setColumnWidth(2, 150);   // Rep Name
-  sheet.setColumnWidth(3, 200);   // Email
-  sheet.setColumnWidth(4, 130);   // Question ID
-  sheet.setColumnWidth(5, 250);   // Question Title
-  sheet.setColumnWidth(6, 500);   // Transcript
-  sheet.setColumnWidth(7, 80);    // Duration
-  sheet.setColumnWidth(8, 350);   // Criteria
-  sheet.setColumnWidth(9, 80);    // Score
-  sheet.setColumnWidth(10, 300);  // Notes
+  sheet.setColumnWidth(1, 180);   // Submission Timestamp
+  sheet.setColumnWidth(2, 180);   // Recording Start Time
+  sheet.setColumnWidth(3, 180);   // Recording End Time
+  sheet.setColumnWidth(4, 150);   // Rep Name
+  sheet.setColumnWidth(5, 200);   // Email
+  sheet.setColumnWidth(6, 130);   // Question ID
+  sheet.setColumnWidth(7, 250);   // Question Title
+  sheet.setColumnWidth(8, 500);   // Transcript
+  sheet.setColumnWidth(9, 80);    // Duration
+  sheet.setColumnWidth(10, 80);   // Word Count
+  sheet.setColumnWidth(11, 100);   // Response Type
+  sheet.setColumnWidth(12, 350);   // Criteria
+  sheet.setColumnWidth(13, 80);    // Score
+  sheet.setColumnWidth(14, 300);   // Notes
   
   // Add data validation for Score column
   const scoreRule = SpreadsheetApp.newDataValidation()
@@ -62,7 +70,7 @@ function getOrCreateSpreadsheet() {
     .setAllowInvalid(false)
     .setHelpText('Enter a score from 1-10')
     .build();
-  sheet.getRange('I2:I1000').setDataValidation(scoreRule);
+  sheet.getRange('M2:M1000').setDataValidation(scoreRule); // Updated column from I to M
   
   Logger.log('Created new spreadsheet: ' + ss.getUrl());
   return ss;
@@ -75,23 +83,34 @@ function doPost(e) {
     const ss = getOrCreateSpreadsheet();
     const sheet = ss.getSheetByName(SHEET_NAME);
     
-    // Format timestamp
-    const timestamp = new Date(data.timestamp || new Date());
-    const formattedTime = Utilities.formatDate(
-      timestamp, 
-      Session.getScriptTimeZone(), 
-      'yyyy-MM-dd HH:mm:ss'
-    );
+    // Format timestamps
+    const formatTimestamp = (timestampStr) => {
+      if (!timestampStr) return '';
+      try {
+        const date = new Date(timestampStr);
+        return Utilities.formatDate(
+          date, 
+          Session.getScriptTimeZone(), 
+          'yyyy-MM-dd HH:mm:ss'
+        );
+      } catch (e) {
+        return timestampStr; // Return as-is if parsing fails
+      }
+    };
     
     // Append row
     const row = [
-      formattedTime,
+      formatTimestamp(data.submissionTimestamp || data.timestamp),
+      formatTimestamp(data.recordingStartTime || ''),
+      formatTimestamp(data.recordingEndTime || ''),
       data.repName || '',
       data.repEmail || '',
       data.questionId || '',
       data.questionTitle || '',
       data.transcript || '',
       data.recordingDuration || 0,
+      data.wordCount || 0,
+      data.responseType || 'Voice',
       data.successCriteria || '',
       '',  // Score - manager fills in
       ''   // Notes - manager fills in
