@@ -124,7 +124,7 @@ export default function EmbeddedVoiceRecorder() {
                   }
                 });
                 
-                // AGGRESSIVE: Intercept ALL Next button clicks
+                // CRITICAL: Intercept ALL Next button clicks - ABSOLUTE BLOCKER
                 document.addEventListener('click', function(e) {
                   var target = e.target;
                   var isNextButton = false;
@@ -132,7 +132,7 @@ export default function EmbeddedVoiceRecorder() {
                   // Check if clicked element is a button
                   if (target.tagName === 'BUTTON') {
                     var btnText = (target.textContent || '').toLowerCase();
-                    isNextButton = btnText.includes('next') || btnText.includes('begin quiz');
+                    isNextButton = btnText.includes('next') || btnText.includes('begin quiz') || btnText.includes('continue');
                   }
                   
                   // Check if clicked element is inside a button
@@ -140,8 +140,17 @@ export default function EmbeddedVoiceRecorder() {
                     var parent = target.closest('button');
                     if (parent) {
                       var btnText = (parent.textContent || '').toLowerCase();
-                      isNextButton = btnText.includes('next') || btnText.includes('begin quiz');
+                      isNextButton = btnText.includes('next') || btnText.includes('begin quiz') || btnText.includes('continue');
                       if (isNextButton) target = parent;
+                    }
+                  }
+                  
+                  // Also check by class/id
+                  if (!isNextButton) {
+                    var className = (target.className || '').toLowerCase();
+                    var id = (target.id || '').toLowerCase();
+                    if (className.includes('next') || id.includes('next')) {
+                      isNextButton = true;
                     }
                   }
                   
@@ -149,10 +158,34 @@ export default function EmbeddedVoiceRecorder() {
                     // Check if there's a voice recorder on this page
                     var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
                     if (hasRecorder && !window.voiceResponseAccepted) {
+                      // ABSOLUTE BLOCK - prevent everything
                       e.preventDefault();
                       e.stopPropagation();
                       e.stopImmediatePropagation();
-                      alert('Please record your response and click "Keep Response" before proceeding.');
+                      e.cancelBubble = true;
+                      
+                      // Also try to stop the button action
+                      if (target.click) {
+                        target.onclick = function() { return false; };
+                      }
+                      
+                      alert('CRITICAL: You must record your response and click "Keep Response" before proceeding to the next question.');
+                      return false;
+                    }
+                  }
+                }, true);
+                
+                // Also use capture phase to catch it even earlier
+                document.addEventListener('click', function(e) {
+                  var hasRecorder = document.querySelector('iframe[src*="callvusalesenablementquiz2.vercel.app"]');
+                  if (hasRecorder && !window.voiceResponseAccepted) {
+                    var target = e.target;
+                    var btnText = (target.textContent || target.innerText || '').toLowerCase();
+                    if (btnText.includes('next') || btnText.includes('continue')) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      e.stopImmediatePropagation();
+                      alert('CRITICAL: You must record your response and click "Keep Response" before proceeding.');
                       return false;
                     }
                   }
