@@ -12,7 +12,10 @@
  * https://docs.google.com/spreadsheets/d/1JcvaZhDq9Hfr8dOSfVdFcCnaxiTL4oK_l70E_TvXqJ0/edit
  */
 
-const SPREADSHEET_ID = '1JcvaZhDq9Hfr8dOSfVdFcCnaxiTL4oK_l70E_TvXqJ0';
+// NEW SPREADSHEET: https://docs.google.com/spreadsheets/d/e/2PACX-1vQQLzNTy5P-Fx--S6PBBKT_nx2IeZEpDyUK7AQcpCnLpoLsEGuWbxGAEHkcT_mnus3bgOG_OE2ksk6h/pubhtml
+// Extract the actual spreadsheet ID from the edit URL (user needs to provide edit URL or ID)
+// For now, using the published URL ID - user should replace with actual spreadsheet ID
+const SPREADSHEET_ID = '2PACX-1vQQLzNTy5P-Fx--S6PBBKT_nx2IeZEpDyUK7AQcpCnLpoLsEGuWbxGAEHkcT_mnus3bgOG_OE2ksk6h';
 const SHEET_NAME = 'Responses';
 
 function getSpreadsheet() {
