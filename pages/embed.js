@@ -507,9 +507,41 @@ export default function EmbeddedVoiceRecorder() {
   };
   
   const logToSpreadsheet = async (finalTranscript) => {
-    if (!repName.trim() || !repEmail.trim()) {
-      console.warn('Missing name/email for spreadsheet logging');
-      return;
+    // Try to get name/email from CallVu form if not set
+    let nameToUse = repName.trim();
+    let emailToUse = repEmail.trim();
+    
+    // If missing, try to get from parent window
+    if (!nameToUse || !emailToUse) {
+      try {
+        if (window.parent && window.parent !== window) {
+          const parentDoc = window.parent.document;
+          // Look for name/email fields in the form
+          const nameField = parentDoc.querySelector('input[name*="name"], input[id*="name"], input[type="text"]');
+          const emailField = parentDoc.querySelector('input[type="email"], input[name*="email"], input[id*="email"]');
+          
+          if (nameField && !nameToUse) {
+            nameToUse = nameField.value?.trim() || '';
+            console.log('Found name from form:', nameToUse);
+          }
+          if (emailField && !emailToUse) {
+            emailToUse = emailField.value?.trim() || '';
+            console.log('Found email from form:', emailToUse);
+          }
+        }
+      } catch (e) {
+        console.log('Could not access parent form:', e);
+      }
+    }
+    
+    // Still log even if name/email missing (use placeholders)
+    if (!nameToUse) {
+      console.warn('⚠️ Missing rep name - using placeholder');
+      nameToUse = 'Unknown User';
+    }
+    if (!emailToUse) {
+      console.warn('⚠️ Missing rep email - using placeholder');
+      emailToUse = 'unknown@callvu.com';
     }
     
     const transcriptToLog = finalTranscript || transcript.trim();
@@ -524,11 +556,11 @@ export default function EmbeddedVoiceRecorder() {
       // Legacy timestamp (for backward compatibility)
       timestamp: submissionTimestamp,
       // User info
-      repName: repName.trim(),
-      repEmail: repEmail.trim(),
+      repName: nameToUse,
+      repEmail: emailToUse,
       // Question info
-      questionId: questionId,
-      questionTitle: questionTitle,
+      questionId: questionId || 'Unknown',
+      questionTitle: questionTitle || 'Unknown Question',
       // Response info
       transcript: transcriptToLog,
       recordingDuration: recordingTime, // Duration in seconds
@@ -537,20 +569,27 @@ export default function EmbeddedVoiceRecorder() {
       responseType: 'Voice'
     };
     
-    console.log('Logging to spreadsheet:', payload);
+    console.log('📊 Logging to spreadsheet:', payload);
+    console.log('📊 Webhook URL:', SHEET_WEBHOOK_URL);
     
     try {
       if (SHEET_WEBHOOK_URL && SHEET_WEBHOOK_URL !== '') {
-        await fetch(SHEET_WEBHOOK_URL, {
+        const response = await fetch(SHEET_WEBHOOK_URL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        console.log('✅ Logged to spreadsheet successfully');
+        
+        // Note: With no-cors mode, we can't read the response, but we can log the attempt
+        console.log('✅ POST request sent to webhook');
+        console.log('✅ Payload sent:', JSON.stringify(payload, null, 2));
+      } else {
+        console.error('❌ No webhook URL configured');
       }
     } catch (err) {
-      console.log('Webhook error:', err);
+      console.error('❌ Webhook error:', err);
+      console.error('❌ Error details:', JSON.stringify(err, null, 2));
     }
   };
   
