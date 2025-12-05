@@ -22,6 +22,8 @@ export default function EmbeddedVoiceRecorder() {
   const timerRef = useRef(null);
   const isRecordingRef = useRef(false);
   const processedResultsRef = useRef(new Set()); // Track processed results to prevent duplicates
+  const recordingStartTimeRef = useRef(null); // Track when recording started
+  const recordingEndTimeRef = useRef(null); // Track when recording ended
   
   useEffect(() => {
     // Get data from URL params or parent window (CallVu)
@@ -238,6 +240,8 @@ export default function EmbeddedVoiceRecorder() {
     setRecordingTime(0);
     setHasResponse(false);
     processedResultsRef.current.clear(); // Clear processed results when starting new recording
+    recordingStartTimeRef.current = null; // Reset timestamps
+    recordingEndTimeRef.current = null;
     
     try {
       // Request microphone permission first
@@ -248,6 +252,8 @@ export default function EmbeddedVoiceRecorder() {
       
       // Start recording state
       isRecordingRef.current = true;
+      recordingStartTimeRef.current = new Date().toISOString(); // Record start timestamp
+      recordingEndTimeRef.current = null; // Reset end time
       setIsRecording(true);
       setStatus('recording');
       
@@ -288,6 +294,7 @@ export default function EmbeddedVoiceRecorder() {
   
   const stopRecording = () => {
     isRecordingRef.current = false;
+    recordingEndTimeRef.current = new Date().toISOString(); // Record end timestamp
     setIsRecording(false);
     setStatus('stopped');
     
@@ -506,15 +513,31 @@ export default function EmbeddedVoiceRecorder() {
     }
     
     const transcriptToLog = finalTranscript || transcript.trim();
+    const submissionTimestamp = new Date().toISOString();
+    
     const payload = {
-      timestamp: new Date().toISOString(),
+      // Submission timestamp (when "Keep Response" was clicked)
+      submissionTimestamp: submissionTimestamp,
+      // Recording timestamps
+      recordingStartTime: recordingStartTimeRef.current || '',
+      recordingEndTime: recordingEndTimeRef.current || '',
+      // Legacy timestamp (for backward compatibility)
+      timestamp: submissionTimestamp,
+      // User info
       repName: repName.trim(),
       repEmail: repEmail.trim(),
+      // Question info
       questionId: questionId,
       questionTitle: questionTitle,
+      // Response info
       transcript: transcriptToLog,
-      recordingDuration: recordingTime
+      recordingDuration: recordingTime, // Duration in seconds
+      wordCount: transcriptToLog.split(/\s+/).filter(w => w.length > 0).length,
+      // Response type
+      responseType: 'Voice'
     };
+    
+    console.log('Logging to spreadsheet:', payload);
     
     try {
       if (SHEET_WEBHOOK_URL && SHEET_WEBHOOK_URL !== '') {
@@ -524,6 +547,7 @@ export default function EmbeddedVoiceRecorder() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
+        console.log('✅ Logged to spreadsheet successfully');
       }
     } catch (err) {
       console.log('Webhook error:', err);
