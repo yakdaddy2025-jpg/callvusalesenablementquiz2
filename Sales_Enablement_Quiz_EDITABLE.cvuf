@@ -61,7 +61,7 @@
     "steps": [
       {
         "stepName": "Intro",
-        "identifier": "step_intro",
+        "identifier": "step_intro_isolated_1764911323021",
         "buttonsConfig": {
           "back": {
             "className": "",
@@ -79,17 +79,17 @@
         "blocks": [
           {
             "blockName": "",
-            "identifier": "block_intro",
+            "identifier": "block_intro_isolated_1764911323021",
             "icon": "",
             "rows": [
               {
                 "fields": [
                   {
-                    "className": "",
+                    "className": "intro-isolated-1764911323020-0",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "small_heading",
-                    "integrationID": "Intro_SmallHeading",
+                    "identifier": "intro_isolated_1764911323020_i37ifa_0",
+                    "integrationID": "Intro_Isolated_1764911323020_i37ifa_0",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -106,11 +106,11 @@
                     "localOnly": false
                   },
                   {
-                    "className": "",
+                    "className": "intro-isolated-1764911323021-1",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "large_heading",
-                    "integrationID": "Intro_LargeHeading",
+                    "identifier": "intro_isolated_1764911323021_59j3i9_1",
+                    "integrationID": "Intro_Isolated_1764911323021_59j3i9_1",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
@@ -127,11 +127,11 @@
                     "localOnly": false
                   },
                   {
-                    "className": "",
+                    "className": "intro-isolated-1764911323021-2",
                     "clearable": false,
                     "hint": "",
-                    "identifier": "para_1764884129194",
-                    "integrationID": "",
+                    "identifier": "intro_isolated_1764911323021_i7v0rk_2",
+                    "integrationID": "Intro_Isolated_1764911323021_i7v0rk_2",
                     "isHiddenInRuntime": false,
                     "label": "",
                     "maskingViewer": "none",
