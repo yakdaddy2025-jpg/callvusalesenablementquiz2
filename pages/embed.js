@@ -1139,6 +1139,9 @@ export default function EmbeddedVoiceRecorder() {
     }
     
     const payload = {
+      // CRITICAL: Unique identifier for database lookup and field filling
+      uniqueResponseId: uniqueResponseId,
+      answerFieldId: answerFieldId,
       // Submission timestamp (when "Keep Response" was clicked)
       submissionTimestamp: submissionTimestamp,
       // Recording timestamps
@@ -1185,12 +1188,10 @@ export default function EmbeddedVoiceRecorder() {
       // But we can check if the request was sent
       console.log('✅ POST request sent to webhook');
       console.log('✅ Unique Response ID saved:', uniqueResponseId);
+      console.log('✅ Answer Field ID:', answerFieldId);
       
-      // CRITICAL: After saving, fetch the transcript and fill the field
-      // Use the uniqueResponseId to fetch from database
-      setTimeout(() => {
-        fetchTranscriptAndFillField(uniqueResponseId, payload.answerFieldId, payload.questionId);
-      }, 500); // Wait 500ms for database to save
+      // Return the unique IDs so caller can fetch and fill
+      return { uniqueResponseId, answerFieldId };
       
     } catch (err) {
       console.error('❌ Webhook error:', err);
