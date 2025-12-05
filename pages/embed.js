@@ -45,6 +45,45 @@ export default function EmbeddedVoiceRecorder() {
       // Listen for messages from CallVu parent window
       window.addEventListener('message', handleCallVuMessage);
       
+      // CRITICAL: Try to capture name/email from parent form immediately
+      // This captures the name from page 2 (Rep Info step) before user records
+      if (window.parent && window.parent !== window) {
+        setTimeout(() => {
+          try {
+            const parentDoc = window.parent.document;
+            
+            // Look for name field - try multiple strategies
+            if (!name) {
+              const nameField = parentDoc.querySelector('input[data-integration-id*="Full_Name"]') ||
+                               parentDoc.querySelector('input[data-integration-id*="Name"]') ||
+                               Array.from(parentDoc.querySelectorAll('input[type="text"]')).find(input => {
+                                 const label = input.closest('label')?.textContent || 
+                                              input.parentElement?.textContent || 
+                                              input.getAttribute('aria-label') || '';
+                                 return label.toLowerCase().includes('name') && input.value && input.value.trim();
+                               });
+              
+              if (nameField && nameField.value && nameField.value.trim()) {
+                setRepName(nameField.value.trim());
+                console.log('✅✅✅ Captured name from form on load:', nameField.value.trim());
+              }
+            }
+            
+            // Look for email field
+            if (!email) {
+              const emailField = parentDoc.querySelector('input[type="email"]') ||
+                               parentDoc.querySelector('input[data-integration-id*="Email"]');
+              if (emailField && emailField.value && emailField.value.trim()) {
+                setRepEmail(emailField.value.trim());
+                console.log('✅✅✅ Captured email from form on load:', emailField.value.trim());
+              }
+            }
+          } catch (e) {
+            console.log('Could not access parent form on load (CORS):', e.message);
+          }
+        }, 500); // Wait 500ms for form to load
+      }
+      
       // Request name/email from parent if not in URL
       if (!name || !email) {
         window.parent.postMessage({ type: 'REQUEST_USER_INFO' }, '*');
