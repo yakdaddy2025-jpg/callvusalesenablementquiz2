@@ -1109,18 +1109,38 @@ export default function EmbeddedVoiceRecorder() {
               'input[id*="name" i]',
               'input[name*="name" i]',
               'input[placeholder*="name" i]',
+              'input[placeholder*="Full Name" i]',
               'input[type="text"]'
             ];
             
-            for (const selector of nameSelectors) {
+            // Also try to find by label text
+            const allInputs = Array.from(parentDoc.querySelectorAll('input[type="text"]'));
+            for (const input of allInputs) {
               try {
-                const field = parentDoc.querySelector(selector);
-                if (field && field.value && field.value.trim()) {
-                  nameToUse = field.value.trim();
-                  console.log('✅ Found name from form using selector:', selector, '=', nameToUse);
+                // Check if label contains "name" or "full name"
+                const label = input.closest('label')?.textContent || 
+                             input.parentElement?.textContent || 
+                             input.getAttribute('aria-label') || '';
+                if (label.toLowerCase().includes('name') && input.value && input.value.trim()) {
+                  nameToUse = input.value.trim();
+                  console.log('✅ Found name by label text:', label, '=', nameToUse);
                   break;
                 }
               } catch (e) {}
+            }
+            
+            // If still not found, try selectors
+            if (!nameToUse) {
+              for (const selector of nameSelectors) {
+                try {
+                  const field = parentDoc.querySelector(selector);
+                  if (field && field.value && field.value.trim()) {
+                    nameToUse = field.value.trim();
+                    console.log('✅ Found name from form using selector:', selector, '=', nameToUse);
+                    break;
+                  }
+                } catch (e) {}
+              }
             }
           }
           
@@ -1222,29 +1242,37 @@ export default function EmbeddedVoiceRecorder() {
     }
     
     try {
-      // CRITICAL: Use 'cors' mode so we can see the response and errors
-      // This helps debug why data isn't being written
+      // CRITICAL: Try CORS first to see response, fallback to no-cors if it fails
       console.log('📤 Sending POST request to:', SHEET_WEBHOOK_URL);
       console.log('📤 Payload size:', JSON.stringify(payload).length, 'bytes');
-      
-      const response = await fetch(SHEET_WEBHOOK_URL, {
-        method: 'POST',
-        mode: 'cors', // Changed from 'no-cors' to see response
-        headers: { 
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
+      console.log('📤 Payload preview:', {
+        uniqueResponseId: payload.uniqueResponseId,
+        repName: payload.repName,
+        questionId: payload.questionId,
+        transcriptLength: payload.transcript?.length || 0
       });
       
-      // Try to read response (may fail due to CORS, but worth trying)
+      let response;
+      let responseData = null;
+      
+      // Try CORS mode first (to see response)
       try {
+        response = await fetch(SHEET_WEBHOOK_URL, {
+          method: 'POST',
+          mode: 'cors',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        
         const responseText = await response.text();
         console.log('✅ Response status:', response.status);
         console.log('✅ Response text:', responseText);
         
         if (response.ok) {
           try {
-            const responseData = JSON.parse(responseText);
+            responseData = JSON.parse(responseText);
             console.log('✅ Response data:', responseData);
             if (responseData.success) {
               console.log('✅✅✅ SUCCESSFULLY LOGGED TO SPREADSHEET!');
@@ -1253,14 +1281,35 @@ export default function EmbeddedVoiceRecorder() {
               console.error('❌ Server returned success=false:', responseData.error);
             }
           } catch (e) {
-            console.log('Response is not JSON, but status is OK');
+            console.log('⚠️ Response is not JSON, but status is OK');
           }
         } else {
           console.error('❌ HTTP Error:', response.status, response.statusText);
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
-      } catch (readError) {
-        console.log('⚠️ Could not read response (CORS), but request was sent');
-        console.log('⚠️ Check Google Apps Script execution log to verify data was received');
+      } catch (corsError) {
+        console.warn('⚠️ CORS mode failed, trying no-cors mode:', corsError.message);
+        
+        // Fallback to no-cors mode (Google Apps Script works with this)
+        try {
+          await fetch(SHEET_WEBHOOK_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Google Apps Script accepts this
+            headers: { 
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+          
+          console.log('✅ POST request sent (no-cors mode)');
+          console.log('✅ Check Google Apps Script execution log to verify data was received');
+          console.log('✅ Check spreadsheet to see if row was added');
+        } catch (noCorsError) {
+          console.error('❌❌❌ Both CORS and no-cors modes failed!');
+          console.error('❌ CORS error:', corsError.message);
+          console.error('❌ no-cors error:', noCorsError.message);
+          throw noCorsError;
+        }
       }
       
       // Return the unique IDs so caller can fetch and fill
@@ -1270,13 +1319,14 @@ export default function EmbeddedVoiceRecorder() {
       console.error('❌❌❌ FETCH ERROR - Request failed completely!');
       console.error('❌ Error:', err);
       console.error('❌ Error message:', err.message);
-      console.error('❌ Error stack:', err.stack);
       console.error('❌ This means the request never reached the server!');
       console.error('❌ Check:');
       console.error('   1. Is SHEET_WEBHOOK_URL correct?');
       console.error('   2. Is the Google Apps Script deployed?');
       console.error('   3. Is "Who has access" set to "Anyone"?');
-      throw err; // Re-throw so caller knows it failed
+      console.error('   4. Check browser network tab for the failed request');
+      // Don't throw - we still want to try to fill the field even if logging fails
+      return { uniqueResponseId, answerFieldId };
     }
   };
   
