@@ -466,34 +466,118 @@ export default function EmbeddedVoiceRecorder() {
   const notifyCallVuResponseReady = (finalTranscript) => {
     const transcriptToSend = finalTranscript || transcript.trim();
     
-    console.log('✅ Response saved - logging to spreadsheet immediately');
+    console.log('✅ Response saved - filling required field and logging to spreadsheet');
     
-    // Log to spreadsheet IMMEDIATELY (every time Keep Response is clicked)
-    logToSpreadsheet(finalTranscript);
-    
-    // Set a flag that response was accepted - this will be checked before allowing Next
-    if (window.parent && window.parent !== window) {
+    // CRITICAL: Fill the required response field so CallVu validation passes
+    const fillRequiredField = () => {
+      if (!window.parent || window.parent === window) return false;
+      
       try {
-        // Store in parent window that response was accepted
-        window.parent.voiceResponseAccepted = true;
-        window.parent.voiceResponseTranscript = transcriptToSend;
+        const doc = window.parent.document;
         
-        // Try to enable Next button
-        const allButtons = Array.from(window.parent.document.querySelectorAll('button'));
-        for (const btn of allButtons) {
-          const btnText = btn.textContent?.toLowerCase() || '';
-          if (btnText.includes('next') && btn.disabled) {
-            btn.disabled = false;
-            btn.removeAttribute('disabled');
-            console.log('✅ Enabled Next button');
-            break;
+        // Find the required "*Your Response" field
+        const allTextareas = Array.from(doc.querySelectorAll('textarea'));
+        let requiredField = null;
+        
+        for (const ta of allTextareas) {
+          // Check if this is the required response field
+          const label = ta.previousElementSibling || 
+                       ta.parentElement?.querySelector('label') ||
+                       ta.closest('label');
+          const labelText = (label?.textContent || '').toLowerCase();
+          
+          // Look for "*Your Response" label
+          if (labelText.includes('*your response') || labelText.includes('your response')) {
+            // Check if it's required
+            if (ta.hasAttribute('required') || ta.getAttribute('aria-required') === 'true') {
+              requiredField = ta;
+              break;
+            }
           }
         }
+        
+        // Also try by integrationID pattern
+        if (!requiredField) {
+          const urlParams = new URLSearchParams(window.location.search);
+          const answerFieldId = urlParams.get('answerFieldId') || '';
+          
+          if (answerFieldId) {
+            // Try to find field with similar ID pattern
+            const responseField = doc.querySelector(
+              `textarea[data-integration-id*="Response"], 
+               textarea[name*="response"], 
+               textarea[id*="response"]`
+            );
+            if (responseField) {
+              requiredField = responseField;
+            }
+          }
+        }
+        
+        // Fallback: find any required textarea
+        if (!requiredField) {
+          for (const ta of allTextareas) {
+            if (ta.hasAttribute('required') || ta.getAttribute('aria-required') === 'true') {
+              requiredField = ta;
+              break;
+            }
+          }
+        }
+        
+        if (requiredField) {
+          console.log('✅ Found required response field, filling it...');
+          
+          // Remove readonly/disabled
+          requiredField.removeAttribute('readonly');
+          requiredField.removeAttribute('disabled');
+          requiredField.readOnly = false;
+          requiredField.disabled = false;
+          
+          // Set value
+          requiredField.value = transcriptToSend;
+          
+          // Trigger events to notify CallVu
+          ['input', 'change', 'blur'].forEach(type => {
+            requiredField.dispatchEvent(new Event(type, { bubbles: true }));
+          });
+          
+          // Focus and blur to trigger validation
+          requiredField.focus();
+          setTimeout(() => {
+            requiredField.blur();
+            requiredField.dispatchEvent(new Event('change', { bubbles: true }));
+            console.log('✅ Required field filled - CallVu should now enable Next button');
+          }, 150);
+          
+          return true;
+        } else {
+          console.warn('⚠️ Could not find required response field');
+          return false;
+        }
       } catch (e) {
-        console.log('Could not access parent:', e);
+        console.error('Error filling required field:', e);
+        return false;
       }
+    };
+    
+    // Fill the required field
+    fillRequiredField();
+    
+    // Also try with delay in case DOM isn't ready
+    setTimeout(() => fillRequiredField(), 200);
+    setTimeout(() => fillRequiredField(), 500);
+    
+    // Log to spreadsheet IMMEDIATELY
+    logToSpreadsheet(finalTranscript);
+    
+    // Set flag for JavaScript blocker
+    if (window.parent && window.parent !== window) {
+      try {
+        window.parent.voiceResponseAccepted = true;
+        window.parent.voiceResponseTranscript = transcriptToSend;
+      } catch (e) {}
       
-      // Send postMessage to enable Next
+      // Send postMessage
       window.parent.postMessage({
         type: 'VOICE_RESPONSE_READY',
         transcript: transcriptToSend,
@@ -506,7 +590,7 @@ export default function EmbeddedVoiceRecorder() {
     
     setError('');
     setStatus('saved');
-    setHasResponse(true); // Mark that response was accepted
+    setHasResponse(true);
   };
   
   const notifyCallVuResponseDeleted = () => {
