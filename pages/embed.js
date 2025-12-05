@@ -476,29 +476,37 @@ export default function EmbeddedVoiceRecorder() {
         return false;
       }
       
-      // Strategy: Fill hidden field that CallVu conditional logic will copy to required field
+      // Strategy: Update global variable that CallVu conditional logic will copy to required field
       const urlParams = new URLSearchParams(window.location.search);
       const answerFieldId = urlParams.get('answerFieldId') || '';
       
-      console.log('🔍 Attempting to fill hidden field (CallVu will copy to required field)...');
-      console.log('🔍 AnswerFieldId from URL:', answerFieldId);
+      console.log('🔍 Updating global variable (CallVu will copy to required field)...');
+      console.log('🔍 Transcript to store:', transcriptToSend);
       
-      // Extract step name from answerFieldId to find hidden field
-      // Format: ID_Roleplay_1_Response_Required_... -> ID_Roleplay_1_Hidden_Transcript_...
+      // Send postMessage to parent to update global variable
+      try {
+        window.parent.postMessage({
+          type: 'CALLVU_UPDATE_GLOBAL_VARIABLE',
+          variableId: 'GV_Voice_Transcript', // Global variable ID
+          value: transcriptToSend
+        }, '*');
+        console.log('✅ PostMessage sent to update global variable: GV_Voice_Transcript');
+      } catch (e) {
+        console.log('PostMessage failed:', e);
+      }
+      
+      // Also try to update hidden field as fallback
       const hiddenFieldId = answerFieldId.replace('_Response_Required_', '_Hidden_Transcript_');
-      console.log('🔍 Hidden field ID:', hiddenFieldId);
-      
-      // Send postMessage to parent with field update request
       try {
         window.parent.postMessage({
           type: 'CALLVU_FILL_FIELD',
-          fieldId: hiddenFieldId, // Fill hidden field instead
+          fieldId: hiddenFieldId,
           value: transcriptToSend,
           integrationId: hiddenFieldId
         }, '*');
-        console.log('✅ PostMessage sent to parent for hidden field');
+        console.log('✅ PostMessage sent for hidden field (fallback)');
       } catch (e) {
-        console.log('PostMessage failed:', e);
+        console.log('Hidden field postMessage failed:', e);
       }
       
       // Also try direct DOM access (may fail due to CORS)
