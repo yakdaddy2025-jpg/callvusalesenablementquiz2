@@ -21,6 +21,7 @@ export default function EmbeddedVoiceRecorder() {
   const recognitionRef = useRef(null);
   const timerRef = useRef(null);
   const isRecordingRef = useRef(false);
+  const processedResultsRef = useRef(new Set()); // Track processed results to prevent duplicates
   
   useEffect(() => {
     // Get data from URL params or parent window (CallVu)
@@ -82,26 +83,41 @@ export default function EmbeddedVoiceRecorder() {
       let interim = '';
       let newFinal = '';
       
-      // Only process NEW results (from resultIndex onwards)
+      // Process only NEW results (from resultIndex onwards)
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const result = event.results[i];
+        const transcriptText = result[0].transcript.trim();
+        
+        // Create a unique key for this result
+        const resultKey = `${i}-${transcriptText}`;
+        
         if (result.isFinal) {
-          // Only add if this is a new final result
-          newFinal += result[0].transcript + ' ';
+          // Only add if we haven't processed this exact result before
+          if (!processedResultsRef.current.has(resultKey) && transcriptText) {
+            processedResultsRef.current.add(resultKey);
+            newFinal += transcriptText + ' ';
+          }
         } else {
-          interim += result[0].transcript;
+          interim += transcriptText;
         }
       }
       
-      // Only update transcript with new final results (prevents duplication)
-      if (newFinal) {
+      // Update transcript only with truly new final results
+      if (newFinal.trim()) {
         setTranscript(prev => {
-          // Avoid adding duplicate text
           const newText = newFinal.trim();
-          if (prev.includes(newText)) {
-            return prev; // Already have this text
+          // More aggressive deduplication - check if the new text is already in transcript
+          const prevWords = prev.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+          const newWords = newText.toLowerCase().split(/\s+/).filter(w => w.length > 2);
+          
+          // If more than 50% of new words already exist, skip it
+          const duplicateCount = newWords.filter(w => prevWords.includes(w)).length;
+          if (duplicateCount > newWords.length * 0.5 && prev.length > 10) {
+            console.log('Skipping duplicate:', newText);
+            return prev;
           }
-          return prev + newFinal;
+          
+          return prev + (prev ? ' ' : '') + newText;
         });
       }
       setInterimTranscript(interim);
@@ -149,6 +165,7 @@ export default function EmbeddedVoiceRecorder() {
     setInterimTranscript('');
     setRecordingTime(0);
     setHasResponse(false);
+    processedResultsRef.current.clear(); // Clear processed results when starting new recording
     
     try {
       // Request microphone permission first
@@ -254,53 +271,84 @@ export default function EmbeddedVoiceRecorder() {
     
     console.log('Notifying CallVu:', { transcriptToSend, answerFieldId, questionId, questionTitle });
     
-    // Try multiple methods to update CallVu field
-    if (answerFieldId && typeof window !== 'undefined' && window.parent) {
+    // Method 1: Find the "*Your Response" textarea field in parent
+    let fieldFound = false;
+    
+    if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
       try {
-        // Method 1: Try multiple selectors to find the field
-        const selectors = [
-          `[data-integration-id="${answerFieldId}"]`,
-          `[name*="${answerFieldId}"]`,
-          `[id*="${answerFieldId}"]`,
-          `textarea[data-integration-id*="answer"]`,
-          `textarea[data-integration-id*="response"]`,
-          `textarea[name*="answer"]`,
-          `textarea[name*="response"]`,
-          `textarea[data-integration-id*="Roleplay"]`,
-          `textarea.longtext`,
-          `textarea[readonly]`
-        ];
+        // Try to access parent document (may fail due to cross-origin)
+        const parentDoc = window.parent.document;
         
-        let field = null;
-        for (const selector of selectors) {
-          try {
-            field = window.parent.document.querySelector(selector);
-            if (field && (field.tagName === 'TEXTAREA' || field.tagName === 'INPUT')) {
-              break;
-            }
-          } catch (e) {
-            // Continue to next selector
+        // Find textarea with label containing "Your Response" or "Response"
+        const allTextareas = parentDoc.querySelectorAll('textarea');
+        console.log(`Found ${allTextareas.length} textareas in parent`);
+        
+        for (const ta of allTextareas) {
+          // Skip readonly textareas (those are display-only)
+          if (ta.readOnly || ta.disabled) continue;
+          
+          // Check if this is the answer field by looking at nearby labels
+          const label = ta.closest('label') || 
+                       ta.previousElementSibling || 
+                       ta.parentElement?.querySelector('label');
+          
+          const labelText = label?.textContent?.toLowerCase() || '';
+          const placeholder = ta.placeholder?.toLowerCase() || '';
+          const name = ta.name?.toLowerCase() || '';
+          const id = ta.id?.toLowerCase() || '';
+          
+          // Check if this field is related to "response" or "answer"
+          if (labelText.includes('response') || 
+              labelText.includes('answer') ||
+              placeholder.includes('response') ||
+              name.includes('response') ||
+              name.includes('answer') ||
+              id.includes('response') ||
+              id.includes('answer') ||
+              answerFieldId && (name.includes(answerFieldId.toLowerCase()) || id.includes(answerFieldId.toLowerCase()))) {
+            
+            console.log('Found matching field:', { labelText, name, id, ta });
+            
+            // Update the field
+            ta.value = transcriptToSend;
+            
+            // Trigger all possible events
+            const events = ['input', 'change', 'blur', 'keyup', 'keydown'];
+            events.forEach(eventType => {
+              ta.dispatchEvent(new Event(eventType, { bubbles: true, cancelable: true }));
+            });
+            
+            // Also try setting value property directly
+            try {
+              Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set.call(ta, transcriptToSend);
+            } catch (e) {}
+            
+            // Focus and blur to trigger validation
+            ta.focus();
+            setTimeout(() => ta.blur(), 50);
+            
+            console.log('✅ Successfully updated CallVu field!');
+            fieldFound = true;
+            break;
           }
         }
         
-        if (field) {
-          field.value = transcriptToSend;
-          // Trigger multiple events to ensure CallVu detects the change
-          field.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
-          field.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
-          field.dispatchEvent(new Event('blur', { bubbles: true, cancelable: true }));
-          
-          // Also try setting it via setAttribute
-          try {
-            field.setAttribute('value', transcriptToSend);
-          } catch (e) {}
-          
-          console.log('Updated CallVu field directly:', field);
-        } else {
-          console.log('Field not found with selectors');
+        if (!fieldFound) {
+          console.log('Field not found, trying all non-readonly textareas...');
+          // Last resort: try updating the first non-readonly textarea
+          for (const ta of allTextareas) {
+            if (!ta.readOnly && !ta.disabled && ta.offsetParent !== null) {
+              ta.value = transcriptToSend;
+              ta.dispatchEvent(new Event('input', { bubbles: true }));
+              ta.dispatchEvent(new Event('change', { bubbles: true }));
+              console.log('Updated fallback field:', ta);
+              fieldFound = true;
+              break;
+            }
+          }
         }
       } catch (e) {
-        console.log('Direct field update failed (cross-origin):', e);
+        console.log('Cross-origin access failed, using postMessage:', e);
       }
     }
     
@@ -316,25 +364,13 @@ export default function EmbeddedVoiceRecorder() {
       console.log('Sent postMessage to CallVu parent');
     }
     
-    // Method 3: Try to find and update field in current iframe's parent context
-    setTimeout(() => {
-      try {
-        const allTextareas = window.parent.document.querySelectorAll('textarea');
-        allTextareas.forEach(ta => {
-          if (ta.readOnly === false && ta.disabled === false) {
-            const label = ta.closest('label, .field-label, [class*="label"]');
-            if (label && (label.textContent.includes('Response') || label.textContent.includes('Answer'))) {
-              ta.value = transcriptToSend;
-              ta.dispatchEvent(new Event('input', { bubbles: true }));
-              ta.dispatchEvent(new Event('change', { bubbles: true }));
-              console.log('Updated field via label search:', ta);
-            }
-          }
-        });
-      } catch (e) {
-        console.log('Label search failed:', e);
-      }
-    }, 100);
+    // Show success message
+    if (fieldFound) {
+      setError('');
+      setStatus('saved');
+    } else {
+      setError('Could not find response field. Please try refreshing the page.');
+    }
   };
   
   const notifyCallVuResponseDeleted = () => {
