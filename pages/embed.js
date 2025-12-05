@@ -1036,14 +1036,18 @@ export default function EmbeddedVoiceRecorder() {
     const answerFieldId = new URLSearchParams(window.location.search).get('answerFieldId') || '';
     
     console.log('💾💾💾 SAVING TO DATABASE WITH UNIQUE ID:', uniqueResponseId);
+    console.log('💾 Answer Field ID:', answerFieldId);
     console.log('💾 After save, will fetch transcript and fill field');
     
+    // CRITICAL: Pass uniqueResponseId and answerFieldId to logToSpreadsheet
     // Save to database, then fetch and fill
-    logToSpreadsheet(finalTranscript).then(() => {
+    logToSpreadsheet(finalTranscript, uniqueResponseId, answerFieldId).then(() => {
       // After saving, fetch the transcript and fill the field
       setTimeout(() => {
         fetchTranscriptAndFillField(uniqueResponseId, answerFieldId, questionId || '');
       }, 800); // Wait 800ms for database to save
+    }).catch(err => {
+      console.error('❌ Error saving to spreadsheet:', err);
     });
     
     // Set flag for JavaScript blocker
@@ -1090,26 +1094,70 @@ export default function EmbeddedVoiceRecorder() {
     let nameToUse = repName.trim();
     let emailToUse = repEmail.trim();
     
-    // If missing, try to get from parent window
+    // If missing, try to get from parent window using multiple strategies
     if (!nameToUse || !emailToUse) {
       try {
         if (window.parent && window.parent !== window) {
           const parentDoc = window.parent.document;
-          // Look for name/email fields in the form
-          const nameField = parentDoc.querySelector('input[name*="name"], input[id*="name"], input[type="text"]');
-          const emailField = parentDoc.querySelector('input[type="email"], input[name*="email"], input[id*="email"]');
           
-          if (nameField && !nameToUse) {
-            nameToUse = nameField.value?.trim() || '';
-            console.log('Found name from form:', nameToUse);
+          // Strategy 1: Look for specific CallVu field patterns
+          // Name field - try multiple selectors
+          if (!nameToUse) {
+            const nameSelectors = [
+              'input[data-integration-id*="Full_Name"]',
+              'input[data-integration-id*="Name"]',
+              'input[id*="name" i]',
+              'input[name*="name" i]',
+              'input[placeholder*="name" i]',
+              'input[type="text"]'
+            ];
+            
+            for (const selector of nameSelectors) {
+              try {
+                const field = parentDoc.querySelector(selector);
+                if (field && field.value && field.value.trim()) {
+                  nameToUse = field.value.trim();
+                  console.log('✅ Found name from form using selector:', selector, '=', nameToUse);
+                  break;
+                }
+              } catch (e) {}
+            }
           }
-          if (emailField && !emailToUse) {
-            emailToUse = emailField.value?.trim() || '';
-            console.log('Found email from form:', emailToUse);
+          
+          // Email field - try multiple selectors
+          if (!emailToUse) {
+            const emailSelectors = [
+              'input[type="email"]',
+              'input[data-integration-id*="Email"]',
+              'input[id*="email" i]',
+              'input[name*="email" i]',
+              'input[placeholder*="email" i]'
+            ];
+            
+            for (const selector of emailSelectors) {
+              try {
+                const field = parentDoc.querySelector(selector);
+                if (field && field.value && field.value.trim()) {
+                  emailToUse = field.value.trim();
+                  console.log('✅ Found email from form using selector:', selector, '=', emailToUse);
+                  break;
+                }
+              } catch (e) {}
+            }
+          }
+          
+          // Strategy 2: Try postMessage to request user info
+          if ((!nameToUse || !emailToUse) && window.parent.postMessage) {
+            try {
+              window.parent.postMessage({ type: 'REQUEST_USER_INFO' }, '*');
+              console.log('📤 Sent postMessage to request user info');
+            } catch (e) {
+              console.log('Could not send postMessage:', e);
+            }
           }
         }
       } catch (e) {
-        console.log('Could not access parent form:', e);
+        console.log('Could not access parent form (CORS):', e.message);
       }
     }
     
