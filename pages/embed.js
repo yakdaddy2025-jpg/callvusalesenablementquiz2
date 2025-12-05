@@ -476,22 +476,27 @@ export default function EmbeddedVoiceRecorder() {
         return false;
       }
       
-      // Try postMessage first (works across origins)
+      // Strategy: Fill hidden field that CallVu conditional logic will copy to required field
       const urlParams = new URLSearchParams(window.location.search);
       const answerFieldId = urlParams.get('answerFieldId') || '';
       
-      console.log('🔍 Attempting to fill field via postMessage...');
+      console.log('🔍 Attempting to fill hidden field (CallVu will copy to required field)...');
       console.log('🔍 AnswerFieldId from URL:', answerFieldId);
+      
+      // Extract step name from answerFieldId to find hidden field
+      // Format: ID_Roleplay_1_Response_Required_... -> ID_Roleplay_1_Hidden_Transcript_...
+      const hiddenFieldId = answerFieldId.replace('_Response_Required_', '_Hidden_Transcript_');
+      console.log('🔍 Hidden field ID:', hiddenFieldId);
       
       // Send postMessage to parent with field update request
       try {
         window.parent.postMessage({
           type: 'CALLVU_FILL_FIELD',
-          fieldId: answerFieldId,
+          fieldId: hiddenFieldId, // Fill hidden field instead
           value: transcriptToSend,
-          integrationId: answerFieldId
+          integrationId: hiddenFieldId
         }, '*');
-        console.log('✅ PostMessage sent to parent');
+        console.log('✅ PostMessage sent to parent for hidden field');
       } catch (e) {
         console.log('PostMessage failed:', e);
       }
@@ -523,9 +528,33 @@ export default function EmbeddedVoiceRecorder() {
         let requiredField = null;
         let foundBy = '';
         
-        // Strategy 1: Find by exact integrationID from URL
-        if (answerFieldId) {
-          console.log(`🔍 Strategy 1: Searching for integrationID="${answerFieldId}"`);
+        // Strategy 1: Find HIDDEN field (CallVu conditional logic will copy to required field)
+        const hiddenFieldId = answerFieldId.replace('_Response_Required_', '_Hidden_Transcript_');
+        console.log(`🔍 Strategy 1: Searching for HIDDEN field integrationID="${hiddenFieldId}"`);
+        
+        if (hiddenFieldId && hiddenFieldId !== answerFieldId) {
+          // Try exact match for hidden field first
+          const hiddenMatch = doc.querySelector(`[data-integration-id="${hiddenFieldId}"]`);
+          if (hiddenMatch && (hiddenMatch.tagName === 'INPUT' || hiddenMatch.tagName === 'TEXTAREA')) {
+            requiredField = hiddenMatch; // Fill hidden field - CallVu will copy it
+            foundBy = `hidden field (exact): ${hiddenFieldId}`;
+            console.log('✅✅✅ FOUND HIDDEN FIELD BY EXACT MATCH!', foundBy);
+          }
+          
+          // Try partial match for hidden field
+          if (!requiredField) {
+            const hiddenPartial = doc.querySelector(`[data-integration-id*="${hiddenFieldId}"]`);
+            if (hiddenPartial && (hiddenPartial.tagName === 'INPUT' || hiddenPartial.tagName === 'TEXTAREA')) {
+              requiredField = hiddenPartial;
+              foundBy = `hidden field (partial): ${hiddenFieldId}`;
+              console.log('✅✅✅ FOUND HIDDEN FIELD BY PARTIAL MATCH!', foundBy);
+            }
+          }
+        }
+        
+        // Strategy 2: Fallback to required field if hidden field not found
+        if (!requiredField && answerFieldId) {
+          console.log(`🔍 Strategy 2: Searching for required field integrationID="${answerFieldId}"`);
           
           // Try exact match first
           const exactMatch = doc.querySelector(`[data-integration-id="${answerFieldId}"]`);
@@ -542,26 +571,6 @@ export default function EmbeddedVoiceRecorder() {
               requiredField = partialMatch;
               foundBy = `partial integrationID: ${answerFieldId}`;
               console.log('✅✅✅ FOUND BY PARTIAL MATCH!', foundBy);
-            }
-          }
-          
-          // Try by ID attribute
-          if (!requiredField) {
-            const idMatch = doc.querySelector(`#${answerFieldId}`);
-            if (idMatch && (idMatch.tagName === 'TEXTAREA' || idMatch.tagName === 'INPUT')) {
-              requiredField = idMatch;
-              foundBy = `ID attribute: ${answerFieldId}`;
-              console.log('✅✅✅ FOUND BY ID!', foundBy);
-            }
-          }
-          
-          // Try by name attribute
-          if (!requiredField) {
-            const nameMatch = doc.querySelector(`[name="${answerFieldId}"]`);
-            if (nameMatch && (nameMatch.tagName === 'TEXTAREA' || nameMatch.tagName === 'INPUT')) {
-              requiredField = nameMatch;
-              foundBy = `name attribute: ${answerFieldId}`;
-              console.log('✅✅✅ FOUND BY NAME!', foundBy);
             }
           }
         }
