@@ -450,27 +450,46 @@ export default function EmbeddedVoiceRecorder() {
       responseType: 'Voice'
     };
     
-    console.log('📊 Logging to spreadsheet:', payload);
+    console.log('📊 ===== LOGGING TO SPREADSHEET =====');
     console.log('📊 Webhook URL:', SHEET_WEBHOOK_URL);
+    console.log('📊 Payload:', JSON.stringify(payload, null, 2));
+    
+    if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL === '') {
+      console.error('❌ ERROR: No webhook URL configured!');
+      console.error('❌ Please update SHEET_WEBHOOK_URL in pages/embed.js with your new deployment URL');
+      return;
+    }
     
     try {
-      if (SHEET_WEBHOOK_URL && SHEET_WEBHOOK_URL !== '') {
-        const response = await fetch(SHEET_WEBHOOK_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        
-        // Note: With no-cors mode, we can't read the response, but we can log the attempt
-        console.log('✅ POST request sent to webhook');
-        console.log('✅ Payload sent:', JSON.stringify(payload, null, 2));
-      } else {
-        console.error('❌ No webhook URL configured');
-      }
+      // Use fetch with error handling
+      const response = await fetch(SHEET_WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Required for Google Apps Script
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+      
+      // Note: With no-cors mode, we can't read the response
+      // But we can check if the request was sent
+      console.log('✅ POST request sent to webhook');
+      console.log('✅ Request completed (check Google Apps Script execution log for details)');
+      
+      // Also try with a small delay to ensure it's processed
+      setTimeout(() => {
+        console.log('📊 If data is not appearing in spreadsheet:');
+        console.log('   1. Check Google Apps Script execution log');
+        console.log('   2. Verify webhook URL is correct');
+        console.log('   3. Verify spreadsheet name: "Callvu Sales Enablement Quiz - Responses v2"');
+        console.log('   4. Run testSetup() function in Google Apps Script');
+      }, 1000);
+      
     } catch (err) {
       console.error('❌ Webhook error:', err);
-      console.error('❌ Error details:', JSON.stringify(err, null, 2));
+      console.error('❌ Error message:', err.message);
+      console.error('❌ Error stack:', err.stack);
+      console.error('❌ Full error:', JSON.stringify(err, null, 2));
     }
   };
   
