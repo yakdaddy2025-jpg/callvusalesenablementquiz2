@@ -348,17 +348,26 @@ export default function EmbeddedVoiceRecorder() {
     // Log to spreadsheet IMMEDIATELY (every time Keep Response is clicked)
     logToSpreadsheet(finalTranscript);
     
-    // Enable Next button by triggering a custom event that CallVu might listen to
+    // Set a flag that response was accepted - this will be checked before allowing Next
     if (window.parent && window.parent !== window) {
       try {
-        // Try to find and click the Next button, or trigger an event
-        const nextButton = window.parent.document.querySelector('button:contains("Next"), [class*="next"], [id*="next"]');
-        if (nextButton && nextButton.disabled) {
-          nextButton.disabled = false;
-          console.log('✅ Enabled Next button');
+        // Store in parent window that response was accepted
+        window.parent.voiceResponseAccepted = true;
+        window.parent.voiceResponseTranscript = transcriptToSend;
+        
+        // Try to enable Next button
+        const allButtons = Array.from(window.parent.document.querySelectorAll('button'));
+        for (const btn of allButtons) {
+          const btnText = btn.textContent?.toLowerCase() || '';
+          if (btnText.includes('next') && btn.disabled) {
+            btn.disabled = false;
+            btn.removeAttribute('disabled');
+            console.log('✅ Enabled Next button');
+            break;
+          }
         }
       } catch (e) {
-        // Ignore - button might not exist or be accessible
+        console.log('Could not access parent:', e);
       }
       
       // Send postMessage to enable Next
@@ -367,12 +376,14 @@ export default function EmbeddedVoiceRecorder() {
         transcript: transcriptToSend,
         questionId: questionId,
         questionTitle: questionTitle,
-        enableNext: true
+        enableNext: true,
+        responseAccepted: true
       }, '*');
     }
     
     setError('');
     setStatus('saved');
+    setHasResponse(true); // Mark that response was accepted
   };
   
   const notifyCallVuResponseDeleted = () => {
