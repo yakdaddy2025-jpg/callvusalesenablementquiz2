@@ -476,27 +476,65 @@ export default function EmbeddedVoiceRecorder() {
         return false;
       }
       
-      // Strategy: Update global variable that CallVu conditional logic will copy to required field
+      // CRITICAL: Fill the HIDDEN field in the same step (no CORS issues)
+      // CallVu conditional logic will copy it to the required field
       const urlParams = new URLSearchParams(window.location.search);
       const answerFieldId = urlParams.get('answerFieldId') || '';
       
-      console.log('🔍 Updating global variable (CallVu will copy to required field)...');
-      console.log('🔍 Transcript to store:', transcriptToSend);
+      // Extract hidden field ID from answerFieldId
+      // Format: ID_Roleplay_1_Response_Required_... -> ID_Roleplay_1_Hidden_Transcript_...
+      const hiddenFieldId = answerFieldId.replace('_Response_Required_', '_Hidden_Transcript_');
       
-      // Send postMessage to parent to update global variable
+      console.log('🔍🔍🔍 FILLING HIDDEN FIELD (CallVu will copy to required field)');
+      console.log('🔍 AnswerFieldId:', answerFieldId);
+      console.log('🔍 Hidden Field ID:', hiddenFieldId);
+      console.log('🔍 Transcript:', transcriptToSend);
+      
+      // Try direct DOM access first (hidden field is in same step, should work)
       try {
-        window.parent.postMessage({
-          type: 'CALLVU_UPDATE_GLOBAL_VARIABLE',
-          variableId: 'GV_Voice_Transcript', // Global variable ID
-          value: transcriptToSend
-        }, '*');
-        console.log('✅ PostMessage sent to update global variable: GV_Voice_Transcript');
+        const doc = window.parent.document;
+        
+        // Find hidden field by integrationID
+        const hiddenField = doc.querySelector(`[data-integration-id="${hiddenFieldId}"]`) ||
+                           doc.querySelector(`input[data-integration-id*="${hiddenFieldId}"]`) ||
+                           doc.querySelector(`#${hiddenFieldId}`) ||
+                           doc.querySelector(`[name="${hiddenFieldId}"]`);
+        
+        if (hiddenField && (hiddenField.tagName === 'INPUT' || hiddenField.tagName === 'TEXTAREA')) {
+          console.log('✅✅✅ FOUND HIDDEN FIELD - FILLING IT NOW!');
+          
+          // Remove readonly/disabled
+          hiddenField.removeAttribute('readonly');
+          hiddenField.removeAttribute('disabled');
+          hiddenField.readOnly = false;
+          hiddenField.disabled = false;
+          
+          // Set value
+          hiddenField.value = transcriptToSend;
+          
+          // Trigger events
+          ['input', 'change', 'blur'].forEach(type => {
+            hiddenField.dispatchEvent(new Event(type, { bubbles: true }));
+          });
+          
+          hiddenField.focus();
+          setTimeout(() => {
+            hiddenField.blur();
+            hiddenField.dispatchEvent(new Event('change', { bubbles: true }));
+            
+            console.log('✅✅✅ HIDDEN FIELD FILLED:', hiddenField.value);
+            console.log('✅✅✅ CallVu conditional logic should now copy it to required field!');
+          }, 100);
+          
+          return true;
+        } else {
+          console.error('❌ Could not find hidden field:', hiddenFieldId);
+        }
       } catch (e) {
-        console.log('PostMessage failed:', e);
+        console.error('❌ Direct DOM access failed (CORS):', e);
       }
       
-      // Also try to update hidden field as fallback
-      const hiddenFieldId = answerFieldId.replace('_Response_Required_', '_Hidden_Transcript_');
+      // Fallback: postMessage
       try {
         window.parent.postMessage({
           type: 'CALLVU_FILL_FIELD',
@@ -504,9 +542,9 @@ export default function EmbeddedVoiceRecorder() {
           value: transcriptToSend,
           integrationId: hiddenFieldId
         }, '*');
-        console.log('✅ PostMessage sent for hidden field (fallback)');
+        console.log('✅ PostMessage sent for hidden field');
       } catch (e) {
-        console.log('Hidden field postMessage failed:', e);
+        console.error('❌ PostMessage failed:', e);
       }
       
       // Also try direct DOM access (may fail due to CORS)
