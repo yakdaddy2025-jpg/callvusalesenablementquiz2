@@ -894,46 +894,29 @@ export default function EmbeddedVoiceRecorder() {
       return true;
     };
     
-    // Fill immediately and retry aggressively
-    console.log('🚀🚀🚀 STARTING FIELD FILL ATTEMPTS...');
-    console.log('🚀 Using postMessage + direct DOM access');
-    let filled = fillRequiredField();
-    if (!filled) {
-      setTimeout(() => { 
-        console.log('🔄 Retry 1 (200ms)');
-        filled = fillRequiredField(); 
-      }, 200);
-    }
-    if (!filled) {
-      setTimeout(() => { 
-        console.log('🔄 Retry 2 (500ms)');
-        filled = fillRequiredField(); 
-      }, 500);
-    }
-    if (!filled) {
-      setTimeout(() => { 
-        console.log('🔄 Retry 3 (1000ms)');
-        filled = fillRequiredField(); 
-      }, 1000);
-    }
-    if (!filled) {
-      setTimeout(() => { 
-        console.log('🔄 Retry 4 (2000ms)');
-        filled = fillRequiredField(); 
-      }, 2000);
-    }
-    if (!filled) {
-      setTimeout(() => { 
-        console.log('🔄 Retry 5 (3000ms)');
-        filled = fillRequiredField(); 
-      }, 3000);
-    }
-    if (!filled) {
-      setTimeout(() => { 
-        console.log('🔄 Retry 6 (5000ms) - FINAL ATTEMPT');
-        filled = fillRequiredField(); 
-      }, 5000);
-    }
+    // Fill immediately and retry aggressively - CONTINUOUS RETRIES
+    console.log('🚀🚀🚀 STARTING CONTINUOUS FIELD FILL ATTEMPTS...');
+    console.log('🚀 Will retry every 200ms until field is filled');
+    
+    let filled = false;
+    let attemptCount = 0;
+    const maxAttempts = 50; // Try for 10 seconds
+    
+    const tryFill = () => {
+      attemptCount++;
+      console.log(`🔄 Attempt ${attemptCount}/${maxAttempts}`);
+      filled = fillRequiredField();
+      
+      if (!filled && attemptCount < maxAttempts) {
+        setTimeout(tryFill, 200);
+      } else if (filled) {
+        console.log('✅✅✅ FIELD FILLED SUCCESSFULLY AFTER', attemptCount, 'ATTEMPTS!');
+      } else {
+        console.error('❌❌❌ FAILED TO FILL FIELD AFTER', attemptCount, 'ATTEMPTS');
+      }
+    };
+    
+    tryFill();
     
     // Log to spreadsheet IMMEDIATELY
     logToSpreadsheet(finalTranscript);
