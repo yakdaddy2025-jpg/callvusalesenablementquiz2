@@ -476,6 +476,27 @@ export default function EmbeddedVoiceRecorder() {
         return false;
       }
       
+      // Try postMessage first (works across origins)
+      const urlParams = new URLSearchParams(window.location.search);
+      const answerFieldId = urlParams.get('answerFieldId') || '';
+      
+      console.log('🔍 Attempting to fill field via postMessage...');
+      console.log('🔍 AnswerFieldId from URL:', answerFieldId);
+      
+      // Send postMessage to parent with field update request
+      try {
+        window.parent.postMessage({
+          type: 'CALLVU_FILL_FIELD',
+          fieldId: answerFieldId,
+          value: transcriptToSend,
+          integrationId: answerFieldId
+        }, '*');
+        console.log('✅ PostMessage sent to parent');
+      } catch (e) {
+        console.log('PostMessage failed:', e);
+      }
+      
+      // Also try direct DOM access (may fail due to CORS)
       try {
         const doc = window.parent.document;
         const urlParams = new URLSearchParams(window.location.search);
@@ -737,12 +758,16 @@ export default function EmbeddedVoiceRecorder() {
       } catch (e) {
         console.error('❌ Error filling required field:', e);
         console.error('Stack:', e.stack);
-        return false;
+        // Don't return false here - postMessage might still work
       }
+      
+      // Return true if we at least sent postMessage
+      return true;
     };
     
     // Fill immediately and retry aggressively
     console.log('🚀🚀🚀 STARTING FIELD FILL ATTEMPTS...');
+    console.log('🚀 Using postMessage + direct DOM access');
     let filled = fillRequiredField();
     if (!filled) {
       setTimeout(() => { 
