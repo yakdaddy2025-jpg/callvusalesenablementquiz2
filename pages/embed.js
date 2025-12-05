@@ -81,45 +81,48 @@ export default function EmbeddedVoiceRecorder() {
     
     recognitionRef.current.onresult = (event) => {
       let interim = '';
-      let newFinal = '';
       
       // Process only NEW results (from resultIndex onwards)
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const result = event.results[i];
         const transcriptText = result[0].transcript.trim();
         
-        // Create a unique key for this result
-        const resultKey = `${i}-${transcriptText}`;
-        
-        if (result.isFinal) {
-          // Only add if we haven't processed this exact result before
-          if (!processedResultsRef.current.has(resultKey) && transcriptText) {
-            processedResultsRef.current.add(resultKey);
-            newFinal += transcriptText + ' ';
+        if (result.isFinal && transcriptText) {
+          // Create a unique key based on the text content itself
+          const textKey = transcriptText.toLowerCase().replace(/[^\w\s]/g, '');
+          
+          // Only add if we haven't seen this exact text before
+          if (!processedResultsRef.current.has(textKey)) {
+            processedResultsRef.current.add(textKey);
+            
+            // Add to transcript - but check for duplicates first
+            setTranscript(prev => {
+              const prevLower = prev.toLowerCase();
+              const newLower = transcriptText.toLowerCase();
+              
+              // If the new text is already in the transcript, skip it completely
+              if (prevLower.includes(newLower) && prev.length > 0) {
+                console.log('Skipping duplicate text:', transcriptText);
+                return prev;
+              }
+              
+              // If the transcript contains the new text, skip it
+              if (prevLower.length > 0 && newLower.length > 0) {
+                // Check if new text is a substring of existing text
+                if (prevLower.includes(newLower) || newLower.includes(prevLower)) {
+                  // Keep the longer version
+                  return prev.length > transcriptText.length ? prev : transcriptText;
+                }
+              }
+              
+              return prev + (prev ? ' ' : '') + transcriptText;
+            });
           }
         } else {
-          interim += transcriptText;
+          interim += transcriptText + ' ';
         }
       }
       
-      // Update transcript only with truly new final results
-      if (newFinal.trim()) {
-        setTranscript(prev => {
-          const newText = newFinal.trim();
-          // More aggressive deduplication - check if the new text is already in transcript
-          const prevWords = prev.toLowerCase().split(/\s+/).filter(w => w.length > 2);
-          const newWords = newText.toLowerCase().split(/\s+/).filter(w => w.length > 2);
-          
-          // If more than 50% of new words already exist, skip it
-          const duplicateCount = newWords.filter(w => prevWords.includes(w)).length;
-          if (duplicateCount > newWords.length * 0.5 && prev.length > 10) {
-            console.log('Skipping duplicate:', newText);
-            return prev;
-          }
-          
-          return prev + (prev ? ' ' : '') + newText;
-        });
-      }
       setInterimTranscript(interim);
     };
     
@@ -271,105 +274,151 @@ export default function EmbeddedVoiceRecorder() {
     
     console.log('Notifying CallVu:', { transcriptToSend, answerFieldId, questionId, questionTitle });
     
-    // Method 1: Find the "*Your Response" textarea field in parent
     let fieldFound = false;
+    let attempts = 0;
+    const maxAttempts = 5;
     
-    if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
-      try {
-        // Try to access parent document (may fail due to cross-origin)
-        const parentDoc = window.parent.document;
-        
-        // Find textarea with label containing "Your Response" or "Response"
-        const allTextareas = parentDoc.querySelectorAll('textarea');
-        console.log(`Found ${allTextareas.length} textareas in parent`);
-        
-        for (const ta of allTextareas) {
-          // Skip readonly textareas (those are display-only)
-          if (ta.readOnly || ta.disabled) continue;
+    // Try multiple times with different methods
+    const tryUpdateField = () => {
+      attempts++;
+      
+      if (typeof window !== 'undefined' && window.parent && window.parent !== window) {
+        try {
+          const parentDoc = window.parent.document;
           
-          // Check if this is the answer field by looking at nearby labels
-          const label = ta.closest('label') || 
-                       ta.previousElementSibling || 
-                       ta.parentElement?.querySelector('label');
+          // Get ALL textareas
+          const allTextareas = Array.from(parentDoc.querySelectorAll('textarea'));
+          console.log(`Attempt ${attempts}: Found ${allTextareas.length} textareas`);
           
-          const labelText = label?.textContent?.toLowerCase() || '';
-          const placeholder = ta.placeholder?.toLowerCase() || '';
-          const name = ta.name?.toLowerCase() || '';
-          const id = ta.id?.toLowerCase() || '';
-          
-          // Check if this field is related to "response" or "answer"
-          if (labelText.includes('response') || 
-              labelText.includes('answer') ||
-              placeholder.includes('response') ||
-              name.includes('response') ||
-              name.includes('answer') ||
-              id.includes('response') ||
-              id.includes('answer') ||
-              answerFieldId && (name.includes(answerFieldId.toLowerCase()) || id.includes(answerFieldId.toLowerCase()))) {
-            
-            console.log('Found matching field:', { labelText, name, id, ta });
-            
-            // Update the field
-            ta.value = transcriptToSend;
-            
-            // Trigger all possible events
-            const events = ['input', 'change', 'blur', 'keyup', 'keydown'];
-            events.forEach(eventType => {
-              ta.dispatchEvent(new Event(eventType, { bubbles: true, cancelable: true }));
-            });
-            
-            // Also try setting value property directly
-            try {
-              Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set.call(ta, transcriptToSend);
-            } catch (e) {}
-            
-            // Focus and blur to trigger validation
-            ta.focus();
-            setTimeout(() => ta.blur(), 50);
-            
-            console.log('✅ Successfully updated CallVu field!');
-            fieldFound = true;
-            break;
-          }
-        }
-        
-        if (!fieldFound) {
-          console.log('Field not found, trying all non-readonly textareas...');
-          // Last resort: try updating the first non-readonly textarea
+          // Strategy 1: Find by label text "*Your Response"
           for (const ta of allTextareas) {
-            if (!ta.readOnly && !ta.disabled && ta.offsetParent !== null) {
-              ta.value = transcriptToSend;
-              ta.dispatchEvent(new Event('input', { bubbles: true }));
-              ta.dispatchEvent(new Event('change', { bubbles: true }));
-              console.log('Updated fallback field:', ta);
-              fieldFound = true;
-              break;
+            // Look for label with "*Your Response" or "Your Response"
+            const parent = ta.parentElement;
+            const siblings = Array.from(parent?.children || []);
+            const prevSibling = ta.previousElementSibling;
+            
+            // Check previous sibling, parent, and all siblings for label text
+            const checkText = (el) => {
+              if (!el) return false;
+              const text = el.textContent?.toLowerCase() || '';
+              return text.includes('your response') || text.includes('*your response');
+            };
+            
+            if (checkText(prevSibling) || 
+                checkText(parent) ||
+                siblings.some(checkText) ||
+                parentDoc.querySelector('label:has(+ textarea)')?.textContent?.toLowerCase().includes('your response')) {
+              
+              if (!ta.readOnly && !ta.disabled) {
+                console.log('✅ Found field by label:', ta);
+                updateField(ta, transcriptToSend);
+                fieldFound = true;
+                return true;
+              }
             }
           }
+          
+          // Strategy 2: Find first editable textarea that's visible
+          if (!fieldFound) {
+            for (const ta of allTextareas) {
+              if (!ta.readOnly && 
+                  !ta.disabled && 
+                  ta.offsetParent !== null &&
+                  ta.style.display !== 'none' &&
+                  ta.style.visibility !== 'hidden') {
+                
+                // Check if it's near a label with "response"
+                const nearbyText = (ta.previousElementSibling?.textContent || 
+                                  ta.parentElement?.textContent || 
+                                  '').toLowerCase();
+                
+                if (nearbyText.includes('response') || nearbyText.includes('answer') || attempts >= 3) {
+                  console.log('✅ Found field by visibility:', ta);
+                  updateField(ta, transcriptToSend);
+                  fieldFound = true;
+                  return true;
+                }
+              }
+            }
+          }
+          
+          // Strategy 3: Find by answerFieldId
+          if (!fieldFound && answerFieldId) {
+            const fieldById = parentDoc.querySelector(
+              `[data-integration-id="${answerFieldId}"], 
+               [name*="${answerFieldId}"], 
+               [id*="${answerFieldId}"]`
+            );
+            if (fieldById && fieldById.tagName === 'TEXTAREA' && !fieldById.readOnly) {
+              console.log('✅ Found field by ID:', fieldById);
+              updateField(fieldById, transcriptToSend);
+              fieldFound = true;
+              return true;
+            }
+          }
+          
+        } catch (e) {
+          console.log(`Attempt ${attempts} failed:`, e.message);
         }
-      } catch (e) {
-        console.log('Cross-origin access failed, using postMessage:', e);
       }
-    }
+      
+      return fieldFound;
+    };
     
-    // Method 2: Use postMessage (works across origins)
-    if (window.parent && window.parent !== window) {
-      window.parent.postMessage({
-        type: 'VOICE_RESPONSE_READY',
-        transcript: transcriptToSend,
-        questionId: questionId,
-        questionTitle: questionTitle,
-        answerFieldId: answerFieldId
-      }, '*');
-      console.log('Sent postMessage to CallVu parent');
-    }
+    const updateField = (field, value) => {
+      // Set value multiple ways
+      field.value = value;
+      
+      // Try native setter
+      try {
+        const nativeSetter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value').set;
+        nativeSetter.call(field, value);
+      } catch (e) {}
+      
+      // Trigger all events
+      ['input', 'change', 'blur', 'keyup', 'keydown', 'keypress'].forEach(eventType => {
+        field.dispatchEvent(new Event(eventType, { bubbles: true, cancelable: true }));
+      });
+      
+      // Focus and blur
+      field.focus();
+      setTimeout(() => {
+        field.blur();
+        // Trigger change again after blur
+        field.dispatchEvent(new Event('change', { bubbles: true }));
+      }, 100);
+      
+      console.log('✅ Field updated:', field.value);
+    };
     
-    // Show success message
-    if (fieldFound) {
+    // Try immediately
+    if (!tryUpdateField()) {
+      // Retry with delays
+      const retryInterval = setInterval(() => {
+        if (tryUpdateField() || attempts >= maxAttempts) {
+          clearInterval(retryInterval);
+          if (!fieldFound) {
+            // Last resort: postMessage
+            if (window.parent && window.parent !== window) {
+              window.parent.postMessage({
+                type: 'VOICE_RESPONSE_READY',
+                transcript: transcriptToSend,
+                questionId: questionId,
+                questionTitle: questionTitle,
+                answerFieldId: answerFieldId
+              }, '*');
+              console.log('Sent postMessage as fallback');
+            }
+            setError('Field update attempted. If field is not filled, please manually paste the transcript.');
+          } else {
+            setError('');
+            setStatus('saved');
+          }
+        }
+      }, 200);
+    } else {
       setError('');
       setStatus('saved');
-    } else {
-      setError('Could not find response field. Please try refreshing the page.');
     }
   };
   
